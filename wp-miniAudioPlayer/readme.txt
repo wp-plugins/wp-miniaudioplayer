@@ -1,7 +1,7 @@
-=== mb.miniAudioPlayer for your mp3 audio files ===
+=== mb.miniAudioPlayer - an HTML5 audio player for your mp3 files ===
 
 Contributors: Pupunzi (Matteo Bicocchi)
-Tags: Audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
+Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.0
 Tested up to: 3.4.2
 Stable tag: 0.1
