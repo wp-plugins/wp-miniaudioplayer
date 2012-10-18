@@ -35,7 +35,7 @@ Extract the zip file and upload the contents to the wp-content/plugins/ director
 
 1. Activate the mb.miniAudioPlayer plugin via the WP plugin panel;
 2. Edit a post or a page, click on the Upload/Insert media link and choose an mp3 file;
-3. place it into the post wherever you want the player to show.
+3. place it into the post wherever you want to show the player.
 4. save the post and browse it; the player will show instead of the link at the file.
 
 to change the player default settings go to the mb.miniAudioPlayer settings panel (you can find it under the "settings" section of the WP backend).
