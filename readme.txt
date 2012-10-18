@@ -7,12 +7,11 @@ Tested up to: 3.4.2
 Stable tag: 0.1
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
-Transform your mp3 audio files into a nice, small light player
-
+Transform your mp3 audio files into a nice, small light HTML5 player
 
 == Description ==
 
-This plug-in let you transform any mp3 file uploaded inside a post into an essential small player with:
+This plug-in let you transform any mp3 file uploaded inside a post into an essential small HTML5 audio player with:
 
 * volume control,
 * seeking control,
