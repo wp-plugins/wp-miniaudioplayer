@@ -41,7 +41,7 @@ function miniAudioPlayer_options_page() { 	// Output the options page
             <p style="line-height: 1.4em;">Thanks for downloading mb.miniAudioPlayer! If you like it...<br /></p>
         </div>
 
-  <!--      <h2>Reference</h2>
+        <!--      <h2>Reference</h2>
 
         <p>Leave the <b>home video url</b> blank if you don't want to display a background video on your homepage.
         </p>
@@ -117,7 +117,7 @@ function miniAudioPlayer_options_page() { 	// Output the options page
 
         </table>
 
-        <p>Rate this plug in: <select onchange="window.open('http://wordpress.org/extend/plugins/wp-miniAudioPlayer/?rate='+this.value+'&topic_id=31313&_wpnonce=8627e276f3', 'rate')">
+        <p>Rate this plug in: <select onchange="window.open('http://wordpress.org/extend/plugins/wp-miniAudioPlayer/?rate='+this.value+'&topic_id=35600&_wpnonce=087fac79aa', 'rate')">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
