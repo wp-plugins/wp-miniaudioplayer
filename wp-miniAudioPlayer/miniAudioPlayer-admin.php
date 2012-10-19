@@ -117,7 +117,7 @@ function miniAudioPlayer_options_page() { 	// Output the options page
 
         </table>
 
-        <p>Rate this plug in: <select onchange="window.open('http://wordpress.org/extend/plugins/wp-miniAudioPlayer/?rate='+this.value+'&topic_id=31313&_wpnonce=8627e276f3', 'rate')">
+        <p>Rate this plug in: <select onchange="window.open('http://wordpress.org/extend/plugins/wp-miniAudioPlayer/?rate='+this.value+'&topic_id=35600&_wpnonce=087fac79aa', 'rate')">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
