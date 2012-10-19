@@ -19,8 +19,7 @@ This plug-in let you transform any mp3 file uploaded inside a post into an essen
 * rewind button,
 * mute button,
 * play button.
-
-
+----------------------------------------------------------------------------
 * demo: http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/demo.html
 * pupunzi blog: http://pupunzi.open-lab.com
 * pupunzi site: http://pupunzi.com
@@ -60,5 +59,4 @@ Options:
 Fixed a wrong path for the settings file in the plugin list.
 
 = 0.1 =
-
 * First release
