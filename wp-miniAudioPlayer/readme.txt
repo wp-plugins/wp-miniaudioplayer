@@ -26,6 +26,11 @@ Links:
 * pupunzi blog: http://pupunzi.open-lab.com
 * pupunzi site: http://pupunzi.com
 
+Other WP plugins:
+
+* **wp-YTPlayer.** A Chromeless video player to play your Youtube videos as background of any WP page or post.
+http://wordpress.org/extend/plugins/wpmbytplayer/
+
 == Installation ==
 
 Extract the zip file and upload the contents to the wp-content/plugins/ directory of your WordPress® installation, and then activate the plugin from the plugins page.
