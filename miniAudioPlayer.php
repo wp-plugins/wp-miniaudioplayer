@@ -4,11 +4,11 @@ Plugin Name: mb.miniAudioPlayer
 Plugin URI: http://pupunzi.com/#mb.components/mb.miniAudioPlayer/miniAudioPlayer.html
 Description: Transform your mp3 audio file link into a nice, small light player
 Author: Pupunzi (Matteo Bicocchi)
-Version: 0.1
+Version: 0.1.1
 Author URI: http://pupunzi.com
 */
 
-define("miniAudioPlayer_VERSION", "0.1");
+define("miniAudioPlayer_VERSION", "0.1.1");
 
 register_activation_hook( __FILE__, 'miniAudioPlayer_install' );
 
@@ -51,7 +51,7 @@ function miniAudioPlayer_action_links($links, $file) {
     // check to make sure we are on the correct plugin
     if ($file == $this_plugin) {
         // the anchor tag and href to the URL we want. For a "Settings" link, this needs to be the url of your settings page
-        $settings_link = '<a href="' . get_bloginfo('wpurl') . '/wp-admin/options-general.php?page=wp-miniAudioPlayer/miniAudioPlayer-admin.php">Settings</a>';
+        $settings_link = '<a href="' . get_bloginfo('wpurl') . '/wp-admin/options-general.php?page=wp-miniaudioplayer/miniAudioPlayer-admin.php">Settings</a>';
         // add the link to the list
         array_unshift($links, $settings_link);
     }

@@ -4,7 +4,7 @@ Contributors: Pupunzi (Matteo Bicocchi)
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.0
 Tested up to: 3.4.2
-Stable tag: 0.1
+Stable tag: 0.1.1
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
 Transform your mp3 audio files into a nice, small light HTML5 player
@@ -57,6 +57,10 @@ Options:
 
 == Changelog ==
 
+= 0.1.1 =
+Fixed a wrong path for the settings file in the plugin list.
+
+* First release
 = 0.1 =
 
 * First release
