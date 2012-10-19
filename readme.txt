@@ -20,11 +20,10 @@ This plug-in let you transform any mp3 file uploaded inside a post into an essen
 * mute button,
 * play button.
 
-demo: http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/demo.html
 
-pupunzi blog: http://pupunzi.open-lab.com
-
-pupunzi site: http://pupunzi.com
+* demo: http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/demo.html
+* pupunzi blog: http://pupunzi.open-lab.com
+* pupunzi site: http://pupunzi.com
 
 == Installation ==
 
@@ -48,19 +47,18 @@ Options:
 * @ showTime = a boolean to show or hide the time counter.
 * @ showRew = a boolean to show or hide the rewind control.
 
+
 == Screenshots ==
 
 1. The settings panel
 2. The player closed with a black skin.
 3. The player opened with a green skin.
 
-
 == Changelog ==
 
 = 0.1.1 =
 Fixed a wrong path for the settings file in the plugin list.
 
-* First release
 = 0.1 =
 
 * First release
