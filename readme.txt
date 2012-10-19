@@ -13,13 +13,15 @@ Transform your mp3 audio files into a nice, small light HTML5 player
 
 This plug-in let you transform any mp3 file uploaded inside a post into an essential small HTML5 audio player with:
 
-* volume control,
-* seeking control,
-* title bar,
-* rewind button,
-* mute button,
-* play button.
-----------------------------------------------------------------------------
+* volume control
+* seeking control
+* title bar
+* rewind button
+* mute button
+* play button
+
+Links:
+
 * demo: http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/demo.html
 * pupunzi blog: http://pupunzi.open-lab.com
 * pupunzi site: http://pupunzi.com
