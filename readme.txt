@@ -28,6 +28,12 @@ This plug-in let you transform any mp3 file uploaded inside a post into an essen
 
 Extract the zip file and upload the contents to the wp-content/plugins/ directory of your WordPress® installation, and then activate the plugin from the plugins page.
 
+== Screenshots ==
+
+1. The settings panel
+2. The player closed with a black skin.
+3. The player opened with a green skin.
+
 == How it works: ==
 
 1. Activate the mb.miniAudioPlayer plugin via the WP plugin panel;
@@ -45,13 +51,6 @@ to change the player default settings go to the mb.miniAudioPlayer settings pane
 * @ showVolumeLevel = a boolean to show or hide the volume control.
 * @ showTime = a boolean to show or hide the time counter.
 * @ showRew = a boolean to show or hide the rewind control.
-
-
-== Screenshots ==
-
-1. The settings panel
-2. The player closed with a black skin.
-3. The player opened with a green skin.
 
 == Changelog ==
 
