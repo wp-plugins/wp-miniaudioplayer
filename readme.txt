@@ -12,7 +12,6 @@ Transform your mp3 audio files into a nice, small light HTML5 player
 == Description ==
 
 This plug-in let you transform any mp3 file uploaded inside a post into an essential small HTML5 audio player with:
-
 * volume control
 * seeking control
 * title bar
@@ -21,7 +20,6 @@ This plug-in let you transform any mp3 file uploaded inside a post into an essen
 * play button
 
 Links:
-
 * demo: http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/demo.html
 * pupunzi blog: http://pupunzi.open-lab.com
 * pupunzi site: http://pupunzi.com
@@ -32,7 +30,7 @@ Extract the zip file and upload the contents to the wp-content/plugins/ director
 
 == Screenshots ==
 
-1. The settings panel
+1. The settings panel.
 2. The player closed with a black skin.
 3. The player opened with a green skin.
 
@@ -45,7 +43,7 @@ Extract the zip file and upload the contents to the wp-content/plugins/ director
 
 to change the player default settings go to the mb.miniAudioPlayer settings panel (you can find it under the "settings" section of the WP backend).
 
-== Options: ==
+**Options:**
 
 * @ width = (int) the width in pixel of the player once opened.
 * @ skin = the color of the player interface (black, blue, orange, red, gray and green).
