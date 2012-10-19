@@ -37,7 +37,7 @@ Extract the zip file and upload the contents to the wp-content/plugins/ director
 
 to change the player default settings go to the mb.miniAudioPlayer settings panel (you can find it under the "settings" section of the WP backend).
 
-Options:
+== Options: ==
 
 * @ width = (int) the width in pixel of the player once opened.
 * @ skin = the color of the player interface (black, blue, orange, red, gray and green).
