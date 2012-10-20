@@ -86,7 +86,7 @@ function miniAudioPlayer_player_head() {
 				skin:"'.$miniAudioPlayer_skin.'",
 				volume:'.$miniAudioPlayer_volume.',
 				autoPlay:'.$miniAudioPlayer_autoPlay.',
-				showVolumLevel:'.$miniAudioPlayer_showVolumeLevel.',
+				showVolumeLevel:'.$miniAudioPlayer_showVolumeLevel.',
 				showTime:'.$miniAudioPlayer_showTime.',
 				showRew:'.$miniAudioPlayer_showRew.',
 				swfPath:"'.plugins_url( '/js/', __FILE__ ).'",
