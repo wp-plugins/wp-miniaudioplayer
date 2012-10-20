@@ -4,11 +4,11 @@ Plugin Name: mb.miniAudioPlayer
 Plugin URI: http://pupunzi.com/#mb.components/mb.miniAudioPlayer/miniAudioPlayer.html
 Description: Transform your mp3 audio file link into a nice, small light player
 Author: Pupunzi (Matteo Bicocchi)
-Version: 0.1.1
+Version: 0.1.2
 Author URI: http://pupunzi.com
 */
 
-define("miniAudioPlayer_VERSION", "0.1.1");
+define("miniAudioPlayer_VERSION", "0.1.2");
 
 register_activation_hook( __FILE__, 'miniAudioPlayer_install' );
 
@@ -23,6 +23,7 @@ function miniAudioPlayer_install() {
     add_option('miniAudioPlayer_showTime','true');
     add_option('miniAudioPlayer_showRew','true');
 }
+
 $miniAudioPlayer_version = get_option('miniAudioPlayer_version');
 $miniAudioPlayer_width = get_option('miniAudioPlayer_width');
 $miniAudioPlayer_skin = get_option('miniAudioPlayer_skin');
@@ -37,9 +38,9 @@ if (empty($miniAudioPlayer_width)) {$miniAudioPlayer_width = "200";}
 if (empty($miniAudioPlayer_skin)) {$miniAudioPlayer_skin = "black";}
 if (empty($miniAudioPlayer_volume)) {$miniAudioPlayer_volume = ".5";}
 if (empty($miniAudioPlayer_autoPlay)) {$miniAudioPlayer_autoPlay = "false";}
-if (empty($miniAudioPlayer_showVolumeLevel)) {$miniAudioPlayer_showVolumeLevel = "true";}
-if (empty($miniAudioPlayer_showTime)) {$miniAudioPlayer_showTime = "true";}
-if (empty($miniAudioPlayer_showRew)) {$miniAudioPlayer_showRew = "true";}
+if (empty($miniAudioPlayer_showVolumeLevel)) {$miniAudioPlayer_showVolumeLevel = "false";}
+if (empty($miniAudioPlayer_showTime)) {$miniAudioPlayer_showTime = "false";}
+if (empty($miniAudioPlayer_showRew)) {$miniAudioPlayer_showRew = "false";}
 
 function miniAudioPlayer_action_links($links, $file) {
     static $this_plugin;
@@ -58,7 +59,6 @@ function miniAudioPlayer_action_links($links, $file) {
 
     return $links;
 }
-
 add_filter('plugin_action_links', 'miniAudioPlayer_action_links', 10, 2);
 
 // scripts to go in the header and/or footer
@@ -72,7 +72,6 @@ function miniAudioPlayer_init() {
         wp_enqueue_style('miniAudioPlayer', plugins_url( 'css/miniplayer.css', __FILE__ ), false, $miniAudioPlayer_version, 'screen');
     }
 }
-
 add_action('init', 'miniAudioPlayer_init');
 
 function miniAudioPlayer_player_head() {

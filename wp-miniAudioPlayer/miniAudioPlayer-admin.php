@@ -32,28 +32,18 @@ function miniAudioPlayer_options_page() { 	// Output the options page
 
     </style>
 
+    <a href="http://pupunzi.com"><img style="margin-top:30px;" src="<?php echo plugins_url( 'images/logo.png', __FILE__ );?>" alt="Made by Pupunzi" /></a>
     <form method="post" action="options.php">
 
         <?php wp_nonce_field('update-options'); ?>
 
         <h2>mb.miniAudioPlayer Settings</h2>
         <div class="updated fade">
-            <p style="line-height: 1.4em;">Thanks for downloading mb.miniAudioPlayer! If you like it...<br /></p>
+            <p style="line-height: 1.4em;">Thanks for downloading mb.miniAudioPlayer! If you like it... Consider a donation.<br /></p>
         </div>
+        <a style="position: relative; display:block;top:0px;margin-right: -10px" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y"><img border="0" alt="PayPal" src="<?php echo plugins_url( 'images/btn_donateCC_LG_global.gif', __FILE__ );?>" class="alignright"></a>
+        <p>You're using mb.miniAudioPlayer v. <?php echo $miniAudioPlayer_version;?> by <a href="http://pupunzi.com">Pupunzi</a>.<br>If you like it and you use it then you should consider a donation (€15,00 or more) :-)</p>
 
-  <!--      <h2>Reference</h2>
-
-        <p>Leave the <b>home video url</b> blank if you don't want to display a background video on your homepage.
-        </p>
-        <p>You can add a mb.YTPlayer to any of your posts or pages by writing the shortcode
-            <br>
-            <b>[miniAudioPlayer url="http://www.youtube.com/watch?v=V2rifmjZuKQ" ratio="4/3" mute="false" loop="true" showControls="true" opacity=1]</b>
-            into the content editor. Change the parameters into the shortcode to fill your needs.</p>
-        <br>
-        <h2>Home page background video properties:</h2>
-        <p>These settings are used only for the Home istance of the mb.YTPlayer component.</p>
-        <br>
-        <br>-->
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">Choose the skin color:</th>
@@ -73,7 +63,7 @@ function miniAudioPlayer_options_page() { 	// Output the options page
             <tr valign="top">
                 <th scope="row">Set the width:</th>
                 <td>
-                    <input type="text" name="miniAudioPlayer_width" style="width:70%" value="<?php if (!empty($miniAudioPlayer_width)) {echo $miniAudioPlayer_width; }?>"/>
+                    <input type="text" name="miniAudioPlayer_width" style="width:80px" value="<?php if (!empty($miniAudioPlayer_width)) {echo $miniAudioPlayer_width; }?>"/>
                     <p>Set the player width in pixel</p>
                 </td>
             </tr>
@@ -117,6 +107,9 @@ function miniAudioPlayer_options_page() { 	// Output the options page
 
         </table>
 
+        <h3>If you are using others HTML5 audio player plug-ins (like Haiku) there could be conflicts with mb.miniAudioPlayer. You should deactivete the others befor using this.</h3>
+        <br>
+        <br>
         <p>Rate this plug in: <select onchange="window.open('http://wordpress.org/extend/plugins/wp-miniAudioPlayer/?rate='+this.value+'&topic_id=35600&_wpnonce=087fac79aa', 'rate')">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -126,17 +119,12 @@ function miniAudioPlayer_options_page() { 	// Output the options page
             <option value="5" selected>rate it</option>
         </select></p>
 
-
         <input type="hidden" name="page_options" value="miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew" />
         <input type="hidden" name="action" value="update" />
         <p class="submit">
             <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
         </p>
-        <a style="position: relative; display:block;top:0px;margin-right: -10px" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y"><img border="0" alt="PayPal" src="<?php echo plugins_url( 'images/btn_donateCC_LG_global.gif', __FILE__ );?>" class="alignright"></a>
     </form>
-
-    <p>You're using mb.miniAudioPlayer v. <?php echo $miniAudioPlayer_version;?> by <a href="http://pupunzi.com">Pupunzi</a>.<br>If you like it and you use it then you should consider a donation (€15,00 or more) :-)</p>
-    <a href="http://pupunzi.com"><img style="margin-top:30px;" src="<?php echo plugins_url( 'images/logo.png', __FILE__ );?>" alt="Made by Pupunzi" /></a>
 
 
 </div>
