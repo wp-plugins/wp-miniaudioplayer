@@ -39,7 +39,7 @@
       width:150,
       skin:"black", // available: black, blue, orange, red, gray
       volume:.5,
-      autoPlay:false,
+      autoplay:false,
       playAlone:true,
       inLine:false,
       volumeLevels:8,
@@ -237,8 +237,10 @@
               });
 
             });
-            // autoPlay can't work on iOs devices
-            if (player.opt.autoPlay && ((player.opt.playAlone && jQuery("[isPlaying=true]").length==0) || !player.opt.playAlone))
+            // autoplay can't work on iOs devices
+
+
+            if (player.opt.autoplay && ((player.opt.playAlone && jQuery("[isPlaying=true]").length==0) || !player.opt.playAlone))
               $playBox.click();
           },
           customCssIds: true,

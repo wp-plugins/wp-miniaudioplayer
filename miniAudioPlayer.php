@@ -18,7 +18,7 @@ function miniAudioPlayer_install() {
     add_option('miniAudioPlayer_width','200');
     add_option('miniAudioPlayer_skin','black');
     add_option('miniAudioPlayer_volume','.5');
-    add_option('miniAudioPlayer_autoPlay','false');
+    add_option('miniAudioPlayer_autoplay','false');
     add_option('miniAudioPlayer_showVolumeLevel','true');
     add_option('miniAudioPlayer_showTime','true');
     add_option('miniAudioPlayer_showRew','true');
@@ -28,7 +28,7 @@ $miniAudioPlayer_version = get_option('miniAudioPlayer_version');
 $miniAudioPlayer_width = get_option('miniAudioPlayer_width');
 $miniAudioPlayer_skin = get_option('miniAudioPlayer_skin');
 $miniAudioPlayer_volume = get_option('miniAudioPlayer_volume');
-$miniAudioPlayer_autoPlay = get_option('miniAudioPlayer_autoPlay');
+$miniAudioPlayer_autoplay = get_option('miniAudioPlayer_autoplay');
 $miniAudioPlayer_showVolumeLevel = get_option('miniAudioPlayer_showVolumeLevel');
 $miniAudioPlayer_showTime = get_option('miniAudioPlayer_showTime');
 $miniAudioPlayer_showRew = get_option('miniAudioPlayer_showRew');
@@ -37,7 +37,7 @@ $miniAudioPlayer_showRew = get_option('miniAudioPlayer_showRew');
 if (empty($miniAudioPlayer_width)) {$miniAudioPlayer_width = "200";}
 if (empty($miniAudioPlayer_skin)) {$miniAudioPlayer_skin = "black";}
 if (empty($miniAudioPlayer_volume)) {$miniAudioPlayer_volume = ".5";}
-if (empty($miniAudioPlayer_autoPlay)) {$miniAudioPlayer_autoPlay = "false";}
+if (empty($miniAudioPlayer_autoplay)) {$miniAudioPlayer_autoplay = "false";}
 if (empty($miniAudioPlayer_showVolumeLevel)) {$miniAudioPlayer_showVolumeLevel = "false";}
 if (empty($miniAudioPlayer_showTime)) {$miniAudioPlayer_showTime = "false";}
 if (empty($miniAudioPlayer_showRew)) {$miniAudioPlayer_showRew = "false";}
@@ -75,7 +75,7 @@ function miniAudioPlayer_init() {
 add_action('init', 'miniAudioPlayer_init');
 
 function miniAudioPlayer_player_head() {
-    global $miniAudioPlayer_width,$miniAudioPlayer_skin,$miniAudioPlayer_volume,$miniAudioPlayer_autoPlay,$miniAudioPlayer_showVolumeLevel,$miniAudioPlayer_showTime,$miniAudioPlayer_showRew;
+    global $miniAudioPlayer_width,$miniAudioPlayer_skin,$miniAudioPlayer_volume,$miniAudioPlayer_autoplay,$miniAudioPlayer_showVolumeLevel,$miniAudioPlayer_showTime,$miniAudioPlayer_showRew;
     echo '
 	<!-- start miniAudioPlayer -->
 	<script type="text/javascript">
@@ -85,8 +85,8 @@ function miniAudioPlayer_player_head() {
 				inLine:false,
 				skin:"'.$miniAudioPlayer_skin.'",
 				volume:'.$miniAudioPlayer_volume.',
-				autoPlay:'.$miniAudioPlayer_autoPlay.',
-				showVolumLevel:'.$miniAudioPlayer_showVolumeLevel.',
+				autoplay:'.$miniAudioPlayer_autoplay.',
+				showVolumeLevel:'.$miniAudioPlayer_showVolumeLevel.',
 				showTime:'.$miniAudioPlayer_showTime.',
 				showRew:'.$miniAudioPlayer_showRew.',
 				swfPath:"'.plugins_url( '/js/', __FILE__ ).'",
