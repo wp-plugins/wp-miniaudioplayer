@@ -67,7 +67,7 @@ function miniAudioPlayer_init() {
     if ( !is_admin()) {
         wp_enqueue_script('jquery');
         wp_enqueue_script('metadata', plugins_url( '/js/jquery.metadata.js', __FILE__ ), false, '1.2', false);
-        wp_enqueue_script('jplayer', plugins_url( '/js/jquery.jplayer.js', __FILE__ ), false, '2.1.0', false);
+        wp_enqueue_script('jplayer', plugins_url( '/js/jquery.jplayer.min.js', __FILE__ ), false, '2.1.0', false);
         wp_enqueue_script('mb.miniPlayer', plugins_url( '/js/jquery.mb.miniPlayer.js', __FILE__ ), false, $miniAudioPlayer_version, false);
         wp_enqueue_style('miniAudioPlayer', plugins_url( 'css/miniplayer.css', __FILE__ ), false, $miniAudioPlayer_version, 'screen');
     }
