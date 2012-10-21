@@ -77,10 +77,11 @@ add_action('init', 'miniAudioPlayer_init');
 function miniAudioPlayer_player_head() {
     global $miniAudioPlayer_width,$miniAudioPlayer_skin,$miniAudioPlayer_volume,$miniAudioPlayer_autoplay,$miniAudioPlayer_showVolumeLevel,$miniAudioPlayer_showTime,$miniAudioPlayer_showRew;
     echo '
-	<!-- start miniAudioPlayer -->
+	<!-- start miniAudioPlayer initializer -->
 	<script type="text/javascript">
+
 	jQuery(function(){
-	    	jQuery("a[href*=\'.mp3\']").mb_miniPlayer({
+           	jQuery("a[href*=\'.mp3\']").mb_miniPlayer({
 				width:'.$miniAudioPlayer_width.',
 				inLine:false,
 				skin:"'.$miniAudioPlayer_skin.'",
@@ -94,14 +95,51 @@ function miniAudioPlayer_player_head() {
 	});
 
 	</script>
-	<!-- end miniAudioPlayer -->
+	<!-- end miniAudioPlayer initializer -->
 	';
 
 };
 // ends miniAudioPlayer_player_head function
 
 add_action('wp_head', 'miniAudioPlayer_player_head');
-//add_action('admin_init', 'setup_miniAudioPlayer_button');
+
+
+add_action('admin_init', 'setup_maplayer_button');
+
+
+// TinyMCE Button ***************************************************
+
+// Set up our TinyMCE button
+function setup_maplayer_button()
+{
+    if (get_user_option('rich_editing') == 'true' && current_user_can('edit_posts')) {
+        add_filter('mce_external_plugins', 'add_maplayer_button_script');
+        add_filter('mce_buttons','register_maplayer_button');
+    }
+}
+
+// Register our TinyMCE button
+function register_maplayer_button($buttons) {
+    array_push($buttons, '|', 'maplayerbutton');
+    return $buttons;
+}
+
+// Register our TinyMCE Script
+function add_maplayer_button_script($plugin_array) {
+    $plugin_array['maplayer'] = plugins_url('mapTinyMCE/tinymcemaplayer.js.php?params='.get_maplayer_pop_up_params(), __FILE__);
+    return $plugin_array;
+}
+
+function get_maplayer_pop_up_params(){
+    global $miniAudioPlayer_version;
+
+    return urlencode(base64_encode(
+        'plugin_version='.$miniAudioPlayer_version.'&'.
+            'includes_url='.urlencode(includes_url()).'&'.
+            'plugins_url='.urlencode(plugins_url()).'&'.
+            'charset='.urlencode(get_option('blog_charset'))
+    ));
+}
 
 if ( is_admin() ) {
     require('miniAudioPlayer-admin.php');

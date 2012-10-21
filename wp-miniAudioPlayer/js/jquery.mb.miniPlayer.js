@@ -68,7 +68,9 @@
         player.opt.isIE9 = jQuery.browser.msie && jQuery.browser.version == 9;
 
         if (jQuery.metadata){
-          jQuery.extend(player.opt,$master.metadata());
+	        console.debug(ID, $master.metadata())
+	        jQuery.metadata.setType("class");
+	        jQuery.extend(player.opt,$master.metadata());
         }
 
         if (navigator && navigator.platform && navigator.platform.match(/^(iPad|iPod|iPhone)jQuery/)) {
