@@ -4,7 +4,7 @@ Contributors: Pupunzi (Matteo Bicocchi)
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.0
 Tested up to: 3.4.2
-Stable tag: 0.1.2
+Stable tag: 0.2
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
 Transform your mp3 audio files into a nice, small light HTML5 player
@@ -20,9 +20,12 @@ This plug-in let you transform any mp3 file uploaded inside a post into an essen
 * mute button
 * play button
 
+[youtube http://youtu.be/B8Dr4aUNGgo]
+
 Links:
 
 * demo: http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/demo.html
+* video: http://youtu.be/B8Dr4aUNGgo
 * pupunzi blog: http://pupunzi.open-lab.com
 * pupunzi site: http://pupunzi.com
 
@@ -42,6 +45,8 @@ Extract the zip file and upload the contents to the wp-content/plugins/ director
 1. The settings panel.
 2. The player closed with a black skin.
 3. The player opened with a green skin.
+4. The edit properties button available in the post editor toolbar.
+5. The properties window in the post editor.
 
 == How it works: ==
 
@@ -62,6 +67,9 @@ to change the player default settings go to the mb.miniAudioPlayer settings pane
 * @ showRew = a boolean to show or hide the rewind control.
 
 == Changelog ==
+
+= 0.2 =
+Added a customize tool in the post/page editor. You can customize the properties for each player by selecting it in the post editor and clicking on the miniAudioPlayer button to edit properties.
 
 = 0.1.2 =
 Fixed a bug for preferences checks (always true).

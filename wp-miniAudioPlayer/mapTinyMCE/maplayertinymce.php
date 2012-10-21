@@ -14,9 +14,10 @@ if (!headers_sent()) {
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $charset; ?>" />
-    <title>Add a shortcode for mb.miniAudioPlayer</title>
+    <title>mb.miniAudioPlayer</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $plugins_url.'/wpmbytplayer/ytpTinyMCE/bootstrap-1.4.0.min.css?v='.$plugin_version; ?>"/>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo $plugins_url.'/wpmbytplayer/js/jquery.metadata.js?v='.$plugin_version; ?>"></script>
     <script type="text/javascript" src="<?php echo $includes_url.'js/tinymce/tiny_mce_popup.js?v='.$plugin_version; ?>"></script>
     <style>
         fieldset label > span.label{
@@ -40,7 +41,6 @@ if (!headers_sent()) {
 
 </head>
 <body>
-
 <form class="form-stacked" action="#">
 
     <fieldset>
@@ -55,7 +55,7 @@ if (!headers_sent()) {
         <label>
             <span class="label">Audio title : </span>
             <input type="text" name="audiotitle" class="span5"/>
-            <span class="help-inline">The audio displayerd title</span>
+            <span class="help-inline">The audio title</span>
         </label>
 
         <label>
@@ -112,7 +112,7 @@ if (!headers_sent()) {
     </fieldset>
 
     <div class="actions">
-        <input type="submit" value="Insert shortcode" class="btn primary"/>
+        <input type="submit" value="Insert the code" class="btn primary"/>
         or
         <input class="btn" type="reset" value="Reset settings"/>
     </div>
@@ -122,11 +122,11 @@ if (!headers_sent()) {
 <script type="text/javascript">
     tinyMCEPopup.onInit.add(function(ed) {
 
-
         var selection = ed.selection.getNode(); //({format : 'html'})
         ed.selection.select(selection,true);
 
-        console.debug(selection)
+        var $selection = $(selection);
+        var metadata = $selection.metadata();
 
         var url= "";
         var title = "";
@@ -142,9 +142,18 @@ if (!headers_sent()) {
         jQuery("[name='url']").val(url);
         jQuery("[name='audiotitle']").val(title);
 
-        var form = document.forms[0],
 
-            isEmpty = function(value) {
+        for (var i in metadata){
+
+            if(typeof metadata[i] == "boolean"){
+                jQuery("[name="+i+"]").attr("checked", "checked");
+            }else{
+                jQuery("[name="+i+"]").val(metadata[i]);
+            }
+        }
+
+        var form = document.forms[0];
+        var isEmpty = function(value) {
                 return (/^\s*$/.test(value));
             },
 
@@ -170,17 +179,10 @@ if (!headers_sent()) {
                 if(!isEmpty(jQuery("[name='volume']").val()))
                     sc+="volume:"+ jQuery("[name='volume']").val()/10 +",";
 
-                if(jQuery("[name='autoplay']").is(":checked"))
-                    sc+="autoplay:true,";
-
-                if(jQuery("[name='showVolumeLevel']").is(":checked"))
-                    sc+="showVolumeLevel:true,";
-
-                if(jQuery("[name='showTime']").is(":checked"))
-                    sc+="showTime:true,";
-
-                if(jQuery("[name='showRew']").is(":checked"))
-                    sc+="showRew:true";
+                    sc+="autoplay:"+jQuery("[name='autoplay']").is(":checked") ? "true" : "false"+",";
+                    sc+="showVolumeLevel:"+jQuery("[name='showVolumeLevel']").is(":checked") ? "true" : "false"+",";
+                    sc+="showTime:"+jQuery("[name='showTime']").is(":checked") ? "true" : "false"+",";
+                    sc+="showRew:"+jQuery("[name='showRew']").is(":checked") ? "true" : "false"+",";
 
                 sc += "}\" href=\""+jQuery("[name='url']").val()+"\">"+jQuery("[name='audiotitle']").val()+"</a>";
 
@@ -191,48 +193,8 @@ if (!headers_sent()) {
 
                 return false;
             };
-        /*
-
-                    insertShortcode = function(e){
-                        var sc = "[mbmaplayer ",
-                            inputs = form.elements, input, inputName, inputValue,
-                            l = inputs.length, i = 0;
-
-                        for ( ; i < l; i++) {
-                            input = inputs[i];
-                            inputName = input.name;
-                            inputValue = input.value;
-                            // Audio URL validation
-                            if (inputName == "url" && (isEmpty(inputValue) || inputValue.toLowerCase().indexOf(".mp3")==-1)){
-                                alert("a valid mp3 file url is required");
-                                return false;
-                            }
-                            if (inputName == "volume" && !isEmpty(inputValue) ){
-                                inputValue = input.value/10;
-                            }
-                            // inputs of type "checkbox", "radio" and "text"
-                            if ((input.type == "text" && !isEmpty(inputValue) && inputValue != input.defaultValue) || input.type == "select-one" || input.type =="checkbox") {
-
-                                if (input.type =="checkbox") {
-                                    if(!input.checked)
-                                        inputValue = false;
-                                }
-
-                                sc += ' ' + inputName + '="' + inputValue + '"';
-                            }
-                        }
-
-                        sc += "]";
-
-                        ed.execCommand('mceInsertContent', 0, sc);
-                        tinyMCEPopup.close();
-
-                        return false;
-                    };
-        */
 
         form.onsubmit = insertShortcode;
-
         tinyMCEPopup.resizeToInnerSize();
     });
 </script>
