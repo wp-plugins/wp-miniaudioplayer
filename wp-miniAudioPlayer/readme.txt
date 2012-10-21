@@ -20,7 +20,7 @@ This plug-in let you transform any mp3 file uploaded inside a post into an essen
 * mute button
 * play button
 
-[youtube http://youtu.be/B8Dr4aUNGgo]
+[youtube http://www.youtube.com/watch?v=B8Dr4aUNGgo]
 
 Links:
 
