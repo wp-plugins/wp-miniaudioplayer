@@ -69,13 +69,13 @@ to change the player default settings go to the mb.miniAudioPlayer settings pane
 == Changelog ==
 
 = 0.2 =
-Added a customize tool in the post/page editor. You can customize the properties for each player by selecting it in the post editor and clicking on the miniAudioPlayer button to edit properties.
+* Added a customize tool in the post/page editor. You can customize the properties for each player by selecting it in the post editor and clicking on the miniAudioPlayer button to edit properties.
 
 = 0.1.2 =
-Fixed a bug for preferences checks (always true).
+* Fixed a bug for preferences checks (always true).
 
 = 0.1.1 =
-Fixed a wrong path for the settings file in the plugin list.
+* Fixed a wrong path for the settings file in the plugin list.
 
 = 0.1 =
 * First release
