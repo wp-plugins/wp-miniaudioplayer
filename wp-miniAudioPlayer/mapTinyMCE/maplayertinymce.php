@@ -122,22 +122,32 @@ if (!headers_sent()) {
 <script type="text/javascript">
     tinyMCEPopup.onInit.add(function(ed) {
 
-        var selection = ed.selection.getNode(); //({format : 'html'})
+        var selection = ed.selection.getNode();
         ed.selection.select(selection,true);
+        var $selection = jQuery(selection);
 
-        var $selection = $(selection);
-        var metadata = $selection.metadata();
 
         var url= "";
         var title = "";
 
-        if(jQuery(selection).is("a[href *= '.mp3']")){
-            url = jQuery(selection).attr("href");
-            title = jQuery(selection).html();
-        }else if (jQuery(selection).find("a[href *= '.mp3']").length){
-            url = jQuery(selection).find("a[href *= '.mp3']").attr("href");
-            title = jQuery(selection).find("a[href *= '.mp3']").html();
+        var map_element = $selection.find("a[href *= '.mp3']");
+
+        if($selection.is("a[href *= '.mp3']")){
+            url = $selection.attr("href");
+            title = $selection.html();
+        }else if (map_element.length){
+            ed.selection.select(map_element.get(0),true);
+            url = map_element.attr("href");
+            title = map_element.html();
+        }else if($selection.prev().is("a[href *= '.mp3']")){
+            ed.selection.select($selection.prev().get(0),true);
+            $selection = $selection.prev();
+            url = $selection.attr("href");
+            title = $selection.html();
         }
+
+        var $desc = $selection.next(".map_params");
+        var metadata = $selection.metadata();
 
         jQuery("[name='url']").val(url);
         jQuery("[name='audiotitle']").val(title);
@@ -146,7 +156,8 @@ if (!headers_sent()) {
         for (var i in metadata){
 
             if(typeof metadata[i] == "boolean"){
-                jQuery("[name="+i+"]").attr("checked", "checked");
+                if(metadata[i] == true)
+                    jQuery("[name="+i+"]").attr("checked",  "checked");
             }else{
                 jQuery("[name="+i+"]").val(metadata[i]);
             }
@@ -167,36 +178,42 @@ if (!headers_sent()) {
                     .replace(/\//g, "%2F");
             },
 
-            insertShortcode = function(e){
-                var sc = "<a id='mbmaplayer_"+new Date().getTime()+"' class= \"{ ";
+            insertCode = function(e){
 
-                if(!isEmpty(jQuery("[name='skin']").val()))
-                    sc+="skin:'"+jQuery("[name='skin']").val()+"',";
+                var map_params ="";
+                if(jQuery("[name='skin']").val().length>0)
+                    map_params+="skin:'"+jQuery("[name='skin']").val()+"', ";
+                if(jQuery("[name='width']").val().length>0)
+                    map_params+="width:"+jQuery("[name='width']").val()+", ";
+                if(jQuery("[name='volume']").val().length>0)
+                    map_params+="volume:"+ jQuery("[name='volume']").val()/10 +", ";
+                map_params+="autoplay:"+(jQuery("[name='autoplay']").is(":checked") ? "true" : "false")+", ";
+                map_params+="showVolumeLevel:"+(jQuery("[name='showVolumeLevel']").is(":checked") ? "true" : "false")+", ";
+                map_params+="showTime:"+(jQuery("[name='showTime']").is(":checked") ? "true" : "false")+", ";
+                map_params+="showRew:"+(jQuery("[name='showRew']").is(":checked") ? "true" : "false")+", ";
 
-                if(!isEmpty(jQuery("[name='width']").val()))
-                    sc+="width:"+jQuery("[name='width']").val()+",";
+                var map_a = "<a id='mbmaplayer_"+new Date().getTime()+"' class= \"{";
+                map_a += map_params;
+                map_a += "}\" href=\""+jQuery("[name='url']").val()+"\">";
+                map_a+=jQuery("[name='audiotitle']").val();
+                map_a+="</a>";
+                map_a = map_a.replace(", }", "}");
+                ed.execCommand('mceInsertContent', 0, map_a);
 
-                if(!isEmpty(jQuery("[name='volume']").val()))
-                    sc+="volume:"+ jQuery("[name='volume']").val()/10 +",";
+                if($desc.length)
+                    $desc.remove();
 
-                    sc+="autoplay:"+jQuery("[name='autoplay']").is(":checked") ? "true" : "false"+",";
-                    sc+="showVolumeLevel:"+jQuery("[name='showVolumeLevel']").is(":checked") ? "true" : "false"+",";
-                    sc+="showTime:"+jQuery("[name='showTime']").is(":checked") ? "true" : "false"+",";
-                    sc+="showRew:"+jQuery("[name='showRew']").is(":checked") ? "true" : "false"+",";
+                var map_desc="<span class='map_params' style='color:#aaa; text-decoration: none;'><br>map :: ["+map_params+"]</span>";
+                ed.execCommand('mceInsertContent', 0, map_desc);
 
-                sc += "}\" href=\""+jQuery("[name='url']").val()+"\">"+jQuery("[name='audiotitle']").val()+"</a>";
-
-                sc = sc.replace(",}", "}");
-
-                ed.execCommand('mceInsertContent', 0, sc);
                 tinyMCEPopup.close();
 
                 return false;
             };
 
-        form.onsubmit = insertShortcode;
+        form.onsubmit = insertCode;
         tinyMCEPopup.resizeToInnerSize();
     });
 </script>
 </body>
-</html>    
+</html>
