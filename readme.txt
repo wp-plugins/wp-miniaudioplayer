@@ -65,6 +65,7 @@ to change the player default settings go to the mb.miniAudioPlayer settings pane
 * @ showVolumeLevel = a boolean to show or hide the volume control.
 * @ showTime = a boolean to show or hide the time counter.
 * @ showRew = a boolean to show or hide the rewind control.
+* @ autoPlay = (available only for the TinyMCE editor plugin) a boolean to set in play the player once the page is loaded.
 
 == Changelog ==
 
