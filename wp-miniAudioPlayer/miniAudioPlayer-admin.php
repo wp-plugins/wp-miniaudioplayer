@@ -9,7 +9,7 @@ function add_miniAudioPlayer_option_page() {
     add_options_page('miniAudioPlayer', 'mb.miniAudioPlayer', 'manage_options', __FILE__, 'miniAudioPlayer_options_page');
 }
 function miniAudioPlayer_options_page() { 	// Output the options page
-    global  $miniAudioPlayer_version,$miniAudioPlayer_width, $miniAudioPlayer_skin, $miniAudioPlayer_volume, $miniAudioPlayer_autoplay, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew ?>
+    global  $miniAudioPlayer_version,$miniAudioPlayer_width, $miniAudioPlayer_skin, $miniAudioPlayer_volume, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_excluded, $miniAudioPlayer_download ?>
 <div class="wrap" style="width:800px">
     <style>
 
@@ -33,6 +33,7 @@ function miniAudioPlayer_options_page() { 	// Output the options page
     </style>
 
     <a href="http://pupunzi.com"><img style="margin-top:30px;" src="<?php echo plugins_url( 'images/logo.png', __FILE__ );?>" alt="Made by Pupunzi" /></a>
+    <img style="margin-top:10px;" src="<?php echo plugins_url( 'images/exclude_img.png', __FILE__ );?>" alt="exclude" />
     <form method="post" action="options.php">
 
         <?php wp_nonce_field('update-options'); ?>
@@ -59,7 +60,6 @@ function miniAudioPlayer_options_page() { 	// Output the options page
                     <p>Set the palyer skin</p>
                 </td>
             </tr>
-
             <tr valign="top">
                 <th scope="row">Set the width:</th>
                 <td>
@@ -105,6 +105,24 @@ function miniAudioPlayer_options_page() { 	// Output the options page
                 </td>
             </tr>
 
+            <tr valign="top">
+                <th scope="row">Exclude audio links with class:</th>
+                <td>
+                    <input type="text" name="miniAudioPlayer_excluded" style="width:140px" value="<?php if (!empty($miniAudioPlayer_excluded)) {echo $miniAudioPlayer_excluded; }else{ echo 'map_excluded'; }?>"/>
+                    <p>Define the class name for the audio liks you don't want to render as player; By default is "map_excluded".</p>
+                    <p><i>You can either manually add this class to the audio links you want to exclude or select the link and check the "Don't render" checkbox of the popup window in the editor page.</i></p>
+                    <img style="margin-top:10px;" src="<?php echo plugins_url( 'images/excludeimg.png', __FILE__ );?>" alt="exclude image" />
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Allow downloads:</th>
+                <td>
+                    <input type="checkbox" name="miniAudioPlayer_download" value="true" <?php if ($miniAudioPlayer_download=="true") {echo' checked="checked"'; }?>/>
+                    <p>check to add a download button closed to the player.</p>
+                </td>
+            </tr>
+
         </table>
 
         <h3>If you are using others HTML5 audio player plug-ins (like Haiku) there could be conflicts with mb.miniAudioPlayer. You should deactivete the others befor using this.</h3>
@@ -119,7 +137,7 @@ function miniAudioPlayer_options_page() { 	// Output the options page
             <option value="5" selected>rate it</option>
         </select></p>
 
-        <input type="hidden" name="page_options" value="miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew" />
+        <input type="hidden" name="page_options" value="miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew, miniAudioPlayer_excluded, miniAudioPlayer_download" />
         <input type="hidden" name="action" value="update" />
         <p class="submit">
             <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />

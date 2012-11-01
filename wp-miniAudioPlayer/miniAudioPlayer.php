@@ -4,11 +4,11 @@ Plugin Name: mb.miniAudioPlayer
 Plugin URI: http://pupunzi.com/#mb.components/mb.miniAudioPlayer/miniAudioPlayer.html
 Description: Transform your mp3 audio file link into a nice, small light player
 Author: Pupunzi (Matteo Bicocchi)
-Version: 0.3
+Version: 0.4
 Author URI: http://pupunzi.com
 */
 
-define("miniAudioPlayer_VERSION", "0.3");
+define("miniAudioPlayer_VERSION", "0.4");
 
 register_activation_hook( __FILE__, 'miniAudioPlayer_install' );
 
@@ -22,6 +22,8 @@ function miniAudioPlayer_install() {
     add_option('miniAudioPlayer_showVolumeLevel','true');
     add_option('miniAudioPlayer_showTime','true');
     add_option('miniAudioPlayer_showRew','true');
+    add_option('miniAudioPlayer_excluded','noPlayer');
+    add_option('miniAudioPlayer_download','false');
 }
 
 $miniAudioPlayer_version = get_option('miniAudioPlayer_version');
@@ -32,6 +34,8 @@ $miniAudioPlayer_autoplay = get_option('miniAudioPlayer_autoplay');
 $miniAudioPlayer_showVolumeLevel = get_option('miniAudioPlayer_showVolumeLevel');
 $miniAudioPlayer_showTime = get_option('miniAudioPlayer_showTime');
 $miniAudioPlayer_showRew = get_option('miniAudioPlayer_showRew');
+$miniAudioPlayer_excluded = get_option('miniAudioPlayer_excluded');
+$miniAudioPlayer_download = get_option('miniAudioPlayer_download');
 
 //set up defaults if these fields are empty
 if (empty($miniAudioPlayer_width)) {$miniAudioPlayer_width = "200";}
@@ -41,6 +45,8 @@ if (empty($miniAudioPlayer_autoplay)) {$miniAudioPlayer_autoplay = "false";}
 if (empty($miniAudioPlayer_showVolumeLevel)) {$miniAudioPlayer_showVolumeLevel = "false";}
 if (empty($miniAudioPlayer_showTime)) {$miniAudioPlayer_showTime = "false";}
 if (empty($miniAudioPlayer_showRew)) {$miniAudioPlayer_showRew = "false";}
+if (empty($miniAudioPlayer_excluded)) {$miniAudioPlayer_excluded = "map_excluded";}
+if (empty($miniAudioPlayer_download)) {$miniAudioPlayer_download = "false";}
 
 function miniAudioPlayer_action_links($links, $file) {
     static $this_plugin;
@@ -75,30 +81,38 @@ function miniAudioPlayer_init() {
 add_action('init', 'miniAudioPlayer_init');
 
 function miniAudioPlayer_player_head() {
-    global $miniAudioPlayer_width,$miniAudioPlayer_skin,$miniAudioPlayer_volume,$miniAudioPlayer_autoplay,$miniAudioPlayer_showVolumeLevel,$miniAudioPlayer_showTime,$miniAudioPlayer_showRew;
+    global $miniAudioPlayer_width,$miniAudioPlayer_skin,$miniAudioPlayer_volume,$miniAudioPlayer_autoplay,$miniAudioPlayer_showVolumeLevel,$miniAudioPlayer_showTime,$miniAudioPlayer_showRew,$miniAudioPlayer_download,$miniAudioPlayer_excluded;
     echo '
 	<!-- start miniAudioPlayer initializer -->
 	<script type="text/javascript">
 
 	jQuery(function(){
-           	jQuery("a[href*=\'.mp3\']").mb_miniPlayer({
-				width:'.$miniAudioPlayer_width.',
-				inLine:false,
+           	jQuery("a[href*=\'.mp3\']")'.getExcluded().'mb_miniPlayer({
+				inLine:true,
+                width:'.$miniAudioPlayer_width.',
 				skin:"'.$miniAudioPlayer_skin.'",
 				volume:'.$miniAudioPlayer_volume.',
 				autoplay:'.$miniAudioPlayer_autoplay.',
 				showVolumeLevel:'.$miniAudioPlayer_showVolumeLevel.',
 				showTime:'.$miniAudioPlayer_showTime.',
 				showRew:'.$miniAudioPlayer_showRew.',
-				swfPath:"'.plugins_url( '/js/', __FILE__ ).'",
+				downloadable:'.$miniAudioPlayer_download.',
+				swfPath:"'.plugins_url( '/js/', __FILE__ ).'"
 			});
 	});
 
 	</script>
 	<!-- end miniAudioPlayer initializer -->
 	';
-
 };
+function getExcluded(){
+    global $miniAudioPlayer_excluded;
+    if(!empty($miniAudioPlayer_excluded)){
+        return '.not(".'.$miniAudioPlayer_excluded.'").';
+    }else{
+        return '.';
+    }
+}
 // ends miniAudioPlayer_player_head function
 
 add_action('wp_head', 'miniAudioPlayer_player_head');
@@ -137,7 +151,14 @@ function get_maplayer_pop_up_params(){
         'plugin_version='.$miniAudioPlayer_version.'&'.
             'includes_url='.urlencode(includes_url()).'&'.
             'plugins_url='.urlencode(plugins_url()).'&'.
-            'charset='.urlencode(get_option('blog_charset'))
+            'charset='.urlencode(get_option('blog_charset')).'&'.
+            'exclude_class='.urlencode(get_option('miniAudioPlayer_excluded')).'&'.
+            'showVolumeLevel='.urlencode(get_option('miniAudioPlayer_showVolumeLevel')).'&'.
+            'showTime='.urlencode(get_option('miniAudioPlayer_showTime')).'&'.
+            'showRew='.urlencode(get_option('miniAudioPlayer_showRew')).'&'.
+            'width='.urlencode(get_option('miniAudioPlayer_width')).'&'.
+            'skin='.urlencode(get_option('miniAudioPlayer_skin')).'&'.
+            'volume='.urlencode(get_option('miniAudioPlayer_volume'))
     ));
 }
 

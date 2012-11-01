@@ -4,6 +4,13 @@ $plugin_version = $_GET['plugin_version'];
 $includes_url = $_GET['includes_url'];
 $plugins_url = $_GET['plugins_url'];
 $charset = $_GET['charset'];
+$exclude_class = $_GET['exclude_class'];
+$showVolumeLevel = $_GET['showVolumeLevel'];
+$showTime = $_GET['showTime'];
+$showRew = $_GET['showRew'];
+$width = $_GET['width'];
+$skin = $_GET['skin'];
+$volume = $_GET['volume'];
 
 if (!headers_sent()) {
     header('Content-Type: text/html; charset='.$charset);
@@ -41,10 +48,19 @@ if (!headers_sent()) {
 
 </head>
 <body>
+
+<?php echo $exclude_class ?>
 <form class="form-stacked" action="#">
 
     <fieldset>
         <legend>mb.miniAudioPlayer parameters:</legend>
+
+        <label>
+            <span class="label">Don't render: </span>
+            <input type="checkbox" name="exclude" value="true"/>
+            <span class="help-inline">check to exclude this link</span>
+        </label>
+
 
         <label>
             <span class="label">Audio url <span style="color:red">*</span> : </span>
@@ -109,6 +125,12 @@ if (!headers_sent()) {
             <span class="help-inline">check to show the rewind control</span>
         </label>
 
+        <label>
+            <span class="label">Is downloadable: </span>
+            <input type="checkbox" name="downloadable" value="false"/>
+            <span class="help-inline">check to show the rewind control</span>
+        </label>
+
     </fieldset>
 
     <div class="actions">
@@ -118,7 +140,6 @@ if (!headers_sent()) {
     </div>
 </form>
 
-<!--[mbYTPlayer url="http://www.youtube.com/watch?v=V2rifmjZuKQ" ratio="4/3" mute="false" loop="true" showcontrols="true" opacity=1]-->
 <script type="text/javascript">
     tinyMCEPopup.onInit.add(function(ed) {
 
@@ -126,35 +147,46 @@ if (!headers_sent()) {
         ed.selection.select(selection,true);
         var $selection = jQuery(selection);
 
-
         var url= "";
         var title = "";
+        var isExcluded = false;
+        var excluded = "";
 
         var map_element = $selection.find("a[href *= '.mp3']");
-
-        if($selection.is("a[href *= '.mp3']")){
-            url = $selection.attr("href");
-            title = $selection.html();
-        }else if (map_element.length){
-            ed.selection.select(map_element.get(0),true);
-            url = map_element.attr("href");
-            title = map_element.html();
+        if (map_element.length){
+            selection = ed.selection.select(map_element.get(0),true);
+            $selection = jQuery(selection);
         }else if($selection.prev().is("a[href *= '.mp3']")){
-            ed.selection.select($selection.prev().get(0),true);
-            $selection = $selection.prev();
-            url = $selection.attr("href");
-            title = $selection.html();
+            selection = ed.selection.select($selection.prev().get(0),true);
+            $selection = jQuery(selection);
         }
+        url = $selection.attr("href");
+        title = $selection.html();
+        isExcluded = $selection.hasClass("<?php echo $exclude_class ?>");
 
         var $desc = $selection.next(".map_params");
         var metadata = $selection.metadata();
 
+        if(metadata.volume)
+            metadata.volume =  parseFloat(metadata.volume)*10;
+
+        if(jQuery.isEmptyObject(metadata)){
+            var defaultmeta = {
+                showVolumeLevel:<?php echo empty($showVolumeLevel) ? false : $showVolumeLevel ?>,
+                showTime:<?php echo $showTime ?>,
+                showRew:<?php echo $showRew ?>,
+                width:<?php echo $width ?>,
+                skin:"<?php echo $skin ?>",
+                volume:parseFloat(<?php echo $volume ?>)*10
+            };
+            jQuery.extend(metadata,defaultmeta);
+        }
+        jQuery.extend(metadata, {exclude:isExcluded});
+
         jQuery("[name='url']").val(url);
         jQuery("[name='audiotitle']").val(title);
 
-
         for (var i in metadata){
-
             if(typeof metadata[i] == "boolean"){
                 if(metadata[i] == true)
                     jQuery("[name="+i+"]").attr("checked",  "checked");
@@ -180,7 +212,7 @@ if (!headers_sent()) {
 
             insertCode = function(e){
 
-                var map_params ="";
+                var map_params = "{";
                 if(jQuery("[name='skin']").val().length>0)
                     map_params+="skin:'"+jQuery("[name='skin']").val()+"', ";
                 if(jQuery("[name='width']").val().length>0)
@@ -191,13 +223,15 @@ if (!headers_sent()) {
                 map_params+="showVolumeLevel:"+(jQuery("[name='showVolumeLevel']").is(":checked") ? "true" : "false")+", ";
                 map_params+="showTime:"+(jQuery("[name='showTime']").is(":checked") ? "true" : "false")+", ";
                 map_params+="showRew:"+(jQuery("[name='showRew']").is(":checked") ? "true" : "false")+", ";
+                map_params+="downloadable:"+(jQuery("[name='downloadable']").is(":checked") ? "true" : "false")+", ";
+                map_params+="}";
+                map_params = map_params.replace(", }", "}");
 
-                var map_a = "<a id='mbmaplayer_"+new Date().getTime()+"' class= \"{";
-                map_a += map_params;
-                map_a += "}\" href=\""+jQuery("[name='url']").val()+"\">";
+                var map_a = "<a id='mbmaplayer_"+new Date().getTime()+"' class=";
+                map_a += "\"" + map_params + "\" ";
+                map_a += "href=\""+jQuery("[name='url']").val()+"\">";
                 map_a+=jQuery("[name='audiotitle']").val();
                 map_a+="</a>";
-                map_a = map_a.replace(", }", "}");
                 ed.execCommand('mceInsertContent', 0, map_a);
 
                 if($desc.length)

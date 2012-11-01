@@ -4,7 +4,6 @@
 	}
 ?>
 (function() {
-
     tinymce.create('tinymce.plugins.maplayer', {
 
         init : function(ed, url) {
@@ -15,7 +14,7 @@
 				ed.windowManager.open({
 					url : popUpURL,
 					width : 600,
-					height : 450,
+					height : 550,
 					inline : 1
 				});
 			});

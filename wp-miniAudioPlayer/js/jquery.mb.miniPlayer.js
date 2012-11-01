@@ -47,6 +47,7 @@
       showTime:true,
       showRew:true,
       addShadow:true,
+	    downloadable:false,
 
       swfPath:"inc/",
       onPlay:function(){},
@@ -68,7 +69,6 @@
         player.opt.isIE9 = jQuery.browser.msie && jQuery.browser.version == 9;
 
         if (jQuery.metadata){
-	        console.debug(ID, $master.metadata())
 	        jQuery.metadata.setType("class");
 	        jQuery.extend(player.opt,$master.metadata());
         }
@@ -97,6 +97,13 @@
         jQuery("body").append($player);
         $master.after($controlsBox);
         $controlsBox.html($layout);
+
+	      var download = jQuery("<p/>").addClass("map_download").css({display:"inline-block", cursor:"pointer"}).html("⇣").on("click",function(){
+		      window.open(player.opt.mp3,"map_download");
+	      }).attr("title","download: "+title);
+	      if(player.opt.downloadable){
+		      $controlsBox.append(download);
+	      }
 	      var cc = jQuery("<div/>").addClass("copy").html("made by Pupunzi");
         $controlsBox.append(cc);
         var $tds= $controlsBox.find("td").unselectable();
