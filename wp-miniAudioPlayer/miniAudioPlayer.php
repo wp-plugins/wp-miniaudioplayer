@@ -86,6 +86,9 @@ function miniAudioPlayer_player_head() {
 	<!-- start miniAudioPlayer initializer -->
 	<script type="text/javascript">
 
+    if(!map) var map={};
+    map.downloadUrl = "'.plugins_url( 'map_download.php', __FILE__ ).'";
+
 	jQuery(function(){
            	jQuery("a[href*=\'.mp3\']")'.getExcluded().'mb_miniPlayer({
 				inLine:true,
