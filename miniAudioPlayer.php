@@ -8,13 +8,13 @@ Version: 0.6
 Author URI: http://pupunzi.com
 */
 
-define("miniAudioPlayer_VERSION", "0.6");
+define("MINIAUDIOPLAYER_VERSION", "0.6");
 
 register_activation_hook( __FILE__, 'miniAudioPlayer_install' );
 
 function miniAudioPlayer_install() {
 // add and update our default options upon activation
-    update_option('miniAudioPlayer_version', miniAudioPlayer_VERSION);
+    update_option('miniAudioPlayer_version', MINIAUDIOPLAYER_VERSION);
     add_option('miniAudioPlayer_width','200');
     add_option('miniAudioPlayer_skin','black');
     add_option('miniAudioPlayer_volume','.5');
