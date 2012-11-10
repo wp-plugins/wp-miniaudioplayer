@@ -38,6 +38,8 @@ $miniAudioPlayer_excluded = get_option('miniAudioPlayer_excluded');
 $miniAudioPlayer_download = get_option('miniAudioPlayer_download');
 
 //set up defaults if these fields are empty
+if ($miniAudioPlayer_version != MINIAUDIOPLAYER_VERSION) {$miniAudioPlayer_version = MINIAUDIOPLAYER_VERSION;}
+
 if (empty($miniAudioPlayer_width)) {$miniAudioPlayer_width = "200";}
 if (empty($miniAudioPlayer_skin)) {$miniAudioPlayer_skin = "black";}
 if (empty($miniAudioPlayer_volume)) {$miniAudioPlayer_volume = ".5";}
