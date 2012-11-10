@@ -54,6 +54,8 @@ if (!headers_sent()) {
 
 </head>
 <body>
+
+
 <form class="form-stacked" action="#">
     <fieldset>
         <legend>mb.miniAudioPlayer parameters:</legend>
@@ -142,7 +144,37 @@ if (!headers_sent()) {
     </div>
 </form>
 
+<!--DONATE POPUP-->
+<style>
+    #donate{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; padding: 30px; text-align: center; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; z-index: 10000; }
+    #donateContent{ position: relative; margin: 30px auto; background: rgba(77, 71, 61, 0.88); color:white; padding: 30px; text-align: center; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; width: 450px; border-radius: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5) }
+    #donate h2{ font-size: 30px; line-height: 33px; color: #ffffff; }
+    #donate p{ margin: 30px; font-size: 16px; line-height: 22px; display: block; float: none; }
+    #donate p#follow{ margin: 30px; font-size: 16px; line-height: 33px; }
+    #donate p#timer{ padding: 5px; font-size: 20px; line-height: 33px; background: #231d0c; border-radius: 30px; color: #ffffff; width: 30px; margin: auto; }
+</style>
+<script>var storageSuffix = "map";</script>
+<div id="donate">
+    <div id="donateContent">
+        <h2>mb.miniAudioPlayer</h2>
+        <p >If you like it and you are using it then you should consider a donation <br> (€15,00 or more) :-)</p>
+        <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y" target="_blank" onclick="saveToStorage(storageSuffix+'_donate',{donate:true});">
+            <img border="0" alt="PayPal" src="https://www.paypalobjects.com/en_US/IT/i/btn/btn_donateCC_LG.gif">
+        </a></p>
+        <p id="timer">&nbsp;</p>
+        <br>
+        <br>
+        <button onclick="saveToStorage(storageSuffix+'_donate',{donate:true});self.location.reload()">I already donate</button>
+    </div>
+</div>
 <script type="text/javascript">
+    var storageSuffix = "map";
+    function saveToStorage(name,obj){if(!obj)return;localStorage[name]=JSON.stringify(obj);localStorage[name+"_ts"]=(new Date).getTime()}function deleteFromStorage(name){localStorage.removeItem(name);localStorage.removeItem(name+"_ts")}function getFromStorage(name){if(localStorage&&localStorage[name])return JSON.parse(localStorage[name]);return false} jQuery(function(){if(getFromStorage(storageSuffix+"_donate")){jQuery("#donate").remove();jQuery("#inlineDonate").remove()}else{var timer=5;var closeDonate=setInterval(function(){timer--;jQuery("#timer").html(timer);if(timer==0){clearInterval(closeDonate);jQuery("#donate").fadeOut(600,jQuery(this).remove)}},1E3)}});
+</script>
+<!--END DONATE POPUP-->
+
+<script type="text/javascript">
+
     tinyMCEPopup.onInit.add(function(ed) {
 
         var selection = ed.selection.getNode();

@@ -4,14 +4,14 @@ Contributors: Pupunzi (Matteo Bicocchi)
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.0
 Tested up to: 3.4.2
-Stable tag: 0.6
+Stable tag: 0.7
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
 Transform your mp3 audio files into a nice, small light HTML5 player
 
 == Description ==
 
-This plug-in let you transform any mp3 file uploaded inside a post into an essential small HTML5 audio player with:
+**This plug-in let you transform any mp3 file uploaded inside a post into an essential small HTML5 audio player with:**
 
 * volume control
 * seeking control
@@ -29,7 +29,7 @@ Links:
 * pupunzi blog: http://pupunzi.open-lab.com
 * pupunzi site: http://pupunzi.com
 
-**If you are using others HTML5 audio plugins (like Haiku) there could be conflicts with mb.miniAudioPlayer. You should deactivete the others befor using it.**
+If you are using others HTML5 audio plugins (like Haiku) there could be conflicts with mb.miniAudioPlayer. You should deactivete the others befor using it.
 
 Other WP plugins:
 
@@ -70,6 +70,9 @@ to change the player default settings go to the mb.miniAudioPlayer settings pane
 * @ excluded = a string containing the CSS class for audio links that should not be converted into player.
 
 == Changelog ==
+
+= 0.7 =
+* added tweet and FB share on plugin settings.
 
 = 0.6 =
 * Better TinyMce Editor (the toolbar button get active only if the cursor is on a .mp3 link.

@@ -10,39 +10,89 @@ function add_miniAudioPlayer_option_page() {
 }
 function miniAudioPlayer_options_page() { 	// Output the options page
     global  $miniAudioPlayer_version,$miniAudioPlayer_width, $miniAudioPlayer_skin, $miniAudioPlayer_volume, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_excluded, $miniAudioPlayer_download ?>
+
+<!--DONATE POPUP-->
+<style>
+    #donate{ position: fixed; top: 20%; left: 0; width: 100%; height: 100%; padding: 30px; text-align: center; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; z-index: 10000; }
+    #donateContent{ position: relative; margin: 30px auto; background: rgba(77, 71, 61, 0.88); color:white; padding: 30px; text-align: center; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; width: 450px; border-radius: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5) }
+    #donate h2{ font-size: 30px; line-height: 33px; }
+    #donate p{ margin: 30px; font-size: 16px; line-height: 22px; display: block; float: none; }
+    #donate p#follow{ margin: 30px; font-size: 16px; line-height: 33px; }
+    #donate p#timer{ padding: 5px; font-size: 20px; line-height: 33px; background: #231d0c; border-radius: 30px; color: #ffffff; width: 30px; margin: auto; }
+    #donateTxt{display:none;}
+    hr{border: none; height: 1px; background: #dfd490}
+</style>
+<script>var storageSuffix = "map";</script>
+<div id="donate">
+    <div id="donateContent">
+        <h2>mb.miniAudioPlayer</h2>
+        <p >If you like it and you are using it then you should consider a donation <br> (€15,00 or more) :-)</p>
+        <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y" target="_blank" onclick="saveToStorage(storageSuffix+'_donate',{donate:true});">
+            <img border="0" alt="PayPal" src="https://www.paypalobjects.com/en_US/IT/i/btn/btn_donateCC_LG.gif">
+        </a></p>
+        <p id="timer">&nbsp;</p>
+        <br>
+        <br>
+        <button onclick="saveToStorage(storageSuffix+'_donate',{donate:true});self.location.reload()">I already donate</button>
+    </div>
+</div>
+<script type="text/javascript">
+    function saveToStorage(name,obj){if(!obj)return;localStorage[name]=JSON.stringify(obj);localStorage[name+"_ts"]=(new Date).getTime()}function deleteFromStorage(name){localStorage.removeItem(name);localStorage.removeItem(name+"_ts")}function getFromStorage(name){if(localStorage&&localStorage[name])return JSON.parse(localStorage[name]);return false} jQuery(function(){if(getFromStorage(storageSuffix+"_donate")){jQuery("#donate").remove();jQuery("#inlineDonate").remove();jQuery("#donateTxt").show()}else{var timer=5;var closeDonate=setInterval(function(){timer--;jQuery("#timer").html(timer);if(timer==0){clearInterval(closeDonate);jQuery("#donate").fadeOut(600,jQuery(this).remove)}},1E3)}});
+</script>
+<!--END DONATE POPUP-->
+
+<style>
+    #wpwrap{ background: #ebf2f4 url("<?php echo plugins_url( 'images/bgnd.jpg', __FILE__ );?>"); background-attachment: fixed; background-repeat: no-repeat; }
+    .form-table th{ font-weight: bold!important; border-bottom: 1px solid gray; }
+    .form-table td{ border-bottom: 1px solid gray; }
+    .submit{ text-align: right; }
+</style>
+
 <div class="wrap" style="width:800px">
-    <style>
-
-        #wpwrap{
-            background: #ebf2f4 url("<?php echo plugins_url( 'images/bgnd.jpg', __FILE__ );?>");
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-        }
-
-        .form-table th{
-            font-weight: bold!important;
-            border-bottom: 1px solid gray;
-        }
-        .form-table td{
-            border-bottom: 1px solid gray;
-        }
-        .submit{
-            text-align: right;
-        }
-
-    </style>
 
     <a href="http://pupunzi.com"><img style="margin-top:30px;" src="<?php echo plugins_url( 'images/logo.png', __FILE__ );?>" alt="Made by Pupunzi" /></a>
     <h2>mb.miniAudioPlayer Settings</h2>
-    <div class="updated fade">
-        <p style="line-height: 1.4em;">Thanks for downloading mb.miniAudioPlayer! If you like it... Consider a donation.<br /></p>
+    <p>You're using mb.miniAudioPlayer v. <?php echo $miniAudioPlayer_version;?> by <a href="http://pupunzi.com">Pupunzi</a>.</p>
+
+    <div id="share" style="position: absolute; left:650px; top:0">
+        <p>Rate this plug in: <select onchange="window.open('http://wordpress.org/extend/plugins/wp-miniAudioPlayer/?rate='+this.value+'&topic_id=35600&_wpnonce=087fac79aa', 'rate')">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="5" selected>rate it</option>
+        </select></p>
+
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://wordpress.org/extend/plugins/wp-miniaudioplayer/" data-text="I'm using the mb.miniAudioPlayer WP plugin" data-via="pupunzi" data-hashtags="HTML5,wordpress,plugin">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/it_IT/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="fb-like" data-href="http://wordpress.org/extend/plugins/wp-miniaudioplayer" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial"></div>
     </div>
-    <a style="position: relative; display:block;top:0px;margin-right: -10px" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y"><img border="0" alt="PayPal" src="<?php echo plugins_url( 'images/btn_donateCC_LG_global.gif', __FILE__ );?>" class="alignright"></a>
-    <p>You're using mb.miniAudioPlayer v. <?php echo $miniAudioPlayer_version;?> by <a href="http://pupunzi.com">Pupunzi</a>.<br>If you like it and you use it then you should consider a donation (€15,00 or more) :-)</p>
-    <p>And don't forget to follow me on twitter: <a href="https://twitter.com/pupunzi">@pupunzi</a></p>
+
+    <div class="updated fade">
+        <p style="line-height: 1.4em;">Thanks for downloading mb.miniAudioPlayer!</p>
+        <p id="inlineDonate" style="position: relative; display:block" class="alignrightt">
+            If you like it and you are using it<br>then you should consider a donation (€15,00 or more) :-)<br><br>
+            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y" target="_blank" onclick="saveToStorage(storageSuffix+'_donate',{donate:true});"><img border="0" alt="PayPal" src="https://www.paypalobjects.com/en_US/IT/i/btn/btn_donateCC_LG.gif"></a>
+            <br><br><i>If you donate, the start popup will nevermore display.</i><br><br>
+        </p>
+        <hr>
+        <p>Don't forget to follow me on twitter: <a href="https://twitter.com/pupunzi">@pupunzi</a></p>
+        <p>Visit my site: <a href="http://pupunzi.com">http://pupunzi.com</a></p>
+        <p>Visit my blog: <a href="http://pupunzi.open-lab.com">http://pupunzi.open-lab.com</a></p>
+        <p id="donateTxt">Paypal: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y" target="_blank">donate</a></p>
+    </div>
 
     <form method="post" action="options.php">
-
         <?php wp_nonce_field('update-options'); ?>
 
         <h2>Default settings:</h2>
@@ -129,25 +179,12 @@ function miniAudioPlayer_options_page() { 	// Output the options page
 
         </table>
 
-        <h3>If you are using others HTML5 audio player plug-ins (like Haiku) there could be conflicts with mb.miniAudioPlayer. You should deactivete the others befor using this.</h3>
-        <br>
-        <br>
-        <p>Rate this plug in: <select onchange="window.open('http://wordpress.org/extend/plugins/wp-miniAudioPlayer/?rate='+this.value+'&topic_id=35600&_wpnonce=087fac79aa', 'rate')">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="5" selected>rate it</option>
-        </select></p>
-
+        <p>If you are using others HTML5 audio player plug-ins (like Haiku) there could be conflicts with mb.miniAudioPlayer. You should deactivete the others befor using this.</p>
         <input type="hidden" name="page_options" value="miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew, miniAudioPlayer_excluded, miniAudioPlayer_download" />
         <input type="hidden" name="action" value="update" />
         <p class="submit">
             <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
         </p>
     </form>
-
-
 </div>
 <?php } ?>
