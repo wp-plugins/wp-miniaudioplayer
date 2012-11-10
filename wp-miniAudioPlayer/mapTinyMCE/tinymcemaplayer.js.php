@@ -20,11 +20,24 @@
 			});
 
 			ed.addButton('maplayerbutton', {
-				title : 'miniAudioPlayer TinyMCE',
+				title : 'Modify a miniAudioPlayer',
 				image : url + '/maplayerbutton.png',
 				cmd : 'maplayerpopup'
 			});
-		},
+
+            ed.onNodeChange.add(function(ed) {
+                var selection = ed.selection.getNode();
+                var btn = ed.controlManager.get("maplayerbutton");
+                var disable = true;
+                jQuery("#"+btn.id).css({opacity:".6"});
+                if (jQuery(selection).is("a[href *= '.mp3']") || jQuery(selection).find("a[href *= '.mp3']").lenght>0 || jQuery(selection).prev().is("a[href *= '.mp3']")) {
+                    disable = false;
+                    jQuery("#"+btn.id).css({border:"1px solid gray", opacity:1});
+                }
+                ed.controlManager.setDisabled("maplayerbutton", disable);
+
+            });
+	    },
 
 		createControl : function() {
             return null;

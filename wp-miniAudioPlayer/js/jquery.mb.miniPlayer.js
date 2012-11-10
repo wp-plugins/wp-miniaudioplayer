@@ -98,7 +98,8 @@
 				$master.after($controlsBox);
 				$controlsBox.html($layout);
 
-				var download = jQuery("<p/>").addClass("map_download").css({display:"inline-block", cursor:"pointer"}).html("⇣").on("click",function(){
+				var download = jQuery("<p/>").addClass("map_download").css({display:"inline-block", cursor:"pointer"}).html("d").on("click",function(){
+//				var download = jQuery("<p/>").addClass("map_download").css({display:"inline-block", cursor:"pointer"}).html("⇣").on("click",function(){
 					// window.open(player.opt.mp3,"map_download");
 					location.href = map.downloadUrl+"?filename="+title.asId()+".mp3"+"&fileurl="+player.opt.mp3;
 				}).attr("title","download: "+title);

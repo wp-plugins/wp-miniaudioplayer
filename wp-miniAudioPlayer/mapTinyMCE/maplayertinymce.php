@@ -27,17 +27,22 @@ if (!headers_sent()) {
     <script type="text/javascript" src="<?php echo $plugins_url.'/wpmbytplayer/js/jquery.metadata.js?v='.$plugin_version; ?>"></script>
     <script type="text/javascript" src="<?php echo $includes_url.'js/tinymce/tiny_mce_popup.js?v='.$plugin_version; ?>"></script>
     <style>
-        fieldset label > span.label{
+        fieldset span.label{
             display: inline-block;
             width: 100px;
         }
         fieldset label {
-            margin: 5px;
+            margin: 0;
+            padding: 3px!important;
+            border-top: 1px solid #dcdcdc;
+            border-bottom: 1px solid #f9f9f9;
+            display: block;
         }
 
         .actions{
             text-align: right;
         }
+
         .span6{
             width: 100px!important;
         }
@@ -46,12 +51,10 @@ if (!headers_sent()) {
         }
     </style>
 
+
 </head>
 <body>
-
-<?php echo $exclude_class ?>
 <form class="form-stacked" action="#">
-
     <fieldset>
         <legend>mb.miniAudioPlayer parameters:</legend>
 
@@ -60,7 +63,6 @@ if (!headers_sent()) {
             <input type="checkbox" name="exclude" value="true"/>
             <span class="help-inline">check to exclude this link</span>
         </label>
-
 
         <label>
             <span class="label">Audio url <span style="color:red">*</span> : </span>
@@ -237,7 +239,7 @@ if (!headers_sent()) {
                 if($desc.length)
                     $desc.remove();
 
-                var map_desc="<span class='map_params' style='color:#aaa; text-decoration: none;'><br>map :: ["+map_params+"]</span>";
+                var map_desc="<textarea disabled class='map_params' style='display:block; padding: 3px; background: #444;color:#fff; text-decoration: none;'>map :: "+map_params+"</textarea>";
                 ed.execCommand('mceInsertContent', 0, map_desc);
 
                 tinyMCEPopup.close();

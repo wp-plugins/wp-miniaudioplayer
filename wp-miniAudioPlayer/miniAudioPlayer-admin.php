@@ -33,18 +33,22 @@ function miniAudioPlayer_options_page() { 	// Output the options page
     </style>
 
     <a href="http://pupunzi.com"><img style="margin-top:30px;" src="<?php echo plugins_url( 'images/logo.png', __FILE__ );?>" alt="Made by Pupunzi" /></a>
-    <img style="margin-top:10px;" src="<?php echo plugins_url( 'images/exclude_img.png', __FILE__ );?>" alt="exclude" />
+    <h2>mb.miniAudioPlayer Settings</h2>
+    <div class="updated fade">
+        <p style="line-height: 1.4em;">Thanks for downloading mb.miniAudioPlayer! If you like it... Consider a donation.<br /></p>
+    </div>
+    <a style="position: relative; display:block;top:0px;margin-right: -10px" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y"><img border="0" alt="PayPal" src="<?php echo plugins_url( 'images/btn_donateCC_LG_global.gif', __FILE__ );?>" class="alignright"></a>
+    <p>You're using mb.miniAudioPlayer v. <?php echo $miniAudioPlayer_version;?> by <a href="http://pupunzi.com">Pupunzi</a>.<br>If you like it and you use it then you should consider a donation (€15,00 or more) :-)</p>
+    <p>And don't forget to follow me on twitter: <a href="https://twitter.com/pupunzi">@pupunzi</a></p>
+
     <form method="post" action="options.php">
 
         <?php wp_nonce_field('update-options'); ?>
 
-        <h2>mb.miniAudioPlayer Settings</h2>
-        <div class="updated fade">
-            <p style="line-height: 1.4em;">Thanks for downloading mb.miniAudioPlayer! If you like it... Consider a donation.<br /></p>
-        </div>
-        <a style="position: relative; display:block;top:0px;margin-right: -10px" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y"><img border="0" alt="PayPal" src="<?php echo plugins_url( 'images/btn_donateCC_LG_global.gif', __FILE__ );?>" class="alignright"></a>
-        <p>You're using mb.miniAudioPlayer v. <?php echo $miniAudioPlayer_version;?> by <a href="http://pupunzi.com">Pupunzi</a>.<br>If you like it and you use it then you should consider a donation (€15,00 or more) :-)</p>
-
+        <h2>Default settings:</h2>
+        <p>Here you set the default settings far all the audio links in your Wordpress site.</p>
+        <p>You can overwrite the single player settings by selecting the audio link in the post editor and clicking on the mb.miniAudioPlayer button on the top of the TinyMCE editor toolbar.</p>
+        <hr>
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">Choose the skin color:</th>

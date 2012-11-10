@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/*
 
 @font-face {
   font-family: 'mb_audio_fontRegular';
@@ -9,23 +10,35 @@
   font-weight: normal;
   font-style: normal;
 }
+*/
+
+@font-face {
+  font-family: 'mb_audio_fontRegular';
+  src: url('mbAudioFont/mbaudio_font.eot?#iefix') format('embedded-opentype'),
+  url('mbAudioFont/mbaudio_font.woff') format('woff'),
+  url('mbAudioFont/mbaudio_font.ttf')  format('truetype'),
+  url('mbAudioFont/mbaudio_font.svg#webfontywr4YLri') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 @font-face {
   font-family: 'DroidSansMonoRegular';
-  src: url('DroidSansMono/DroidSansMono.eot?#iefix') format('embedded-opentype'),
-  url('DroidSansMono/DroidSansMono.woff') format('woff'),
-  url('DroidSansMono/DroidSansMono.ttf')  format('truetype'),
-  url('DroidSansMono/DroidSansMono.svg#webfontGzFJ3WpO') format('svg');
+  src: url('DroidSansMono/DroidSansMono-webfont.eot?#iefix') format('embedded-opentype'),
+  url('DroidSansMono/DroidSansMono-webfont.woff') format('woff'),
+  url('DroidSansMono/DroidSansMono-webfont.ttf')  format('truetype'),
+  url('DroidSansMono/DroidSansMono-webfont.svg#webfontGzFJ3WpO') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 .map_params{
-  display: none;
+  display: none!important;
 }
 
 .mbMiniPlayer span{
-  font:20px/22px "mb_audio_fontRegular","Webdings",sans-serif;
+  font:20px/22px "mb_audio_fontRegular";
 }
 
 a.audio{
@@ -40,20 +53,20 @@ a.audio{
   -moz-border-radius:5px !important;
   -webkit-border-radius:8px !important;
   border-radius:5px !important;
-  margin:5px !important;
+  margin:0 !important;
   padding:0 !important;
-  border: 2px solid white !important;
+  border: 1px solid white !important;
   color: #777;
   line-height: 0 !important;
   width: auto !important;
   display: inline-block;
+  vertical-align: middle;
 }
 
 .mbMiniPlayer.shadow table{
-  border:1px solid white;
-  -moz-box-shadow:#ccc 0px 0px 5px;
-  -webkit-box-shadow:#ccc 0px 0px 5px;
-  box-shadow:#ccc 0px 0px 5px;
+  -moz-box-shadow: 0px 0px 3px rgba(0,0,0,0.4);
+  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.4);
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.4);
 }
 
 .mbMiniPlayer td{
@@ -121,7 +134,7 @@ a.audio{
   height:20px!important;
   color:white;
   text-align:center!important;
-  text-shadow: 1px -1px 1px rgba(0,0,0,0.3)!important;
+  text-shadow: 1px -1px 1px rgba(0,0,0,0.6)!important;
   background-image:-moz-linear-gradient(100% 100% 110deg,rgba(255, 255, 255,0.3), transparent)!important;
   background-image:-webkit-gradient(linear, 0% 5%, 85% 100%, from(transparent), to(rgba(255, 255, 255,0.3)))!important;
   vertical-align: middle;
@@ -132,7 +145,7 @@ a.audio{
   color:#333;
   font:10px/12px "DroidSansMonoRegular", sans-serif !important;
   text-shadow: none!important;
-  letter-spacing:1px !important;
+  letter-spacing:0 !important;
   width:100% !important;
   height:11px !important;
   top:-2px !important;
@@ -169,7 +182,7 @@ a.audio{
   overflow:hidden;
   white-space:nowrap;
   cursor:default !important;
-  text-shadow: 0 0 2px #999!important;
+  text-shadow: 1px -1px 1px rgba(0,0,0,.6)!important;
 }
 
 .mbMiniPlayer span.play{
@@ -196,12 +209,21 @@ a.audio{
   display: none;
 }
 
-.map_download{
+.mbMiniPlayer .map_download{
   display: inline-block !important;
   vertical-align: top !important;
   margin: 0 !important;
-  font: 20px/45px "DroidSansMonoRegular", sans-serif !important;
+  padding: 3px 5px;
+  font:40px/22px "mb_audio_fontRegular";
+  color: #d1d1d1;
+  text-shadow: 0 0 3px rgba(255,255,255,0.6);
+
+  transition: color 1s;
+  -moz-transition: color 1s;
+  -webkit-transition: color 1s;
+  -o-transition: color 1s;
 }
+
 
 /*BLACK ----------------------------------------*/
 .mbMiniPlayer.black span{
@@ -220,8 +242,8 @@ a.audio{
   color: #999999;
 }
 
-.mbMiniPlayer.black .map_download{
-  color: #333 !important;
+.mbMiniPlayer.black .map_download:hover{
+  color: #333 ;
 }
 
 /*GRAY ----------------------------------------*/
@@ -230,7 +252,7 @@ a.audio{
 }
 
 .mbMiniPlayer.gray span.play{
-  border-left:1px solid #666;
+  border-left:1px solid #9f9f9f;
 }
 
 .mbMiniPlayer.gray span.volume{
@@ -240,8 +262,8 @@ a.audio{
 .mbMiniPlayer.gray span.volume.mute{
   color: #cccccc;
 }
-.mbMiniPlayer.gray .map_download{
-  color: #666 !important;
+.mbMiniPlayer.gray .map_download:hover{
+  color: #666 ;
 }
 
 /*BLUE ----------------------------------------*/
@@ -261,8 +283,8 @@ a.audio{
   color: #98bff9;
 }
 
-.mbMiniPlayer.blue .map_download{
-  color: #0099ff !important;
+.mbMiniPlayer.blue .map_download:hover{
+  color: #0099ff ;
 }
 
 /*ORANGE ----------------------------------------*/
@@ -281,8 +303,8 @@ a.audio{
 .mbMiniPlayer.orange span.volume.mute{
   color: #eec957;
 }
-.mbMiniPlayer.orange .map_download{
-  color: #ff9900 !important;
+.mbMiniPlayer.orange .map_download:hover{
+  color: #ff9900;
 }
 
 /*RED ----------------------------------------*/
@@ -291,17 +313,17 @@ a.audio{
 }
 
 .mbMiniPlayer.red span.play{
-  border-left:1px solid #980000;
+  border-left:1px solid #5f0000;
 }
 
 .mbMiniPlayer.red span.volume{
-  border-right:1px solid #b90000;
+  border-right:1px solid #990000;
 }
 
 .mbMiniPlayer.red span.volume.mute{
   color: #b90000;
 }
-.mbMiniPlayer.red .map_download{
+.mbMiniPlayer.red .map_download:hover{
   color: #990000 !important;
 }
 
@@ -322,6 +344,6 @@ a.audio{
   color: #2aba5a;
 }
 
-.mbMiniPlayer.green .map_download{
+.mbMiniPlayer.green .map_download:hover{
   color: #339900 !important;
 }
