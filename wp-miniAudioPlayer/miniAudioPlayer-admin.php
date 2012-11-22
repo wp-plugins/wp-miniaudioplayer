@@ -9,7 +9,7 @@ function add_miniAudioPlayer_option_page() {
     add_options_page('miniAudioPlayer', 'mb.miniAudioPlayer', 'manage_options', __FILE__, 'miniAudioPlayer_options_page');
 }
 function miniAudioPlayer_options_page() { 	// Output the options page
-    global  $miniAudioPlayer_version,$miniAudioPlayer_width, $miniAudioPlayer_skin, $miniAudioPlayer_volume, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_excluded, $miniAudioPlayer_download ?>
+    global  $miniAudioPlayer_donate,$miniAudioPlayer_version,$miniAudioPlayer_width, $miniAudioPlayer_skin, $miniAudioPlayer_volume, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_excluded, $miniAudioPlayer_download ?>
 
 <!--DONATE POPUP-->
 <style>
@@ -22,22 +22,79 @@ function miniAudioPlayer_options_page() { 	// Output the options page
     #donateTxt{display:none;}
     hr{border: none; height: 1px; background: #dfd490}
 </style>
-<script>var storageSuffix = "map";</script>
 <div id="donate">
     <div id="donateContent">
         <h2>mb.miniAudioPlayer</h2>
         <p >If you like it and you are using it then you should consider a donation <br> (€15,00 or more) :-)</p>
-        <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y" target="_blank" onclick="saveToStorage(storageSuffix+'_donate',{donate:true});">
+        <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y" target="_blank" onclick="donate()">
             <img border="0" alt="PayPal" src="https://www.paypalobjects.com/en_US/IT/i/btn/btn_donateCC_LG.gif">
         </a></p>
         <p id="timer">&nbsp;</p>
         <br>
         <br>
-        <button onclick="saveToStorage(storageSuffix+'_donate',{donate:true});self.location.reload()">I already donate</button>
+        <button onclick="donate()">I already donate</button>
     </div>
 </div>
 <script type="text/javascript">
-    function saveToStorage(name,obj){if(!obj)return;localStorage[name]=JSON.stringify(obj);localStorage[name+"_ts"]=(new Date).getTime()}function deleteFromStorage(name){localStorage.removeItem(name);localStorage.removeItem(name+"_ts")}function getFromStorage(name){if(localStorage&&localStorage[name])return JSON.parse(localStorage[name]);return false} jQuery(function(){if(getFromStorage(storageSuffix+"_donate")){jQuery("#donate").remove();jQuery("#inlineDonate").remove();jQuery("#donateTxt").show()}else{var timer=5;var closeDonate=setInterval(function(){timer--;jQuery("#timer").html(timer);if(timer==0){clearInterval(closeDonate);jQuery("#donate").fadeOut(600,jQuery(this).remove)}},1E3)}});
+
+    function donate() {
+        jQuery("input[name=miniAudioPlayer_donate]").val("true");
+        jQuery("#optionsForm").submit();
+    }
+
+    jQuery(function () {
+
+        /*todo: to be removed ---------------------------------------------------------------*/
+        jQuery.mbCookie = {
+            set:function (name, value, days, domain) {
+                if (!days) days = 7;
+                domain = domain ? "; domain=" + domain : "";
+                var date = new Date(), expires;
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toGMTString();
+                document.cookie = name + "=" + value + expires + "; path=/" + domain;
+            },
+            get:function (name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ')
+                        c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0)
+                        return unescape(c.substring(nameEQ.length, c.length));
+                }
+                return null;
+            },
+            remove:function (name) {
+                jQuery.mbCookie.set(name, "", -1);
+            }
+        };
+
+        if(typeof(Storage)!=="undefined" && localStorage.map_donate != "null"){
+            jQuery.mbCookie.set("mapdonate", true);
+            localStorage.map_donate = null;
+            self.location.reload();
+        }
+        /*end --- todo: to be removed ------------------------------------------------------------------------*/
+
+        if (<?php echo $miniAudioPlayer_donate;?>) {
+            jQuery("#donate").remove();
+            jQuery("#inlineDonate").remove();
+            jQuery("#donateTxt").show()
+        } else {
+            var timer = 5;
+            var closeDonate = setInterval(function () {
+                timer--;
+                jQuery("#timer").html(timer);
+                if (timer == 0) {
+                    clearInterval(closeDonate);
+                    jQuery("#donate").fadeOut(600, jQuery(this).remove)
+                }
+            }, 1000)
+        }
+    });
+
 </script>
 <!--END DONATE POPUP-->
 
@@ -82,7 +139,7 @@ function miniAudioPlayer_options_page() { 	// Output the options page
         <p style="line-height: 1.4em;">Thanks for downloading mb.miniAudioPlayer!</p>
         <p id="inlineDonate" style="position: relative; display:block" class="alignrightt">
             If you like it and you are using it<br>then you should consider a donation (€15,00 or more) :-)<br><br>
-            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y" target="_blank" onclick="saveToStorage(storageSuffix+'_donate',{donate:true});"><img border="0" alt="PayPal" src="https://www.paypalobjects.com/en_US/IT/i/btn/btn_donateCC_LG.gif"></a>
+            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y" target="_blank" onclick="donate()"><img border="0" alt="PayPal" src="https://www.paypalobjects.com/en_US/IT/i/btn/btn_donateCC_LG.gif"></a>
             <br><br><i>If you donate, the start popup will nevermore display.</i><br><br>
         </p>
         <hr>
@@ -92,13 +149,14 @@ function miniAudioPlayer_options_page() { 	// Output the options page
         <p id="donateTxt">Paypal: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y" target="_blank">donate</a></p>
     </div>
 
-    <form method="post" action="options.php">
+    <form id="optionsForm" method="post" action="options.php">
         <?php wp_nonce_field('update-options'); ?>
 
         <h2>Default settings:</h2>
         <p>Here you set the default settings far all the audio links in your Wordpress site.</p>
         <p>You can overwrite the single player settings by selecting the audio link in the post editor and clicking on the mb.miniAudioPlayer button on the top of the TinyMCE editor toolbar.</p>
         <hr>
+        <input type="hidden" name="miniAudioPlayer_donate" value="<?php echo $miniAudioPlayer_donate;?> " />
         <table class="form-table">
             <tr valign="top">
                 <th scope="row">Choose the skin color:</th>
@@ -180,7 +238,7 @@ function miniAudioPlayer_options_page() { 	// Output the options page
         </table>
 
         <p>If you are using others HTML5 audio player plug-ins (like Haiku) there could be conflicts with mb.miniAudioPlayer. You should deactivete the others befor using this.</p>
-        <input type="hidden" name="page_options" value="miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew, miniAudioPlayer_excluded, miniAudioPlayer_download" />
+        <input type="hidden" name="page_options" value="miniAudioPlayer_donate, miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew, miniAudioPlayer_excluded, miniAudioPlayer_download" />
         <input type="hidden" name="action" value="update" />
         <p class="submit">
             <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />

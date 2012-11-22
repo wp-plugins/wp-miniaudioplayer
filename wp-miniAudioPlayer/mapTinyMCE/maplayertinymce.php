@@ -11,6 +11,7 @@ $showRew = $_GET['showRew'];
 $width = $_GET['width'];
 $skin = $_GET['skin'];
 $volume = $_GET['volume'];
+$donate = $_GET['donate'];
 
 if (!headers_sent()) {
     header('Content-Type: text/html; charset='.$charset);
@@ -26,11 +27,13 @@ if (!headers_sent()) {
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo $plugins_url.'/wpmbytplayer/js/jquery.metadata.js?v='.$plugin_version; ?>"></script>
     <script type="text/javascript" src="<?php echo $includes_url.'js/tinymce/tiny_mce_popup.js?v='.$plugin_version; ?>"></script>
+
     <style>
         fieldset span.label{
             display: inline-block;
             width: 100px;
         }
+
         fieldset label {
             margin: 0;
             padding: 3px!important;
@@ -132,7 +135,7 @@ if (!headers_sent()) {
         <label>
             <span class="label">Is downloadable: </span>
             <input type="checkbox" name="downloadable" value="false"/>
-            <span class="help-inline">check to show the rewind control</span>
+            <span class="help-inline">check to show the download button</span>
         </label>
 
     </fieldset>
@@ -153,24 +156,72 @@ if (!headers_sent()) {
     #donate p#follow{ margin: 30px; font-size: 16px; line-height: 33px; }
     #donate p#timer{ padding: 5px; font-size: 20px; line-height: 33px; background: #231d0c; border-radius: 30px; color: #ffffff; width: 30px; margin: auto; }
 </style>
-<script>var storageSuffix = "map";</script>
+
 <div id="donate">
     <div id="donateContent">
         <h2>mb.miniAudioPlayer</h2>
         <p >If you like it and you are using it then you should consider a donation <br> (€15,00 or more) :-)</p>
-        <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y" target="_blank" onclick="saveToStorage(storageSuffix+'_donate',{donate:true});">
+        <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y" target="_blank" onclick="donate();">
             <img border="0" alt="PayPal" src="https://www.paypalobjects.com/en_US/IT/i/btn/btn_donateCC_LG.gif">
         </a></p>
         <p id="timer">&nbsp;</p>
         <br>
         <br>
-        <button onclick="saveToStorage(storageSuffix+'_donate',{donate:true});self.location.reload()">I already donate</button>
+        <button onclick="donate()">I already donate</button>
     </div>
 </div>
 <script type="text/javascript">
-    var storageSuffix = "map";
-    function saveToStorage(name,obj){if(!obj)return;localStorage[name]=JSON.stringify(obj);localStorage[name+"_ts"]=(new Date).getTime()}function deleteFromStorage(name){localStorage.removeItem(name);localStorage.removeItem(name+"_ts")}function getFromStorage(name){if(localStorage&&localStorage[name])return JSON.parse(localStorage[name]);return false} jQuery(function(){if(getFromStorage(storageSuffix+"_donate")){jQuery("#donate").remove();jQuery("#inlineDonate").remove()}else{var timer=5;var closeDonate=setInterval(function(){timer--;jQuery("#timer").html(timer);if(timer==0){clearInterval(closeDonate);jQuery("#donate").fadeOut(600,jQuery(this).remove)}},1E3)}});
+
+    $.mbCookie = {
+        set:function (name, value, days, domain) {
+            if (!days) days = 7;
+            domain = domain ? "; domain=" + domain : "";
+            var date = new Date(), expires;
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toGMTString();
+            document.cookie = name + "=" + value + expires + "; path=/" + domain;
+        },
+        get:function (name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ')
+                    c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0)
+                    return unescape(c.substring(nameEQ.length, c.length));
+            }
+            return null;
+        },
+        remove:function (name) {
+            $.mbCookie.set(name, "", -1);
+        }
+    };
+
+    function donate() {
+        $.mbCookie.set("mapdonate", true);
+        self.location.reload();
+    }
+
+    jQuery(function () {
+        var hasDonate = <?php echo $donate ?> ;
+        if (hasDonate || $.mbCookie.get("mapdonate") === "true" ) {
+            jQuery("#donate").remove();
+            jQuery("#inlineDonate").remove();
+        } else {
+            var timer = 5;
+            var closeDonate = setInterval(function () {
+                timer--;
+                jQuery("#timer").html(timer);
+                if (timer == 0) {
+                    clearInterval(closeDonate);
+                    jQuery("#donate").fadeOut(600, jQuery(this).remove)
+                }
+            }, 1000)
+        }
+    });
 </script>
+
 <!--END DONATE POPUP-->
 
 <script type="text/javascript">

@@ -4,17 +4,18 @@ Plugin Name: mb.miniAudioPlayer
 Plugin URI: http://pupunzi.com/#mb.components/mb.miniAudioPlayer/miniAudioPlayer.html
 Description: Transform your mp3 audio file link into a nice, small light player
 Author: Pupunzi (Matteo Bicocchi)
-Version: 0.7
+Version: 0.8
 Author URI: http://pupunzi.com
 */
 
-define("MINIAUDIOPLAYER_VERSION", "0.7");
+define("MINIAUDIOPLAYER_VERSION", "0.8");
 
 register_activation_hook( __FILE__, 'miniAudioPlayer_install' );
 
 function miniAudioPlayer_install() {
 // add and update our default options upon activation
     update_option('miniAudioPlayer_version', MINIAUDIOPLAYER_VERSION);
+    add_option('miniAudioPlayer_donate','false');
     add_option('miniAudioPlayer_width','200');
     add_option('miniAudioPlayer_skin','black');
     add_option('miniAudioPlayer_volume','.5');
@@ -26,6 +27,7 @@ function miniAudioPlayer_install() {
     add_option('miniAudioPlayer_download','false');
 }
 
+$miniAudioPlayer_donate = get_option('miniAudioPlayer_donate');
 $miniAudioPlayer_version = get_option('miniAudioPlayer_version');
 $miniAudioPlayer_width = get_option('miniAudioPlayer_width');
 $miniAudioPlayer_skin = get_option('miniAudioPlayer_skin');
@@ -39,7 +41,7 @@ $miniAudioPlayer_download = get_option('miniAudioPlayer_download');
 
 //set up defaults if these fields are empty
 if ($miniAudioPlayer_version != MINIAUDIOPLAYER_VERSION) {$miniAudioPlayer_version = MINIAUDIOPLAYER_VERSION;}
-
+if (empty($miniAudioPlayer_donate)) {$miniAudioPlayer_donate = "false";}
 if (empty($miniAudioPlayer_width)) {$miniAudioPlayer_width = "200";}
 if (empty($miniAudioPlayer_skin)) {$miniAudioPlayer_skin = "black";}
 if (empty($miniAudioPlayer_volume)) {$miniAudioPlayer_volume = ".5";}
@@ -72,6 +74,19 @@ add_filter('plugin_action_links', 'miniAudioPlayer_action_links', 10, 2);
 // scripts to go in the header and/or footer
 function miniAudioPlayer_init() {
     global $miniAudioPlayer_version;
+
+    if(isset($_COOKIE['mapdonate']) && $_COOKIE['mapdonate'] === "true"){
+//        setcookie('mapdonate', "", time() - 3600);
+        echo '
+            <script type="text/javascript">
+                expires = "; expires= -10000";
+                document.cookie = "mapdonate=false" + expires + "; path=/";
+            </script>
+        ';
+
+        update_option('miniAudioPlayer_donate', "true" );
+    }
+
     if ( !is_admin()) {
         wp_enqueue_script('jquery');
         wp_enqueue_script('metadata', plugins_url( '/js/jquery.metadata.js', __FILE__ ), false, '1.2', false);
@@ -150,7 +165,7 @@ function add_maplayer_button_script($plugin_array) {
 }
 
 function get_maplayer_pop_up_params(){
-    global $miniAudioPlayer_version;
+    global $miniAudioPlayer_version,$miniAudioPlayer_donate;
 
     return urlencode(base64_encode(
         'plugin_version='.$miniAudioPlayer_version.'&'.
@@ -163,7 +178,9 @@ function get_maplayer_pop_up_params(){
             'showRew='.urlencode(get_option('miniAudioPlayer_showRew')).'&'.
             'width='.urlencode(get_option('miniAudioPlayer_width')).'&'.
             'skin='.urlencode(get_option('miniAudioPlayer_skin')).'&'.
-            'volume='.urlencode(get_option('miniAudioPlayer_volume'))
+            'volume='.urlencode(get_option('miniAudioPlayer_volume')).'&'.
+            'donate='.$miniAudioPlayer_donate
+
     ));
 }
 
