@@ -13,7 +13,7 @@ function miniAudioPlayer_options_page() { 	// Output the options page
 
 <!--DONATE POPUP-->
 <style>
-    #donate{ position: fixed; top: 20%; left: 0; width: 100%; height: 100%; padding: 30px; text-align: center; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; z-index: 10000; }
+    #donate{ position: fixed; top: 20%; left: 0; width: 100%; height: 100%; padding: 30px; text-align: center; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; z-index: 10000; display:none}
     #donateContent{ position: relative; margin: 30px auto; background: rgba(77, 71, 61, 0.88); color:white; padding: 30px; text-align: center; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; width: 450px; border-radius: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5) }
     #donate h2{ font-size: 30px; line-height: 33px; }
     #donate p{ margin: 30px; font-size: 16px; line-height: 22px; display: block; float: none; }
@@ -83,6 +83,7 @@ function miniAudioPlayer_options_page() { 	// Output the options page
             jQuery("#inlineDonate").remove();
             jQuery("#donateTxt").show()
         } else {
+            jQuery("#donate").show();
             var timer = 5;
             var closeDonate = setInterval(function () {
                 timer--;

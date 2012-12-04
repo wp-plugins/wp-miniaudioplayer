@@ -71,6 +71,9 @@ to change the player default settings go to the mb.miniAudioPlayer settings pane
 
 == Changelog ==
 
+= 0.9 =
+* bug fix: solved a major bug that was preventing the correct behaviour within the TinyMCE editor window.
+
 = 0.8 =
 * bug fix: the donate pop up was showing even after the donation.
 * bug fix: the Tiny popup setting didn't work in certain cases.
