@@ -73,17 +73,11 @@
           jQuery.extend(player.opt,$master.metadata());
         }
 
-        if (navigator && navigator.platform && navigator.platform.match(/^(iPad|iPod|iPhone)$/)) {
-          /*
-           jQuery.mbMiniPlayer.icon.play="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/play.png'/>";
-           jQuery.mbMiniPlayer.icon.pause="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/pause.png'/>";
-           jQuery.mbMiniPlayer.icon.stop="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/stop.png'/>";
-           jQuery.mbMiniPlayer.icon.rewind="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/rewind.png'/>";
-           jQuery.mbMiniPlayer.icon.volume="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/volume.png'/>";
-           jQuery.mbMiniPlayer.icon.volumeMute="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/volume.png'/>";
-           */
-          jQuery.mbMiniPlayer.defaults.showVolumeLevel=false;
-          jQuery.mbMiniPlayer.defaults.autoplay=false;
+//        if is device manage the component display
+        if ('ontouchstart' in window) {
+          player.opt.showVolumeLevel=false;
+          player.opt.autoplay=false;
+          player.opt.downloadable=false;
         }
 
         if(!player.opt.mp3)
@@ -102,7 +96,6 @@
         $controlsBox.html($layout);
 
         var download = jQuery("<p/>").addClass("map_download").css({display:"inline-block", cursor:"pointer"}).html("d").on("click",function(){
-//				var download = jQuery("<p/>").addClass("map_download").css({display:"inline-block", cursor:"pointer"}).html("⇣").on("click",function(){
           // window.open(player.opt.mp3,"map_download");
           location.href = map.downloadUrl+"?filename="+title.asId()+".mp3"+"&fileurl="+player.opt.mp3;
         }).attr("title","download: "+title);
