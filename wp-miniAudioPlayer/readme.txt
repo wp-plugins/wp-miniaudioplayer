@@ -4,7 +4,7 @@ Contributors: Pupunzi (Matteo Bicocchi)
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.0
 Tested up to: 3.4.2
-Stable tag: 0.9
+Stable tag: 0.9.2
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
 Transform your mp3 audio files into a nice, small light HTML5 player
@@ -70,6 +70,9 @@ to change the player default settings go to the mb.miniAudioPlayer settings pane
 * @ excluded = a string containing the CSS class for audio links that should not be converted into player.
 
 == Changelog ==
+
+= 0.9.2 =
+* bug fix: IE8 didn't read the controls Font face.
 
 = 0.9 =
 * bug fix: solved a major bug that was preventing the correct behaviour within the TinyMCE editor window.
