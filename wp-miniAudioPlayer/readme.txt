@@ -2,7 +2,7 @@
 
 Contributors: Pupunzi (Matteo Bicocchi)
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
-Requires at least: 3.2
+Requires at least: 3.3
 Tested up to: 3.5
 Stable tag: 0.9.2
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
