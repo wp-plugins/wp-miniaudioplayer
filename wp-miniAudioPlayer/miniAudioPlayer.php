@@ -4,11 +4,11 @@ Plugin Name: mb.miniAudioPlayer
 Plugin URI: http://pupunzi.com/#mb.components/mb.miniAudioPlayer/miniAudioPlayer.html
 Description: Transform your mp3 audio file link into a nice, small light player
 Author: Pupunzi (Matteo Bicocchi)
-Version: 0.9.2
+Version: 0.9.3
 Author URI: http://pupunzi.com
 */
 
-define("MINIAUDIOPLAYER_VERSION", "0.9.2");
+define("MINIAUDIOPLAYER_VERSION", "0.9.3");
 
 register_activation_hook( __FILE__, 'miniAudioPlayer_install' );
 

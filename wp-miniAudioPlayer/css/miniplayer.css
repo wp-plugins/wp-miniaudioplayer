@@ -201,7 +201,7 @@ a.audio{
   vertical-align: top !important;
   margin: 0 !important;
   padding: 3px 5px;
-  font:40px/22px "mb_audio_fontRegular";
+  font:50px/22px "mb_audio_fontRegular" !important;
   color: #d1d1d1;
   text-shadow: 0 0 3px rgba(255,255,255,0.6);
 
