@@ -72,7 +72,7 @@ to change the player default settings go to the mb.miniAudioPlayer settings pane
 == Changelog ==
 
 = 0.9.4 =
-* bug fix: Prevent conflicts with other components using jPlayer.
+* Fix: The name of the downloadable file is now the one of the original file.
 
 = 0.9.3 =
 * bug fix: Prevent conflicts with other components using jPlayer.
