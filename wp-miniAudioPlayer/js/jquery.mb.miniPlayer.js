@@ -58,7 +58,10 @@
 				$master.hide();
 				var url = $master.attr("href");
 				var ID= "mb_" + ($master.attr("id")?$master.attr("id") : new Date().getTime());
-				var title= $master.html();
+
+				var title = $master.attr("href").replace(".mp3","").split("/");
+				title = title[title.length-1];
+
 				var $player=jQuery("<div/>").attr({id:"JPL_"+ID});
 				var player=$player.get(0);
 				player.opt={};
@@ -97,12 +100,13 @@
 				$controlsBox.html($layout);
 
 				var download = jQuery("<p/>").addClass("map_download").css({display:"inline-block", cursor:"pointer"}).html("d").on("click",function(){
-//					window.open(player.opt.mp3,"map_download");
-					location.href = map.downloadUrl+"?filename="+title.asId()+".mp3"+"&fileurl="+player.opt.mp3;
+					//window.open(player.opt.mp3,"map_download");
+					location.href = map.downloadUrl+"?filename="+title+".mp3"+"&fileurl="+ encodeURI(player.opt.mp3); //title.asId()
 				}).attr("title","download: "+title);
 				if(player.opt.downloadable){
 					$controlsBox.append(download);
 				}
+
 				var cc = jQuery("<div/>").addClass("copy").html("made by Pupunzi");
 				$controlsBox.append(cc);
 				var $tds= $controlsBox.find("td").unselectable();
