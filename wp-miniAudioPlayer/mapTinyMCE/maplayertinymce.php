@@ -301,7 +301,7 @@ if (!headers_sent()) {
                 if(jQuery("[name='skin']").val().length>0)
                     map_params+="skin:'"+jQuery("[name='skin']").val()+"', ";
                 if(jQuery("[name='width']").val().length>0)
-                    map_params+="width:"+jQuery("[name='width']").val()+", ";
+                    map_params+="width:'"+jQuery("[name='width']").val()+"', ";
                 if(jQuery("[name='volume']").val().length>0)
                     map_params+="volume:"+ jQuery("[name='volume']").val()/10 +", ";
                 map_params+="autoplay:"+(jQuery("[name='autoplay']").is(":checked") ? "true" : "false")+", ";

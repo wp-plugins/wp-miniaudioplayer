@@ -74,6 +74,11 @@
 					jQuery.extend(player.opt,$master.metadata());
 				}
 
+				if(player.opt.width.toString().indexOf("%")>=0){
+					var pW = $master.parent().outerWidth();
+					player.opt.width = (pW*(parseFloat(player.opt.width)/2))/100;
+				}
+
 				if (navigator && navigator.platform && navigator.platform.match(/^(iPad|iPod|iPhone)jQuery/)) {
 					jQuery.mbMiniPlayer.icon.play="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/play.png'/>";
 					jQuery.mbMiniPlayer.icon.pause="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/pause.png'/>";
