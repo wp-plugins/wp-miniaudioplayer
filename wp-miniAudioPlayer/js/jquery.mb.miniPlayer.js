@@ -80,13 +80,15 @@
 					player.opt.width = (pW*(parseFloat(player.opt.width)/2))/100;
 				}
 
-				if (navigator && navigator.platform && navigator.platform.match(/^(iPad|iPod|iPhone)jQuery/)) {
-					jQuery.mbMiniPlayer.icon.play="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/play.png'/>";
-					jQuery.mbMiniPlayer.icon.pause="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/pause.png'/>";
-					jQuery.mbMiniPlayer.icon.stop="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/stop.png'/>";
-					jQuery.mbMiniPlayer.icon.rewind="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/rewind.png'/>";
-					jQuery.mbMiniPlayer.icon.volume="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/volume.png'/>";
-					jQuery.mbMiniPlayer.icon.volumeMute="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/volume.png'/>";
+				if (navigator && navigator.platform && navigator.platform.match(/^(iPad|iPod|iPhone)$/)) {
+					/*
+					 jQuery.mbMiniPlayer.icon.play="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/play.png'/>";
+					 jQuery.mbMiniPlayer.icon.pause="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/pause.png'/>";
+					 jQuery.mbMiniPlayer.icon.stop="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/stop.png'/>";
+					 jQuery.mbMiniPlayer.icon.rewind="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/rewind.png'/>";
+					 jQuery.mbMiniPlayer.icon.volume="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/volume.png'/>";
+					 jQuery.mbMiniPlayer.icon.volumeMute="<img src='"+jQuery.mbMiniPlayer.defaults.swfPath+"img/volume.png'/>";
+					 */
 					jQuery.mbMiniPlayer.defaults.showVolumeLevel=false;
 				}
 
