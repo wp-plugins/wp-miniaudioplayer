@@ -160,7 +160,7 @@ function register_maplayer_button($buttons) {
 
 // Register our TinyMCE Script
 function add_maplayer_button_script($plugin_array) {
-    $plugin_array['maplayer'] = plugins_url('mapTinyMCE/tinymcemaplayer.js.php?params='.get_maplayer_pop_up_params(), __FILE__);
+    $plugin_array['maplayer'] = plugins_url('maptinymce/tinymcemaplayer.js.php?params='.get_maplayer_pop_up_params(), __FILE__);
     return $plugin_array;
 }
 
