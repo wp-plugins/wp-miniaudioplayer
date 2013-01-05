@@ -112,15 +112,7 @@ function miniAudioPlayer_options_page() { 	// Output the options page
     <h2>mb.miniAudioPlayer Settings</h2>
     <p>You're using mb.miniAudioPlayer v. <?php echo $miniAudioPlayer_version;?> by <a href="http://pupunzi.com">Pupunzi</a>.</p>
 
-    <div id="share" style="position: absolute; left:650px; top:0">
-        <p>Rate this plug in: <select onchange="window.open('http://wordpress.org/extend/plugins/wp-miniAudioPlayer/?rate='+this.value+'&topic_id=35600&_wpnonce=087fac79aa', 'rate')">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="5" selected>rate it</option>
-        </select></p>
+    <div id="share" style="position: absolute; left:650px; top:20px">
 
         <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://wordpress.org/extend/plugins/wp-miniaudioplayer/" data-text="I'm using the mb.miniAudioPlayer WP plugin" data-via="pupunzi" data-hashtags="HTML5,wordpress,plugin">Tweet</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
