@@ -29,7 +29,7 @@
                 var selection = ed.selection.getNode();
                 var btn = ed.controlManager.get("maplayerbutton");
                 var disable = true;
-                jQuery("#"+btn.id).css({opacity:".6"});
+                jQuery("#"+btn.id).css({opacity:"1"});
                 if (jQuery(selection).is("a[href *= '.mp3']") || jQuery(selection).find("a[href *= '.mp3']").lenght>0 || jQuery(selection).prev().is("a[href *= '.mp3']")) {
                     disable = false;
                     jQuery("#"+btn.id).css({border:"1px solid gray", opacity:1});
