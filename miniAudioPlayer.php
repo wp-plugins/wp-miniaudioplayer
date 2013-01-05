@@ -23,7 +23,7 @@ function miniAudioPlayer_install() {
     add_option('miniAudioPlayer_showVolumeLevel','true');
     add_option('miniAudioPlayer_showTime','true');
     add_option('miniAudioPlayer_showRew','true');
-    add_option('miniAudioPlayer_excluded','map_excuded');
+    add_option('miniAudioPlayer_excluded','mapExcuded');
     add_option('miniAudioPlayer_download','false');
 }
 
