@@ -107,7 +107,7 @@
 				$master.after($controlsBox);
 				$controlsBox.html($layout);
 
-				var download = jQuery("<p/>").addClass("map_download").css({display: "inline-block", cursor: "pointer"}).html("d").on("click",function () {
+				var download = jQuery("<span/>").addClass("map_download").css({display: "inline-block", cursor: "pointer"}).html("d").on("click",function () {
 					//window.open(player.opt.mp3,"map_download");
 					location.href = map.downloadUrl + "?filename=" + downloadURL + ".mp3" + "&fileurl=" + encodeURI(player.opt.mp3); //title.asId()
 				}).attr("title", "download: " + downloadURL);
