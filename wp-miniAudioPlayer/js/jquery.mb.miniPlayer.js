@@ -307,7 +307,7 @@
 					swfPath            : player.opt.swfPath,
 					preload            : "metadata",
 					// solution: player.opt.isIE9 ? 'flash' : 'html, flash',
-					//cssSelectorAncestor: "#" + ID, // Remove the ancestor css selector clause
+					cssSelectorAncestor: "#" + ID, // Remove the ancestor css selector clause
 					cssSelector        : {
 						playBar: "#playBar_" + ID,
 						seekBar: "#loadBar_" + ID // Set a custom css selector for the play button
