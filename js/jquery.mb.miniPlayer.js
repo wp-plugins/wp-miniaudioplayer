@@ -203,8 +203,8 @@
 												});
 										}
 										$controlsBox.attr("isPlaying", "true");
-										el.jPlayer("load");
-										setTimeout(function(){el.jPlayer("play");},1000)
+
+										el.jPlayer("play");
 
 										if (typeof player.opt.onPlay == "function")
 											player.opt.onPlay(idx);
@@ -305,7 +305,7 @@
 					volume             : player.opt.volume,
 					oggSupport         : player.opt.ogg ? true : false,
 					swfPath            : player.opt.swfPath,
-					preload            : "metadata",
+					preload            : "none",
 					// solution: player.opt.isIE9 ? 'flash' : 'html, flash',
 					cssSelectorAncestor: "#" + ID, // Remove the ancestor css selector clause
 					cssSelector        : {
