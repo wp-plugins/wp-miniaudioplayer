@@ -18,6 +18,7 @@ function miniAudioPlayer_install() {
     add_option('miniAudioPlayer_donate','false');
     add_option('miniAudioPlayer_width','200');
     add_option('miniAudioPlayer_skin','black');
+    add_option('miniAudioPlayer_animate','true');
     add_option('miniAudioPlayer_volume','.5');
     add_option('miniAudioPlayer_autoplay','false');
     add_option('miniAudioPlayer_showVolumeLevel','true');
@@ -32,6 +33,7 @@ $miniAudioPlayer_donate = get_option('miniAudioPlayer_donate');
 $miniAudioPlayer_version = get_option('miniAudioPlayer_version');
 $miniAudioPlayer_width = get_option('miniAudioPlayer_width');
 $miniAudioPlayer_skin = get_option('miniAudioPlayer_skin');
+$miniAudioPlayer_animate = get_option('miniAudioPlayer_animate');
 $miniAudioPlayer_volume = get_option('miniAudioPlayer_volume');
 $miniAudioPlayer_autoplay = get_option('miniAudioPlayer_autoplay');
 $miniAudioPlayer_showVolumeLevel = get_option('miniAudioPlayer_showVolumeLevel');
@@ -46,6 +48,7 @@ if ($miniAudioPlayer_version != MINIAUDIOPLAYER_VERSION) {$miniAudioPlayer_versi
 if (empty($miniAudioPlayer_donate)) {$miniAudioPlayer_donate = "false";}
 if (empty($miniAudioPlayer_width)) {$miniAudioPlayer_width = "200";}
 if (empty($miniAudioPlayer_skin)) {$miniAudioPlayer_skin = "black";}
+if (empty($miniAudioPlayer_animate)) {$miniAudioPlayer_animate = "true";}
 if (empty($miniAudioPlayer_volume)) {$miniAudioPlayer_volume = ".5";}
 if (empty($miniAudioPlayer_autoplay)) {$miniAudioPlayer_autoplay = "false";}
 if (empty($miniAudioPlayer_showVolumeLevel)) {$miniAudioPlayer_showVolumeLevel = "false";}
@@ -195,9 +198,10 @@ function get_maplayer_pop_up_params(){
             'showRew='.urlencode(get_option('miniAudioPlayer_showRew')).'&'.
             'width='.urlencode(get_option('miniAudioPlayer_width')).'&'.
             'skin='.urlencode(get_option('miniAudioPlayer_skin')).'&'.
+            'animate='.urlencode(get_option('miniAudioPlayer_animate')).'&'.
             'volume='.urlencode(get_option('miniAudioPlayer_volume')).'&'.
-            'downloadable='.urlencode( $miniAudioPlayer_download ).'&'.
-            'downloadable_security='.urlencode( $miniAudioPlayer_download_security ).'&'.
+            'downloadable='.urlencode( get_option('miniAudioPlayer_download')).'&'.
+            'downloadable_security='.urlencode(get_option('miniAudioPlayer_download_security')).'&'.
             'donate='.$miniAudioPlayer_donate
 
     ));

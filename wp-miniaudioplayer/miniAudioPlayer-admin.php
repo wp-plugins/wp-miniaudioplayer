@@ -12,7 +12,7 @@ function add_miniAudioPlayer_option_page()
 
 function miniAudioPlayer_options_page()
 { // Output the options page
-    global $miniAudioPlayer_donate, $miniAudioPlayer_version, $miniAudioPlayer_width, $miniAudioPlayer_skin, $miniAudioPlayer_volume, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_excluded, $miniAudioPlayer_download, $miniAudioPlayer_download_security ?>
+    global $miniAudioPlayer_donate, $miniAudioPlayer_version, $miniAudioPlayer_width, $miniAudioPlayer_skin, $miniAudioPlayer_animate, $miniAudioPlayer_volume, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_excluded, $miniAudioPlayer_download, $miniAudioPlayer_download_security ?>
 
     <!--DONATE POPUP-->
     <style>
@@ -255,7 +255,7 @@ function miniAudioPlayer_options_page()
 
         <h2>Default settings:</h2>
 
-        <p>Here you set the default settings far all the audio links in your Wordpress site.</p>
+        <p>Here you define the default settings for all the audio links in your Wordpress site.</p>
 
         <p>You can overwrite the single player settings by selecting the audio link in the post editor and clicking
             on the mb.miniAudioPlayer button on the top of the TinyMCE editor toolbar.</p>
@@ -295,6 +295,19 @@ function miniAudioPlayer_options_page()
                     <p>Set the palyer skin</p>
                 </td>
             </tr>
+
+            <tr valign="top">
+                <th scope="row">Player animation:</th>
+                <td>
+                    <input type="checkbox" name="miniAudioPlayer_animate"
+                           value="true" <?php if ($miniAudioPlayer_animate == "true") {
+                        echo' checked="checked"';
+                    }?>/>
+
+                    <p>Check to activate the opening / closing animation</p>
+                </td>
+            </tr>
+
             <tr valign="top">
                 <th scope="row">Set the width:</th>
                 <td>
@@ -306,6 +319,7 @@ function miniAudioPlayer_options_page()
                     <p>Set the player width in pixel</p>
                 </td>
             </tr>
+
             <tr valign="top">
                 <th scope="row">Set the volume:</th>
                 <td>
@@ -344,7 +358,7 @@ function miniAudioPlayer_options_page()
                         echo' checked="checked"';
                     }?>/>
 
-                    <p>Check to show the volume levels.</p>
+                    <p>Check to show the volume levels</p>
                 </td>
             </tr>
 
@@ -356,7 +370,7 @@ function miniAudioPlayer_options_page()
                         echo' checked="checked"';
                     }?>/>
 
-                    <p>Check to show the time info.</p>
+                    <p>Check to show the time info</p>
                 </td>
             </tr>
 
@@ -368,7 +382,7 @@ function miniAudioPlayer_options_page()
                         echo' checked="checked"';
                     }?>/>
 
-                    <p>Check to show the Rewind button.</p>
+                    <p>Check to show the Rewind button</p>
                 </td>
             </tr>
 
@@ -383,7 +397,7 @@ function miniAudioPlayer_options_page()
                            }?>"/>
 
                     <p>Define the class name for the audio liks you don't want to render as player; By default is
-                        "map_excluded".</p>
+                        "map_excluded"</p>
 
                     <p><i>You can either manually add this class to the audio links you want to exclude or select
                             the link and check the "Don't render" checkbox of the popup window in the editor
@@ -413,7 +427,7 @@ function miniAudioPlayer_options_page()
                         echo' checked="checked"';
                     }?>/>
 
-                    <p>check to add a download button closed to the player.</p>
+                    <p>check to add a download button closed to the player</p>
 
                     <input type="checkbox" name="miniAudioPlayer_download_security" id="miniAudioPlayer_download_security"
                            value="true" <?php if ($miniAudioPlayer_download_security == "true") {
@@ -422,7 +436,7 @@ function miniAudioPlayer_options_page()
                         if ($miniAudioPlayer_download != "true") {
                             echo' disabled="disabled"';
                         }?>/><label for="miniAudioPlayer_download_security" style="color:gray"> Only for registered users</label>
-                    <p>check to allow downloads only for registered user.</p>
+                    <p>check to allow downloads only for registered user</p>
                 </td>
             </tr>
 
@@ -431,7 +445,7 @@ function miniAudioPlayer_options_page()
         <p>If you are using others HTML5 audio player plug-ins (like Haiku) there could be conflicts with
             mb.miniAudioPlayer. You should deactivete the others befor using this.</p>
         <input type="hidden" name="page_options"
-               value="miniAudioPlayer_donate, miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew, miniAudioPlayer_excluded, miniAudioPlayer_download, miniAudioPlayer_download_security"/>
+               value="miniAudioPlayer_donate, miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_animate, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew, miniAudioPlayer_excluded, miniAudioPlayer_download, miniAudioPlayer_download_security"/>
         <input type="hidden" name="action" value="update"/>
 
         <p class="submit">

@@ -60,23 +60,24 @@
 			volumeMute: "Vm"
 		},
 		defaults: {
-			width                : 150,
-			skin                 : "black", // available: black, blue, orange, red, gray
-			volume               : .5,
-			autoplay             : false,
-			playAlone            : true,
-			inLine               : false,
-			volumeLevels         : 8,
-			showVolumeLevel      : true,
-			showTime             : true,
-			showRew              : true,
-			addShadow            : true,
-			downloadable         : false,
-			downloadablesecurity : false,
-			swfPath              : "inc/",
-			onPlay               : function () {
+			width               : 150,
+			skin                : "black", // available: black, blue, orange, red, gray
+			volume              : .5,
+			autoplay            : false,
+			animate             : true,
+			playAlone           : true,
+			inLine              : false,
+			volumeLevels        : 10,
+			showVolumeLevel     : true,
+			showTime            : true,
+			showRew             : true,
+			addShadow           : true,
+			downloadable        : false,
+			downloadablesecurity: false,
+			swfPath             : "inc/",
+			onPlay              : function () {
 			},
-			onEnd                : function () {
+			onEnd               : function () {
 			}
 		},
 
@@ -104,8 +105,9 @@
 				}
 
 				if (player.opt.width.toString().indexOf("%") >= 0) {
-					var pW = $master.parent().outerWidth();
-					player.opt.width = (pW * (parseFloat(player.opt.width) / 2)) / 100;
+					var margin = player.opt.downloadable ? 220 : 180;
+					var pW = $master.parent().outerWidth()-margin;
+					player.opt.width = (pW * (parseFloat(player.opt.width))) / 100;
 				}
 
 				if (navigator && navigator.platform && navigator.platform.match(/^(iPad|iPod|iPhone)$/)) {
@@ -144,24 +146,24 @@
 					map.userCanDownload = true;
 
 				if (player.opt.downloadable) {
-					if(!player.opt.downloadablesecurity || (player.opt.downloadablesecurity && map.userCanDownload))
+					if (!player.opt.downloadablesecurity || (player.opt.downloadablesecurity && map.userCanDownload))
 						$controlsBox.append(download);
 				}
 
 
 				var $tds = $controlsBox.find("td").unselectable();
 
-				var $volumeBox = jQuery("<span/>").addClass("volume").html(jQuery.mbMiniPlayer.icon.volume);
-				var $volumeLevel = jQuery("<span/>").addClass("volumeLevel").html("").hide();
+				var $volumeBox = jQuery("<span/>").addClass("map_volume").html(jQuery.mbMiniPlayer.icon.volume);
+				var $volumeLevel = jQuery("<span/>").addClass("map_volumeLevel").html("").hide();
 				for (var i = 0; i < player.opt.volumeLevels; i++) {
 					$volumeLevel.append("<a/>")
 				}
-				var $playBox = jQuery("<span/>").addClass("play").html(jQuery.mbMiniPlayer.icon.play);
-				var $rewBox = jQuery("<span/>").addClass("rew").html(jQuery.mbMiniPlayer.icon.rewind).hide();
-				var $timeBox = jQuery("<span/>").addClass("time").html("").hide();
+				var $playBox = jQuery("<span/>").addClass("map_play").html(jQuery.mbMiniPlayer.icon.play);
+				var $rewBox = jQuery("<span/>").addClass("map_rew").html(jQuery.mbMiniPlayer.icon.rewind).hide();
+				var $timeBox = jQuery("<span/>").addClass("map_time").html("").hide();
 
-				var $controls = jQuery("<div/>").addClass("controls");
-				var $titleBox = jQuery("<span/>").addClass("title").html(title);
+				var $controls = jQuery("<div/>").addClass("map_controls");
+				var $titleBox = jQuery("<span/>").addClass("map_title").html(title);
 				var $progress = jQuery("<div/>").addClass("jp-progress");
 
 				var $loadBar = jQuery("<div/>").addClass("jp-load-bar").attr("id", "loadBar_" + ID);
@@ -172,7 +174,7 @@
 
 				$tds.eq(0).append($volumeBox);
 				$tds.eq(1).append($volumeLevel);
-				$tds.eq(2).addClass("controlsBar").append($controls);
+				$tds.eq(2).addClass("map_controlsBar").append($controls);
 				$tds.eq(3).append($timeBox);
 				$tds.eq(4).append($rewBox);
 				$tds.eq(5).append($playBox);
@@ -193,47 +195,80 @@
 
 						var el = jQuery(this);
 						el.jPlayer("setMedia", {mp3: player.opt.mp3, oga: player.opt.ogg});
+
+						function animatePlayer(anim) {
+
+							if (anim == undefined)
+								anim = true;
+
+							var speed = anim ? 500 : 0;
+
+							var isIE = jQuery.browser.msie && jQuery.browser.version < 9;
+
+							if (!player.isOpen) {
+								$controls.css({display: "block", height: 20}).animate({width: player.opt.width}, speed);
+
+								if (player.opt.showRew) {
+									if (isIE)
+										$rewBox.show().css({width: 20, display: "block"});
+									else
+										$rewBox.show().animate({width: 20}, speed/2);
+								}
+								if (player.opt.showTime) {
+									if (isIE)
+										$timeBox.show().css({width: 30, display: "block"});
+									else
+										$timeBox.animate({width: 30}, speed/2).show();
+								}
+								if (player.opt.showVolumeLevel) {
+									if (isIE)
+										$volumeLevel.show().css({width: 40, display: "block"});
+									else
+										$volumeLevel.show().animate({width: 40}, speed/2);
+								}
+							} else {
+								$controls.animate({width: 1}, speed, function () {
+									jQuery(this).css({display: "none"})
+								});
+								if (player.opt.showRew) {
+									$rewBox.animate({width: 1}, speed/2, function () {
+										jQuery(this).css({display: "none"})
+									});
+								}
+								if (player.opt.showTime) {
+									$timeBox.animate({width: 1}, speed/2, function () {
+										jQuery(this).css({display: "none"})
+									});
+								}
+								if (player.opt.showVolumeLevel) {
+									$volumeLevel.animate({width: 1}, speed/2, function () {
+										jQuery(this).css({display: "none"})
+									});
+								}
+							}
+
+						}
+
+						if(!player.opt.animate)
+							animatePlayer(false)
+
 						$playBox.on("click",
 								function () {
 
 									if (!player.isOpen) {
 
+										if(player.opt.animate)
+											animatePlayer();
+
 										player.isOpen = true;
 
 										if (player.opt.playAlone) {
-											jQuery("[isPlaying=true]").find(".play").click();
+											jQuery("[isPlaying=true]").find(".map_play").click();
 										}
-
-										var isIE = jQuery.browser.msie && jQuery.browser.version < 9;
 
 										jQuery(this).html(jQuery.mbMiniPlayer.icon.pause);
 
-										$controls.css({display: "block", height: 20}).animate({width: player.opt.width}, 500);
-										if (player.opt.showRew) {
-											if (isIE)
-												$rewBox.show().css({width: 20, display: "block"});
-											else
-												$rewBox.show().animate({width: 20}, 100);
-											if (jQuery.browser.safari)
-												$rewBox.parent().css({width: 20}).show();
-										}
-										if (player.opt.showTime) {
-											if (isIE)
-												$timeBox.show().css({width: 30, display: "block"});
-											else
-												$timeBox.animate({width: 30}, 100).show();
-											if (jQuery.browser.safari)
-												$timeBox.parent().css({width: 30}).show();
-										}
-										if (player.opt.showVolumeLevel) {
-											if (isIE)
-												$volumeLevel.show().css({width: 40, display: "block"});
-											else
-												$volumeLevel.show().animate({width: 40}, 100, function () {
-													if (jQuery.browser.safari)
-														$volumeLevel.parent().animate({width: 40}).show();
-												});
-										}
+
 										$controlsBox.attr("isPlaying", "true");
 
 										el.jPlayer("play");
@@ -243,33 +278,13 @@
 
 									} else {
 
+										if(player.opt.animate)
+											animatePlayer();
+
 										player.isOpen = false;
 
 										jQuery(this).html(jQuery.mbMiniPlayer.icon.play);
-										$controls.animate({width: 1}, 500, function () {
-											jQuery(this).css({display: "none"})
-										});
-										if (player.opt.showRew) {
-											$rewBox.animate({width: 1}, 100, function () {
-												jQuery(this).css({display: "none"})
-											});
-											if (jQuery.browser.safari)
-												$rewBox.parent().hide();
-										}
-										if (player.opt.showTime) {
-											$timeBox.animate({width: 1}, 100, function () {
-												jQuery(this).css({display: "none"})
-											});
-											if (jQuery.browser.safari)
-												$timeBox.parent().hide();
-										}
-										if (player.opt.showVolumeLevel) {
-											$volumeLevel.animate({width: 1}, 100, function () {
-												jQuery(this).css({display: "none"})
-											});
-											if (jQuery.browser.safari)
-												$volumeLevel.parent().hide();
-										}
+
 										$controlsBox.attr("isPlaying", "false");
 										el.jPlayer("pause");
 									}
@@ -313,10 +328,14 @@
 								}
 						);
 
-						var bars = player.opt.volumeLevels;
-						var barVol = 1 / bars;
-						$volumeLevel.find("a").each(function (i) {
-							jQuery(this).css({opacity: .3, height: 3 + 2 * (i + 1), width: Math.floor(35 / bars)});
+						var bars = $volumeLevel.find("a");
+						var barVol = 1 / bars.length;
+						var barHeight = $volumeLevel.height() / (bars.length);
+						var barWidth = (($volumeLevel.width()) / (bars.length))-1;
+
+						bars.each(function (i) {
+							jQuery(this).css({opacity: .3, height: barHeight * (i + 1), width: barWidth});
+//							jQuery(this).css({opacity: .3, height: 3 + 2 * (i + 1), width: Math.floor(35 / bars)});
 
 							jQuery(this).click(function () {
 								var vol = (i + 1) * barVol;
@@ -382,7 +401,7 @@
 			var ID = jQuery(this).attr("id");
 			var $controlsBox = jQuery("#mp_" + ID);
 			var $player = jQuery("#JPL_" + ID);
-			var $titleBox = $controlsBox.find(".title");
+			var $titleBox = $controlsBox.find(".map_title");
 			if (!ogg) ogg = "";
 			if (!title) title = "audio file";
 			$player.jPlayer("setMedia", {mp3: mp3, oga: ogg});
@@ -395,7 +414,7 @@
 				var id = jQuery(this).attr("id");
 				var player = jQuery("#mp_" + id);
 				if (player.attr("isplaying") == "false")
-					player.find(".play").click();
+					player.find(".map_play").click();
 			})
 		},
 		stop       : function () {
@@ -403,7 +422,7 @@
 				var id = jQuery(this).attr("id");
 				var player = jQuery("#mp_" + id);
 				if (player.attr("isplaying") == "true")
-					player.find(".play").click();
+					player.find(".map_play").click();
 			})
 		},
 		destroy    : function () {

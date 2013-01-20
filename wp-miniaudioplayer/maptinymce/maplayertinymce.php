@@ -10,6 +10,7 @@ $showTime = $_GET['showTime'];
 $showRew = $_GET['showRew'];
 $width = $_GET['width'];
 $skin = $_GET['skin'];
+$miniAudioPlayer_animate = $_GET['animate'];
 $volume = $_GET['volume'];
 $donate = $_GET['donate'];
 $downloadable = $_GET['downloadable'];
@@ -97,6 +98,12 @@ if (!headers_sent()) {
         </label>
 
         <label>
+            <span class="label">Animate:</span>
+            <input type="checkbox" name="animate" value="true"/>
+            <span class="help-inline">Check to activate the opening / closing animation</span>
+        </label>
+
+        <label>
             <span class="label">Width: </span>
             <input type="text" name="width" class="span6"/>
             <span class="help-inline">Set the player width</span>
@@ -135,13 +142,13 @@ if (!headers_sent()) {
         </label>
 
         <label>
-            <span class="label">downloadable: </span>
+            <span class="label">Downloadable: </span>
             <input type="checkbox" name="downloadable" value="false" onclick="manageSecurity(this)"/>
             <span class="help-inline">check to show the download button</span><br>
 
             <span class="label" style="font-weight: normal; color: gray">Only registered: </span>
             <input type="checkbox" name="downloadablesecurity" value="false"/>
-            <span class="help-inline">if checked only registered users can download</span>
+            <span class="help-inline">Check to limit downloads to registered users</span>
         </label>
 
         <script>
@@ -181,8 +188,8 @@ if (!headers_sent()) {
         <h2>mb.miniAudioPlayer</h2>
         <p >If you like it and you are using it then you should consider a donation <br> (€15,00 or more) :-)</p>
         <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y" target="_blank" onclick="donate();">
-            <img border="0" alt="PayPal" src="https://www.paypalobjects.com/en_US/IT/i/btn/btn_donateCC_LG.gif">
-        </a></p>
+                <img border="0" alt="PayPal" src="https://www.paypalobjects.com/en_US/IT/i/btn/btn_donateCC_LG.gif">
+            </a></p>
         <p id="timer">&nbsp;</p>
         <br>
         <br>
@@ -282,6 +289,7 @@ if (!headers_sent()) {
                 showRew:<?php echo $showRew ?>,
                 width:"<?php echo $width ?>",
                 skin:"<?php echo $skin ?>",
+                animate:"<?php echo $miniAudioPlayer_animate ?>",
                 downloadable:<?php echo $downloadable ? "true" : "false" ?>,
                 downloadable_security:<?php echo $downloadable_security ? "true" : "false" ?>,
                 volume:parseFloat(<?php echo $volume ?>)*10
@@ -325,6 +333,7 @@ if (!headers_sent()) {
                 var map_params = "{";
                 if(jQuery("[name='skin']").val().length>0)
                     map_params+="skin:'"+jQuery("[name='skin']").val()+"', ";
+                map_params+="animate:"+(jQuery("[name='animate']").is(":checked") ? "true" : "false")+", ";
                 if(jQuery("[name='width']").val().length>0)
                     map_params+="width:'"+jQuery("[name='width']").val()+"', ";
                 if(jQuery("[name='volume']").val().length>0)
@@ -335,10 +344,10 @@ if (!headers_sent()) {
                 map_params+="showRew:"+(jQuery("[name='showRew']").is(":checked") ? "true" : "false")+", ";
                 map_params+="downloadable:"+(jQuery("[name='downloadable']").is(":checked") ? "true" : "false")+", ";
                 map_params+="downloadablesecurity:"+(jQuery("[name='downloadablesecurity']").is(":checked") ? "true" : "false")+", ";
-/*
-                if(jQuery("[name='downloadable']").is(":checked"))
-                    map_params+="downloadable:true";
-*/
+                /*
+                 if(jQuery("[name='downloadable']").is(":checked"))
+                 map_params+="downloadable:true";
+                 */
 
                 map_params+="}";
                 map_params = map_params.replace(", }", "}");

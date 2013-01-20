@@ -12,10 +12,10 @@
 
 @font-face {
   font-family: 'DroidSansMonoRegular';
-  src: url('DroidSansMono/DroidSansMono-webfont.eot');
-  src: local('?'), url('DroidSansMono/DroidSansMono-webfont.woff') format('woff'),
-  url('DroidSansMono/DroidSansMono-webfont.ttf')  format('truetype'),
-  url('DroidSansMono/DroidSansMono-webfont.svg#webfontGzFJ3WpO') format('svg');
+  src: url('DroidSansMono/DroidSansMono.eot');
+  src: local('?'), url('DroidSansMono/DroidSansMono.woff') format('woff'),
+  url('DroidSansMono/DroidSansMono.ttf')  format('truetype'),
+  url('DroidSansMono/DroidSansMono.svg#webfontGzFJ3WpO') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -88,7 +88,7 @@ a.audio{
   -moz-box-sizing:border-box;
 }
 
-.mbMiniPlayer td.controlsBar{
+.mbMiniPlayer td.map_controlsBar{
   background-color:#ccc;
   background-image:-moz-linear-gradient(19% 100% 90deg,#FFFFFF, #FFFFFF, #EBEBEB 100%);
   background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#DEDEDE), to(#FFFFFF), color-stop(.6,#FFFFFF));
@@ -100,7 +100,7 @@ a.audio{
   -webkit-box-shadow:inset 1px 1px 2px #999;
 }
 
-.mbMiniPlayer .controls{
+.mbMiniPlayer .map_controls{
   margin:1px;
   display:none;
   width:1px;
@@ -127,7 +127,7 @@ a.audio{
   vertical-align: middle;
 }
 
-.mbMiniPlayer table span.title{
+.mbMiniPlayer table span.map_title{
   position:relative;
   color:#333;
   font:10px/12px "DroidSansMonoRegular", sans-serif !important;
@@ -141,13 +141,13 @@ a.audio{
   cursor:default !important;
 }
 
-.mbMiniPlayer table span.rew{
+.mbMiniPlayer table span.map_rew{
   cursor:pointer !important;
 }
 
 
-.mbMiniPlayer table span.volumeLevel{}
-.mbMiniPlayer table span.volumeLevel a{
+.mbMiniPlayer table span.map_volumeLevel{}
+.mbMiniPlayer table span.map_volumeLevel a{
   position:relative !important;
   display:inline-block !important;
   margin:0 ;
@@ -161,9 +161,9 @@ a.audio{
   cursor:pointer !important;
 }
 
-.mbMiniPlayer table span.volumeLevel a.sel{}
+.mbMiniPlayer table span.map_volumeLevel a.sel{}
 
-.mbMiniPlayer table span.time{
+.mbMiniPlayer table span.map_time{
   width:1px;
   font:11px/20px sans-serif;
   overflow:hidden;
@@ -172,14 +172,14 @@ a.audio{
   text-shadow: 1px -1px 1px rgba(0,0,0,.6)!important;
 }
 
-.mbMiniPlayer table span.play{
+.mbMiniPlayer table span.map_play{
   -moz-border-radius:0 5px 5px 0 !important;
   -webkit-border-top-right-radius:5px !important;
   -webkit-border-bottom-right-radius:5px !important;
   border-radius:0 5px 5px 0 !important;
   cursor:pointer !important;
 }
-.mbMiniPlayer table span.volume{
+.mbMiniPlayer table span.map_volume{
   -moz-border-radius:5px 0 0 5px !important;
   -webkit-border-top-left-radius:5px !important;
   -webkit-border-bottom-left-radius:5px !important;
@@ -220,15 +220,15 @@ a.audio{
   background-color:#666;
 }
 
-.mbMiniPlayer.black table span.play{
+.mbMiniPlayer.black table span.map_play{
   border-left:1px solid #333;
 }
 
-.mbMiniPlayer.black table span.volume{
+.mbMiniPlayer.black table span.map_volume{
   border-right:1px solid #999;
 }
 
-.mbMiniPlayer.black table span.volume.mute{
+.mbMiniPlayer.black table span.map_volume.mute{
   color: #999999;
 }
 
@@ -241,15 +241,15 @@ a.audio{
   background-color:#ccc;
 }
 
-.mbMiniPlayer.gray table span.play{
+.mbMiniPlayer.gray table span.map_play{
   border-left:1px solid #9f9f9f;
 }
 
-.mbMiniPlayer.gray table span.volume{
+.mbMiniPlayer.gray table span.map_volume{
   border-right:1px solid #bdbcbc;
 }
 
-.mbMiniPlayer.gray table span.volume.mute{
+.mbMiniPlayer.gray table span.map_volume.mute{
   color: #cccccc;
 }
 .mbMiniPlayer.gray .map_download:hover{
@@ -261,15 +261,15 @@ a.audio{
   background-color: #0099ff;
 }
 
-.mbMiniPlayer.blue table span.play{
+.mbMiniPlayer.blue table span.map_play{
   border-left:1px solid #034383;
 }
 
-.mbMiniPlayer.blue table span.volume{
+.mbMiniPlayer.blue table span.map_volume{
   border-right:1px solid #18a2fe;
 }
 
-.mbMiniPlayer.blue table span.volume.mute{
+.mbMiniPlayer.blue table span.map_volume.mute{
   color: #98bff9;
 }
 
@@ -282,15 +282,15 @@ a.audio{
   background-color: #ff9900;
 }
 
-.mbMiniPlayer.orange table span.play{
+.mbMiniPlayer.orange table span.map_play{
   border-left:1px solid #8c5002;
 }
 
-.mbMiniPlayer.orange table span.volume{
+.mbMiniPlayer.orange table span.map_volume{
   border-right:1px solid #fea827;
 }
 
-.mbMiniPlayer.orange table span.volume.mute{
+.mbMiniPlayer.orange table span.map_volume.mute{
   color: #eec957;
 }
 .mbMiniPlayer.orange .map_download:hover{
@@ -302,15 +302,15 @@ a.audio{
   background-color: #990000;
 }
 
-.mbMiniPlayer.red table span.play{
+.mbMiniPlayer.red table span.map_play{
   border-left:1px solid #5f0000;
 }
 
-.mbMiniPlayer.red table span.volume{
+.mbMiniPlayer.red table span.map_volume{
   border-right:1px solid #990000;
 }
 
-.mbMiniPlayer.red table span.volume.mute{
+.mbMiniPlayer.red table span.map_volume.mute{
   color: #b90000;
 }
 .mbMiniPlayer.red .map_download:hover{
@@ -322,15 +322,15 @@ a.audio{
   background-color: #339900;
 }
 
-.mbMiniPlayer.green table span.play{
+.mbMiniPlayer.green table span.map_play{
   border-left:1px solid #336600;
 }
 
-.mbMiniPlayer.green table span.volume{
+.mbMiniPlayer.green table span.map_volume{
   border-right:1px solid #38a700;
 }
 
-.mbMiniPlayer.green table span.volume.mute{
+.mbMiniPlayer.green table span.map_volume.mute{
   color: #2aba5a;
 }
 
