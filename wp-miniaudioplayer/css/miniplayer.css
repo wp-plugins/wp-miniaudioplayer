@@ -179,6 +179,44 @@ a.audio{
   border-radius:0 5px 5px 0 !important;
   cursor:pointer !important;
 }
+
+.mbMiniPlayer[isplaying=true] table span.map_play{
+  -webkit-animation: playing .7s infinite alternate;
+  -moz-animation: playing .7s infinite alternate;
+ /*animation: playing 1s infinite alternate;*/
+}
+
+@keyframes playing {
+  from {
+    opacity:1;
+  }
+  to {
+    opacity:.6;
+    color:rgba(255,255,255,0.5);
+  }
+}
+
+@-webkit-keyframes playing {
+  from {
+    opacity:1;
+  }
+  to {
+    opacity:.6;
+    color:rgba(255,255,255,0.5);
+  }
+}
+@-moz-keyframes playing {
+  from {
+    opacity:1;
+  }
+  to {
+    opacity:.6;
+    color:rgba(255,255,255,0.5);
+  }
+}
+
+
+
 .mbMiniPlayer table span.map_volume{
   -moz-border-radius:5px 0 0 5px !important;
   -webkit-border-top-left-radius:5px !important;
