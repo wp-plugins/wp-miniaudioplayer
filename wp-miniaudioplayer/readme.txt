@@ -4,7 +4,7 @@ Contributors: Pupunzi (Matteo Bicocchi)
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 1.0.1
+Stable tag: 1.1
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
 Transform your mp3 audio files into a nice, small light HTML5 player
@@ -71,8 +71,13 @@ to change the player default settings go to the mb.miniAudioPlayer settings pane
 
 == Changelog ==
 
+= 1.1 =
+* Features added:
+	1. Added a new parameter to allow download only for registered users (available both on the general settings window and on the post editor player customization window).
+	2. Added a new parameter to set the player always opened (available both on the general settings window and on the post editor player customization window).
+
 = 1.0.1 =
-* Bug fix: solved the inconsistent plying on iOs devices with multiple audio files.
+* Bug fix: solved the inconsistent playing on iOs devices with multiple audio files.
 
 = 1.0 =
 * Fixed a bug that disabled seeking by clicking on the time bar..
