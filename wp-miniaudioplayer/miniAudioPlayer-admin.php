@@ -12,7 +12,7 @@ function add_miniAudioPlayer_option_page()
 
 function miniAudioPlayer_options_page()
 { // Output the options page
-    global $miniAudioPlayer_donate, $miniAudioPlayer_version, $miniAudioPlayer_width, $miniAudioPlayer_skin, $miniAudioPlayer_animate, $miniAudioPlayer_volume, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_excluded, $miniAudioPlayer_download, $miniAudioPlayer_download_security ?>
+    global $miniAudioPlayer_donate, $miniAudioPlayer_version, $miniAudioPlayer_width, $miniAudioPlayer_skin, $miniAudioPlayer_animate, $miniAudioPlayer_volume, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_excluded, $miniAudioPlayer_download, $miniAudioPlayer_download_security, $miniAudioPlayer_customizer ?>
 
     <!--DONATE POPUP-->
     <style>
@@ -440,12 +440,22 @@ function miniAudioPlayer_options_page()
                 </td>
             </tr>
 
+
+            <tr valign="top">
+                <th scope="row">Activate the player customizer in the post editor:</th>
+                <td>
+                    <input type="checkbox" name="miniAudioPlayer_customizer" value="true" <?php if ($miniAudioPlayer_customizer == "true") {echo' checked="checked"';}?>/>
+                    <p>check to activate the customization window in the posts and pages TinyMce editor"</p>
+                </td>
+            </tr>
+
+
         </table>
 
         <p>If you are using others HTML5 audio player plug-ins (like Haiku) there could be conflicts with
             mb.miniAudioPlayer. You should deactivete the others befor using this.</p>
         <input type="hidden" name="page_options"
-               value="miniAudioPlayer_donate, miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_animate, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew, miniAudioPlayer_excluded, miniAudioPlayer_download, miniAudioPlayer_download_security"/>
+               value="miniAudioPlayer_donate, miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_animate, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew, miniAudioPlayer_excluded, miniAudioPlayer_download, miniAudioPlayer_download_security, miniAudioPlayer_customizer"/>
         <input type="hidden" name="action" value="update"/>
 
         <p class="submit">
