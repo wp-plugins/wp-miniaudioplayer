@@ -15,6 +15,7 @@ $volume = $_GET['volume'];
 $donate = $_GET['donate'];
 $downloadable = $_GET['downloadable'];
 $downloadable_security = $_GET['downloadable_security'];
+$metadata = $_GET['metadata'];
 
 if (!headers_sent()) {
     header('Content-Type: text/html; charset='.$charset);
@@ -26,9 +27,10 @@ if (!headers_sent()) {
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $charset; ?>" />
     <title>mb.miniAudioPlayer</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo $plugins_url.'/wp-miniaudioplayer/mapTinyMCE/bootstrap-1.4.0.min.css?v='.$plugin_version; ?>"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo $plugins_url.'/wp-miniaudioplayer/maptinymce/bootstrap-1.4.0.min.css?v='.$plugin_version; ?>"/>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo $plugins_url.'/wp-miniaudioplayer/js/jquery.metadata.js?v='.$plugin_version; ?>"></script>
+    <script type="text/javascript" src="<?php echo $plugins_url.'/wp-miniaudioplayer/js/id3.min.js?v='.$plugin_version; ?>"></script>
     <script type="text/javascript" src="<?php echo $includes_url.'js/tinymce/tiny_mce_popup.js?v='.$plugin_version; ?>"></script>
 
     <style>
@@ -61,7 +63,6 @@ if (!headers_sent()) {
 </head>
 <body>
 
-
 <form class="form-stacked" action="#">
     <fieldset>
         <legend>mb.miniAudioPlayer parameters:</legend>
@@ -81,7 +82,9 @@ if (!headers_sent()) {
         <label>
             <span class="label">Audio title : </span>
             <input type="text" name="audiotitle" class="span5"/>
-            <span class="help-inline">The audio title</span>
+            <span class="help-inline">The audio title</span><br>
+            <span class="label"> </span>
+            <button id="metadata" onclick="getFromMetatags();$(this).hide(); return false" style="color: gray" >get the title from meta-data</button>
         </label>
 
         <label>
@@ -225,7 +228,7 @@ if (!headers_sent()) {
     };
 
     function donate() {
-        $.mbCookie.set("mapdonate", true);
+        jQuery.mbCookie.set("mapdonate", true);
         self.location.reload();
     }
 
@@ -253,6 +256,19 @@ if (!headers_sent()) {
 
 <script type="text/javascript">
 
+    function getFromMetatags(){
+        if (typeof ID3 == "object") {
+            ID3.loadTags(document.audioURL, function () {
+                var info = {};
+                info.title = ID3.getTag(document.audioURL, "title");
+                info.artist = ID3.getTag(document.audioURL, "artist");
+                info.album = ID3.getTag(document.audioURL, "album");
+                info.track = ID3.getTag(document.audioURL, "track");
+                jQuery("[name='audiotitle']").val(info.title + " - " +info.artist);
+            })
+        }
+    }
+
     tinyMCEPopup.onInit.add(function(ed) {
 
         var selection = ed.selection.getNode();
@@ -272,7 +288,7 @@ if (!headers_sent()) {
             selection = ed.selection.select($selection.prev().get(0),true);
             $selection = jQuery(selection);
         }
-        url = $selection.attr("href");
+        url = document.audioURL = $selection.attr("href");
         title = $selection.html();
         isExcluded = $selection.hasClass("<?php echo $exclude_class ?>");
 
@@ -289,25 +305,27 @@ if (!headers_sent()) {
                 showRew:<?php echo $showRew ?>,
                 width:"<?php echo $width ?>",
                 skin:"<?php echo $skin ?>",
-                animate:"<?php echo $miniAudioPlayer_animate ?>",
+                animate:<?php echo $miniAudioPlayer_animate ?>,
                 downloadable:<?php echo $downloadable ? "true" : "false" ?>,
                 downloadable_security:<?php echo $downloadable_security ? "true" : "false" ?>,
                 volume:parseFloat(<?php echo $volume ?>)*10
             };
             jQuery.extend(metadata,defaultmeta);
-            console.debug(metadata)
         }
 
         jQuery.extend(metadata, {exclude:isExcluded});
 
         jQuery("[name='url']").val(url);
-        jQuery("[name='audiotitle']").val(title);
+
+        if(<?php echo $metadata ?>){
+            getFromMetatags();
+        }else
+            jQuery("[name='audiotitle']").val(title);
 
         for (var i in metadata){
             if(typeof metadata[i] == "boolean"){
                 if(metadata[i] == true)
                     jQuery("[name="+i+"]").attr("checked",  "checked");
-                console.debug("[name="+i+"]", metadata[i])
             }else{
                 jQuery("[name="+i+"]").val(metadata[i]);
             }
@@ -344,11 +362,7 @@ if (!headers_sent()) {
                 map_params+="showRew:"+(jQuery("[name='showRew']").is(":checked") ? "true" : "false")+", ";
                 map_params+="downloadable:"+(jQuery("[name='downloadable']").is(":checked") ? "true" : "false")+", ";
                 map_params+="downloadablesecurity:"+(jQuery("[name='downloadablesecurity']").is(":checked") ? "true" : "false")+", ";
-                /*
-                 if(jQuery("[name='downloadable']").is(":checked"))
-                 map_params+="downloadable:true";
-                 */
-
+                map_params+="id3: false";
                 map_params+="}";
                 map_params = map_params.replace(", }", "}");
 

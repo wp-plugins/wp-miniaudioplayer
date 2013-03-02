@@ -12,7 +12,7 @@ function add_miniAudioPlayer_option_page()
 
 function miniAudioPlayer_options_page()
 { // Output the options page
-    global $miniAudioPlayer_donate, $miniAudioPlayer_version, $miniAudioPlayer_width, $miniAudioPlayer_skin, $miniAudioPlayer_animate, $miniAudioPlayer_volume, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_excluded, $miniAudioPlayer_download, $miniAudioPlayer_download_security, $miniAudioPlayer_customizer ?>
+    global $miniAudioPlayer_donate, $miniAudioPlayer_getMetadata, $miniAudioPlayer_version, $miniAudioPlayer_width, $miniAudioPlayer_skin, $miniAudioPlayer_animate, $miniAudioPlayer_volume, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_excluded, $miniAudioPlayer_download, $miniAudioPlayer_download_security, $miniAudioPlayer_customizer ?>
 
     <!--DONATE POPUP-->
     <style>
@@ -262,7 +262,20 @@ function miniAudioPlayer_options_page()
         <hr>
         <input type="hidden" name="miniAudioPlayer_donate" value="<?php echo $miniAudioPlayer_donate;?> "/>
         <table class="form-table">
-            <tr valign="top">
+
+        <tr valign="top">
+            <th scope="row">Title from meta-data:</th>
+            <td>
+                <input type="checkbox" name="miniAudioPlayer_getMetadata"
+                       value="true" <?php if ($miniAudioPlayer_getMetadata == "true") {
+                    echo' checked="checked"';
+                }?>/>
+
+                <p>Check to retrieve the title from meta-data</p>
+            </td>
+        </tr>
+
+        <tr valign="top">
                 <th scope="row">Choose the skin color:</th>
                 <td>
                     <select name="miniAudioPlayer_skin">
@@ -455,7 +468,7 @@ function miniAudioPlayer_options_page()
         <p>If you are using others HTML5 audio player plug-ins (like Haiku) there could be conflicts with
             mb.miniAudioPlayer. You should deactivete the others befor using this.</p>
         <input type="hidden" name="page_options"
-               value="miniAudioPlayer_donate, miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_animate, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew, miniAudioPlayer_excluded, miniAudioPlayer_download, miniAudioPlayer_download_security, miniAudioPlayer_customizer"/>
+               value="miniAudioPlayer_donate, miniAudioPlayer_getMetadata, miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_animate, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew, miniAudioPlayer_excluded, miniAudioPlayer_download, miniAudioPlayer_download_security, miniAudioPlayer_customizer"/>
         <input type="hidden" name="action" value="update"/>
 
         <p class="submit">

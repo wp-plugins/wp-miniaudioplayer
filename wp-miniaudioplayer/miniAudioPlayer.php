@@ -4,18 +4,18 @@ Plugin Name: mb.miniAudioPlayer
 Plugin URI: http://wordpress.org/extend/plugins/wp-miniaudioplayer/
 Description: Transform your mp3 audio file link into a nice, small light player
 Author: Pupunzi (Matteo Bicocchi)
-Version: 1.1.1
+Version: 1.2
 Author URI: http://pupunzi.com
 */
 
-define("MINIAUDIOPLAYER_VERSION", "1.1.1");
-
+define("MINIAUDIOPLAYER_VERSION", "1.2");
 register_activation_hook( __FILE__, 'miniAudioPlayer_install' );
 
 function miniAudioPlayer_install() {
 // add and update our default options upon activation
     update_option('miniAudioPlayer_version', MINIAUDIOPLAYER_VERSION);
     add_option('miniAudioPlayer_donate','false');
+    add_option('miniAudioPlayer_getMetadata','false');
     add_option('miniAudioPlayer_width','200');
     add_option('miniAudioPlayer_skin','black');
     add_option('miniAudioPlayer_animate','true');
@@ -33,6 +33,7 @@ function miniAudioPlayer_install() {
 $miniAudioPlayer_donate = get_option('miniAudioPlayer_donate');
 $miniAudioPlayer_version = get_option('miniAudioPlayer_version');
 $miniAudioPlayer_width = get_option('miniAudioPlayer_width');
+$miniAudioPlayer_getMetadata = get_option('miniAudioPlayer_getMetadata');
 $miniAudioPlayer_skin = get_option('miniAudioPlayer_skin');
 $miniAudioPlayer_animate = get_option('miniAudioPlayer_animate');
 $miniAudioPlayer_volume = get_option('miniAudioPlayer_volume');
@@ -48,6 +49,7 @@ $miniAudioPlayer_customizer = get_option('miniAudioPlayer_customizer');
 //set up defaults if these fields are empty
 if ($miniAudioPlayer_version != MINIAUDIOPLAYER_VERSION) {$miniAudioPlayer_version = MINIAUDIOPLAYER_VERSION;}
 if (empty($miniAudioPlayer_donate)) {$miniAudioPlayer_donate = "false";}
+if (empty($miniAudioPlayer_getMetadata)) {$miniAudioPlayer_getMetadata = "false";}
 if (empty($miniAudioPlayer_width)) {$miniAudioPlayer_width = "200";}
 if (empty($miniAudioPlayer_skin)) {$miniAudioPlayer_skin = "black";}
 if (empty($miniAudioPlayer_animate)) {$miniAudioPlayer_animate = "false";}
@@ -98,8 +100,7 @@ function miniAudioPlayer_init() {
 
     if ( !is_admin()) {
         wp_enqueue_script('jquery');
-//        wp_enqueue_script('prefixFree', plugins_url( '/js/prefixfree.min.js', __FILE__ ), false, '1.0.7', false);
-        wp_enqueue_script('metadata', plugins_url( '/js/jquery.metadata.js', __FILE__ ), false, '1.2', false);
+        wp_enqueue_script('id3', plugins_url( '/js/id3.min.js', __FILE__ ), false, '1.0', false);
         wp_enqueue_script('jplayer', plugins_url( '/js/jquery.jplayer.min.js', __FILE__ ), false, '2.1.0', false);
         wp_enqueue_script('mb.miniPlayer', plugins_url( '/js/jquery.mb.miniPlayer.js', __FILE__ ), false, $miniAudioPlayer_version, false);
         wp_enqueue_style('miniAudioPlayer', plugins_url( 'css/miniplayer.css', __FILE__ ), false, $miniAudioPlayer_version, 'screen');
@@ -108,7 +109,7 @@ function miniAudioPlayer_init() {
 add_action('init', 'miniAudioPlayer_init');
 
 function miniAudioPlayer_player_head() {
-    global $miniAudioPlayer_width,$miniAudioPlayer_skin, $miniAudioPlayer_animate,$miniAudioPlayer_volume,$miniAudioPlayer_autoplay,$miniAudioPlayer_showVolumeLevel,$miniAudioPlayer_showTime,$miniAudioPlayer_showRew;
+    global $miniAudioPlayer_getMetadata, $miniAudioPlayer_width,$miniAudioPlayer_skin, $miniAudioPlayer_animate,$miniAudioPlayer_volume,$miniAudioPlayer_autoplay,$miniAudioPlayer_showVolumeLevel,$miniAudioPlayer_showTime,$miniAudioPlayer_showRew;
     echo '
 	<!-- start miniAudioPlayer initializer -->
 	<script type="text/javascript">
@@ -128,6 +129,7 @@ function miniAudioPlayer_player_head() {
 				autoplay:'.$miniAudioPlayer_autoplay.',
 				showVolumeLevel:'.$miniAudioPlayer_showVolumeLevel.',
 				showTime:'.$miniAudioPlayer_showTime.',
+				id3:'.$miniAudioPlayer_getMetadata.',
 				showRew:'.$miniAudioPlayer_showRew.',
 				downloadable:'.canDownload().',
 				swfPath:"'.plugins_url( '/js/', __FILE__ ).'"
@@ -149,13 +151,10 @@ function getExcluded(){
 }
 function canDownload(){
     global $miniAudioPlayer_download, $miniAudioPlayer_download_security;
-    if( ($miniAudioPlayer_download == "true" && $miniAudioPlayer_download_security=="false")
-        || ($miniAudioPlayer_download == "true" && ($miniAudioPlayer_download_security == "true" && current_user_can('read') == 1)) ){
-        return 'true';
-    }else{
-        return 'false';
-    }
+    return ($miniAudioPlayer_download == "true" && $miniAudioPlayer_download_security=="false") || ($miniAudioPlayer_download == "true" && ($miniAudioPlayer_download_security == "true" && current_user_can('read') == 1));
 }
+
+
 // ends miniAudioPlayer_player_head function
 
 add_action('wp_head', 'miniAudioPlayer_player_head');
@@ -208,14 +207,12 @@ function get_maplayer_pop_up_params(){
             'animate='.urlencode(get_option('miniAudioPlayer_animate')).'&'.
             'volume='.urlencode(get_option('miniAudioPlayer_volume')).'&'.
             'downloadable='.urlencode( get_option('miniAudioPlayer_download')).'&'.
+            'metadata='.urlencode( get_option('miniAudioPlayer_getMetadata')).'&'.
             'downloadable_security='.urlencode(get_option('miniAudioPlayer_download_security')).'&'.
             'donate='.$miniAudioPlayer_donate
-
     ));
 }
 
 if ( is_admin() ) {
     require('miniAudioPlayer-admin.php');
 }
-
-?>
