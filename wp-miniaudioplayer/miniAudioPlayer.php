@@ -4,11 +4,11 @@ Plugin Name: mb.miniAudioPlayer
 Plugin URI: http://wordpress.org/extend/plugins/wp-miniaudioplayer/
 Description: Transform your mp3 audio file link into a nice, small light player
 Author: Pupunzi (Matteo Bicocchi)
-Version: 1.2
+Version: 1.2.1
 Author URI: http://pupunzi.com
 */
 
-define("MINIAUDIOPLAYER_VERSION", "1.2");
+define("MINIAUDIOPLAYER_VERSION", "1.2.1");
 register_activation_hook( __FILE__, 'miniAudioPlayer_install' );
 
 function miniAudioPlayer_install() {
@@ -151,10 +151,13 @@ function getExcluded(){
 }
 function canDownload(){
     global $miniAudioPlayer_download, $miniAudioPlayer_download_security;
-    return ($miniAudioPlayer_download == "true" && $miniAudioPlayer_download_security=="false") || ($miniAudioPlayer_download == "true" && ($miniAudioPlayer_download_security == "true" && current_user_can('read') == 1));
+    if( ($miniAudioPlayer_download == "true" && $miniAudioPlayer_download_security=="false")
+        || ($miniAudioPlayer_download == "true" && ($miniAudioPlayer_download_security == "true" && current_user_can('read') == 1)) ){
+        return 'true';
+    }else{
+        return 'false';
+    }
 }
-
-
 // ends miniAudioPlayer_player_head function
 
 add_action('wp_head', 'miniAudioPlayer_player_head');
