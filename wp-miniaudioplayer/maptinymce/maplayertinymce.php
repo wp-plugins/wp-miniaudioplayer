@@ -124,6 +124,12 @@ if (!headers_sent()) {
             <span class="help-inline">check to start playing on page load</span>
         </label>
 
+        <label>
+            <span class="label">Loop: </span>
+            <input type="checkbox" name="loop" value="false"/>
+            <span class="help-inline">check to loop the sound</span>
+        </label>
+
         <h3>Show/Hide</h3>
 
         <label>
@@ -306,6 +312,7 @@ if (!headers_sent()) {
                 width:"<?php echo $width ?>",
                 skin:"<?php echo $skin ?>",
                 animate:<?php echo $miniAudioPlayer_animate ?>,
+                loop:false,
                 downloadable:<?php echo $downloadable ? "true" : "false" ?>,
                 downloadable_security:<?php echo $downloadable_security ? "true" : "false" ?>,
                 volume:parseFloat(<?php echo $volume ?>)*10
@@ -357,6 +364,7 @@ if (!headers_sent()) {
                 if(jQuery("[name='volume']").val().length>0)
                     map_params+="volume:"+ jQuery("[name='volume']").val()/10 +", ";
                 map_params+="autoplay:"+(jQuery("[name='autoplay']").is(":checked") ? "true" : "false")+", ";
+                map_params+="loop:"+(jQuery("[name='loop']").is(":checked") ? "true" : "false")+", ";
                 map_params+="showVolumeLevel:"+(jQuery("[name='showVolumeLevel']").is(":checked") ? "true" : "false")+", ";
                 map_params+="showTime:"+(jQuery("[name='showTime']").is(":checked") ? "true" : "false")+", ";
                 map_params+="showRew:"+(jQuery("[name='showRew']").is(":checked") ? "true" : "false")+", ";

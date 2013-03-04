@@ -192,26 +192,27 @@ function add_maplayer_button_script($plugin_array) {
 }
 
 function get_maplayer_pop_up_params(){
-    global $miniAudioPlayer_version,$miniAudioPlayer_donate; //, $miniAudioPlayer_download, $miniAudioPlayer_download_security
-
-    //$isDownloadable = $miniAudioPlayer_download && !$miniAudioPlayer_download_security;
+    global $miniAudioPlayer_version,$miniAudioPlayer_donate,$miniAudioPlayer_excluded,$miniAudioPlayer_showVolumeLevel,
+           $miniAudioPlayer_showTime,$miniAudioPlayer_showRew,$miniAudioPlayer_width,$miniAudioPlayer_skin,
+           $miniAudioPlayer_volume,$miniAudioPlayer_download,$miniAudioPlayer_download_security,
+           $miniAudioPlayer_animate,$miniAudioPlayer_getMetadata;
 
     return urlencode(base64_encode(
         'plugin_version='.$miniAudioPlayer_version.'&'.
             'includes_url='.urlencode(includes_url()).'&'.
             'plugins_url='.urlencode(plugins_url()).'&'.
             'charset='.urlencode(get_option('blog_charset')).'&'.
-            'exclude_class='.urlencode(get_option('miniAudioPlayer_excluded')).'&'.
-            'showVolumeLevel='.urlencode(get_option('miniAudioPlayer_showVolumeLevel')).'&'.
-            'showTime='.urlencode(get_option('miniAudioPlayer_showTime')).'&'.
-            'showRew='.urlencode(get_option('miniAudioPlayer_showRew')).'&'.
-            'width='.urlencode(get_option('miniAudioPlayer_width')).'&'.
-            'skin='.urlencode(get_option('miniAudioPlayer_skin')).'&'.
-            'animate='.urlencode(get_option('miniAudioPlayer_animate')).'&'.
-            'volume='.urlencode(get_option('miniAudioPlayer_volume')).'&'.
-            'downloadable='.urlencode( get_option('miniAudioPlayer_download')).'&'.
-            'metadata='.urlencode( get_option('miniAudioPlayer_getMetadata')).'&'.
-            'downloadable_security='.urlencode(get_option('miniAudioPlayer_download_security')).'&'.
+            'exclude_class='.$miniAudioPlayer_excluded.'&'.
+            'showVolumeLevel='.$miniAudioPlayer_showVolumeLevel.'&'.
+            'showTime='.$miniAudioPlayer_showTime.'&'.
+            'showRew='.$miniAudioPlayer_showRew.'&'.
+            'width='.$miniAudioPlayer_width.'&'.
+            'skin='.$miniAudioPlayer_skin.'&'.
+            'animate='.$miniAudioPlayer_animate.'&'.
+            'volume='.$miniAudioPlayer_volume.'&'.
+            'downloadable='.$miniAudioPlayer_download.'&'.
+            'metadata='.$miniAudioPlayer_getMetadata .'&'.
+            'downloadable_security='.$miniAudioPlayer_download_security.'&'.
             'donate='.$miniAudioPlayer_donate
     ));
 }

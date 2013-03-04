@@ -46,8 +46,10 @@
 			animate             : true,
 			id3                 : false,
 			playAlone           : true,
+			loop                : false,
 			inLine              : false,
 			volumeLevels        : 10,
+			showControls        : true,
 			showVolumeLevel     : true,
 			showTime            : true,
 			showRew             : true,
@@ -85,9 +87,13 @@
 				}
 
 				if (player.opt.width.toString().indexOf("%") >= 0) {
+
 					var margin = player.opt.downloadable ? 220 : 180;
 					var pW = $master.parent().outerWidth() - margin;
 					player.opt.width = (pW * (parseFloat(player.opt.width))) / 100;
+
+				} else if(player.opt.width == 0){
+					player.opt.showControls = false;
 				}
 
 				if ('ontouchstart' in window) { //'ontouchstart' in window
@@ -151,10 +157,10 @@
 				$controls.append($titleBox).append($progress);
 
 				$tds.eq(0).append($volumeBox);
-				$tds.eq(1).append($volumeLevel);
-				$tds.eq(2).addClass("map_controlsBar").append($controls);
-				$tds.eq(3).append($timeBox);
-				$tds.eq(4).append($rewBox);
+				$tds.eq(1).append($volumeLevel).hide();
+				$tds.eq(2).addClass("map_controlsBar").append($controls).hide();
+				$tds.eq(3).append($timeBox).hide();
+				$tds.eq(4).append($rewBox).hide();
 				$tds.eq(5).append($playBox);
 
 				//init jPlayer component (Happyworm Ltd - http://www.jplayer.org)
@@ -205,21 +211,28 @@
 							var isIE = jQuery.browser.msie && jQuery.browser.version < 9;
 
 							if (!player.isOpen) {
-								$controls.css({display: "block", height: 20}).animate({width: player.opt.width}, speed);
+
+								if(player.opt.showControls){
+									$controls.parents("td").show()
+									$controls.css({display: "block", height: 20}).animate({width: player.opt.width}, speed);
+								}
 
 								if (player.opt.showRew) {
+									$rewBox.parents("td").show()
 									if (isIE)
 										$rewBox.show().css({width: 20, display: "block"});
 									else
 										$rewBox.show().animate({width: 20}, speed / 2);
 								}
 								if (player.opt.showTime) {
+									$timeBox.parents("td").show()
 									if (isIE)
 										$timeBox.show().css({width: 30, display: "block"});
 									else
 										$timeBox.animate({width: 30}, speed / 2).show();
 								}
 								if (player.opt.showVolumeLevel) {
+									$volumeLevel.parents("td").show()
 									if (isIE)
 										$volumeLevel.show().css({width: 40, display: "block"});
 									else
@@ -227,21 +240,21 @@
 								}
 							} else {
 								$controls.animate({width: 1}, speed, function () {
-									jQuery(this).css({display: "none"})
+									jQuery(this).parents("td").css({display: "none"})
 								});
 								if (player.opt.showRew) {
 									$rewBox.animate({width: 1}, speed / 2, function () {
-										jQuery(this).css({display: "none"})
+										jQuery(this).parents("td").css({display: "none"})
 									});
 								}
 								if (player.opt.showTime) {
 									$timeBox.animate({width: 1}, speed / 2, function () {
-										jQuery(this).css({display: "none"})
+										jQuery(this).parents("td").css({display: "none"})
 									});
 								}
 								if (player.opt.showVolumeLevel) {
 									$volumeLevel.animate({width: 1}, speed / 2, function () {
-										jQuery(this).css({display: "none"})
+										jQuery(this).parents("td").css({display: "none"})
 									});
 								}
 							}
@@ -398,20 +411,6 @@
 
 							$loadBar.css({width: ((player.opt.width - 5) * player.seekPercent) / 100});
 							$playBar.css({width: ((player.opt.width - 5) * player.currentTime) / player.duration});
-
-							/*
-							 var volume = player.opt.volume;
-
-							 var barVol = 1 / $volumeLevel.find("a").length;
-							 var IDX = Math.floor(volume / barVol) - 1;
-							 if (volume < .1 && volume > 0)
-							 IDX = 0;
-
-							 $volumeLevel.find("a").css({opacity: .2}).removeClass("sel");
-							 for (var i = 0; i <= IDX; i++) {
-							 $volumeLevel.find("a").eq(i).css({opacity: .8}).addClass("sel");
-							 }
-							 */
 
 							$timeBox.html(jQuery.jPlayer.convertTime(e.jPlayer.status.currentTime)).attr("title", jQuery.jPlayer.convertTime(e.jPlayer.status.duration));
 						})
