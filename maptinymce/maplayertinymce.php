@@ -324,7 +324,7 @@ if (!headers_sent()) {
 
         jQuery("[name='url']").val(url);
 
-        if(<?php echo $metadata ?>){
+        if(<?php echo $metadata == "true" ?>){
             getFromMetatags();
         }else
             jQuery("[name='audiotitle']").val(title);
