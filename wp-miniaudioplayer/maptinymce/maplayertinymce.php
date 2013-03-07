@@ -154,7 +154,9 @@ if (!headers_sent()) {
             <span class="label">Downloadable: </span>
             <input type="checkbox" name="downloadable" value="false" onclick="manageSecurity(this)"/>
             <span class="help-inline">check to show the download button</span><br>
+        </label>
 
+        <label>
             <span class="label" style="font-weight: normal; color: gray">Only registered: </span>
             <input type="checkbox" name="downloadablesecurity" value="false"/>
             <span class="help-inline">Check to limit downloads to registered users</span>
@@ -324,7 +326,9 @@ if (!headers_sent()) {
 
         jQuery("[name='url']").val(url);
 
-        if(<?php echo $metadata == "true" ?>){
+        var getFromMeta = <?php echo $metadata ?>;
+
+        if(getFromMeta){
             getFromMetatags();
         }else
             jQuery("[name='audiotitle']").val(title);
