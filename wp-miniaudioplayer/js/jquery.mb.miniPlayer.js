@@ -28,7 +28,7 @@
 
 	jQuery.mbMiniPlayer = {
 		author  : "Matteo Bicocchi",
-		version : "1.6.4",
+		version : "1.6.5",
 		name    : "mb.miniPlayer",
 		icon    : {
 			play      : "P",
@@ -386,7 +386,7 @@
 					oggSupport         : player.opt.ogg ? true : false,
 					swfPath            : player.opt.swfPath,
 					preload            : "none",
-					// solution: player.opt.isIE9 ? 'flash' : 'html, flash',
+					solution: player.opt.isIE9 ? 'flash' : 'html, flash',
 					cssSelectorAncestor: "#" + ID, // Remove the ancestor css selector clause
 					cssSelector        : {
 						playBar: "#playBar_" + ID,
