@@ -250,230 +250,241 @@ function miniAudioPlayer_options_page()
                 target="_blank">donate</a></p>
     </div>
 
+    <div class="highlight fade" style="padding: 10px; margin: 0">
+        <!-- Begin MailChimp Signup Form -->
+        <form action="http://pupunzi.us6.list-manage2.com/subscribe/post?u=4346dc9633&amp;id=91a005172f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <label for="mce-EMAIL" style="font-weight: bold">Subscribe to my mailing list<br>to stay in touch.</label>
+            <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="your email address" required>
+            <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+        </form>
+        <!--End mc_embed_signup-->
+    </div>
+
+
     <form id="optionsForm" method="post" action="options.php">
-        <?php wp_nonce_field('update-options'); ?>
+    <?php wp_nonce_field('update-options'); ?>
 
-        <h2>Default settings:</h2>
+    <h2>Default settings:</h2>
 
-        <p>Here you define the default settings for all the audio links in your Wordpress site.</p>
+    <p>Here you define the default settings for all the audio links in your Wordpress site.</p>
 
-        <p>You can overwrite the single player settings by selecting the audio link in the post editor and clicking
-            on the mb.miniAudioPlayer button on the top of the TinyMCE editor toolbar.</p>
-        <hr>
-        <input type="hidden" name="miniAudioPlayer_donate" value="<?php echo $miniAudioPlayer_donate;?> "/>
-        <table class="form-table">
+    <p>You can overwrite the single player settings by selecting the audio link in the post editor and clicking
+        on the mb.miniAudioPlayer button on the top of the TinyMCE editor toolbar.</p>
+    <hr>
+    <input type="hidden" name="miniAudioPlayer_donate" value="<?php echo $miniAudioPlayer_donate;?> "/>
+    <table class="form-table">
 
-        <tr valign="top">
-            <th scope="row">Title from meta-data:</th>
-            <td>
-                <input type="checkbox" name="miniAudioPlayer_getMetadata"
-                       value="true" <?php if ($miniAudioPlayer_getMetadata == "true") {
-                    echo' checked="checked"';
-                }?>/>
+    <tr valign="top">
+        <th scope="row">Title from meta-data:</th>
+        <td>
+            <input type="checkbox" name="miniAudioPlayer_getMetadata"
+                   value="true" <?php if ($miniAudioPlayer_getMetadata == "true") {
+                echo' checked="checked"';
+            }?>/>
 
-                <p>Check to retrieve the title from meta-data</p>
-            </td>
-        </tr>
+            <p>Check to retrieve the title from meta-data</p>
+        </td>
+    </tr>
 
-        <tr valign="top">
-                <th scope="row">Choose the skin color:</th>
-                <td>
-                    <select name="miniAudioPlayer_skin">
-                        <option value="black" <?php if ($miniAudioPlayer_skin == "black") {
-                            echo' selected';
-                        }?> >black
-                        </option>
-                        <option value="blue" <?php if ($miniAudioPlayer_skin == "blue") {
-                            echo' selected';
-                        }?>>blue
-                        </option>
-                        <option value="orange" <?php if ($miniAudioPlayer_skin == "orange") {
-                            echo' selected';
-                        }?>>orange
-                        </option>
-                        <option value="red" <?php if ($miniAudioPlayer_skin == "red") {
-                            echo' selected';
-                        }?>>red
-                        </option>
-                        <option value="gray" <?php if ($miniAudioPlayer_skin == "gray") {
-                            echo' selected';
-                        }?>>gray
-                        </option>
-                        <option value="green" <?php if ($miniAudioPlayer_skin == "green") {
-                            echo' selected';
-                        }?>>green
-                        </option>
-                    </select>
+    <tr valign="top">
+        <th scope="row">Choose the skin color:</th>
+        <td>
+            <select name="miniAudioPlayer_skin">
+                <option value="black" <?php if ($miniAudioPlayer_skin == "black") {
+                    echo' selected';
+                }?> >black
+                </option>
+                <option value="blue" <?php if ($miniAudioPlayer_skin == "blue") {
+                    echo' selected';
+                }?>>blue
+                </option>
+                <option value="orange" <?php if ($miniAudioPlayer_skin == "orange") {
+                    echo' selected';
+                }?>>orange
+                </option>
+                <option value="red" <?php if ($miniAudioPlayer_skin == "red") {
+                    echo' selected';
+                }?>>red
+                </option>
+                <option value="gray" <?php if ($miniAudioPlayer_skin == "gray") {
+                    echo' selected';
+                }?>>gray
+                </option>
+                <option value="green" <?php if ($miniAudioPlayer_skin == "green") {
+                    echo' selected';
+                }?>>green
+                </option>
+            </select>
 
-                    <p>Set the palyer skin</p>
-                </td>
-            </tr>
+            <p>Set the palyer skin</p>
+        </td>
+    </tr>
 
-            <tr valign="top">
-                <th scope="row">Player animation:</th>
-                <td>
-                    <input type="checkbox" name="miniAudioPlayer_animate"
-                           value="true" <?php if ($miniAudioPlayer_animate == "true") {
-                        echo' checked="checked"';
-                    }?>/>
+    <tr valign="top">
+        <th scope="row">Player animation:</th>
+        <td>
+            <input type="checkbox" name="miniAudioPlayer_animate"
+                   value="true" <?php if ($miniAudioPlayer_animate == "true") {
+                echo' checked="checked"';
+            }?>/>
 
-                    <p>Check to activate the opening / closing animation</p>
-                </td>
-            </tr>
+            <p>Check to activate the opening / closing animation</p>
+        </td>
+    </tr>
 
-            <tr valign="top">
-                <th scope="row">Set the width:</th>
-                <td>
-                    <input type="text" name="miniAudioPlayer_width" style="width:80px"
-                           value="<?php if (!empty($miniAudioPlayer_width)) {
-                               echo $miniAudioPlayer_width;
-                           }?>"/>
+    <tr valign="top">
+        <th scope="row">Set the width:</th>
+        <td>
+            <input type="text" name="miniAudioPlayer_width" style="width:80px"
+                   value="<?php if (!empty($miniAudioPlayer_width)) {
+                       echo $miniAudioPlayer_width;
+                   }?>"/>
 
-                    <p>Set the player width in pixel</p>
-                </td>
-            </tr>
+            <p>Set the player width in pixel</p>
+        </td>
+    </tr>
 
-            <tr valign="top">
-                <th scope="row">Set the volume:</th>
-                <td>
-                    <select name="miniAudioPlayer_volume">
-                        <option value=".2" <?php if ($miniAudioPlayer_volume == ".2") {
-                            echo' selected';
-                        }?> >2
-                        </option>
-                        <option value=".4" <?php if ($miniAudioPlayer_volume == ".4") {
-                            echo' selected';
-                        }?>>4
-                        </option>
-                        <option value=".6" <?php if ($miniAudioPlayer_volume == ".6") {
-                            echo' selected';
-                        }?>>6
-                        </option>
-                        <option value=".8" <?php if ($miniAudioPlayer_volume == ".8") {
-                            echo' selected';
-                        }?>>8
-                        </option>
-                        <option value="1" <?php if ($miniAudioPlayer_volume == "1") {
-                            echo' selected';
-                        }?>>10
-                        </option>
-                    </select>
+    <tr valign="top">
+        <th scope="row">Set the volume:</th>
+        <td>
+            <select name="miniAudioPlayer_volume">
+                <option value=".2" <?php if ($miniAudioPlayer_volume == ".2") {
+                    echo' selected';
+                }?> >2
+                </option>
+                <option value=".4" <?php if ($miniAudioPlayer_volume == ".4") {
+                    echo' selected';
+                }?>>4
+                </option>
+                <option value=".6" <?php if ($miniAudioPlayer_volume == ".6") {
+                    echo' selected';
+                }?>>6
+                </option>
+                <option value=".8" <?php if ($miniAudioPlayer_volume == ".8") {
+                    echo' selected';
+                }?>>8
+                </option>
+                <option value="1" <?php if ($miniAudioPlayer_volume == "1") {
+                    echo' selected';
+                }?>>10
+                </option>
+            </select>
 
-                    <p>Set the default volume for the player</p>
-                </td>
-            </tr>
+            <p>Set the default volume for the player</p>
+        </td>
+    </tr>
 
-            <tr valign="top">
-                <th scope="row">show volume level:</th>
-                <td>
-                    <input type="checkbox" name="miniAudioPlayer_showVolumeLevel"
-                           value="true" <?php if ($miniAudioPlayer_showVolumeLevel == "true") {
-                        echo' checked="checked"';
-                    }?>/>
+    <tr valign="top">
+        <th scope="row">show volume level:</th>
+        <td>
+            <input type="checkbox" name="miniAudioPlayer_showVolumeLevel"
+                   value="true" <?php if ($miniAudioPlayer_showVolumeLevel == "true") {
+                echo' checked="checked"';
+            }?>/>
 
-                    <p>Check to show the volume levels</p>
-                </td>
-            </tr>
+            <p>Check to show the volume levels</p>
+        </td>
+    </tr>
 
-            <tr valign="top">
-                <th scope="row">show time info:</th>
-                <td>
-                    <input type="checkbox" name="miniAudioPlayer_showTime"
-                           value="true" <?php if ($miniAudioPlayer_showTime == "true") {
-                        echo' checked="checked"';
-                    }?>/>
+    <tr valign="top">
+        <th scope="row">show time info:</th>
+        <td>
+            <input type="checkbox" name="miniAudioPlayer_showTime"
+                   value="true" <?php if ($miniAudioPlayer_showTime == "true") {
+                echo' checked="checked"';
+            }?>/>
 
-                    <p>Check to show the time info</p>
-                </td>
-            </tr>
+            <p>Check to show the time info</p>
+        </td>
+    </tr>
 
-            <tr valign="top">
-                <th scope="row">show the Rewind button:</th>
-                <td>
-                    <input type="checkbox" name="miniAudioPlayer_showRew"
-                           value="true" <?php if ($miniAudioPlayer_showRew == "true") {
-                        echo' checked="checked"';
-                    }?>/>
+    <tr valign="top">
+        <th scope="row">show the Rewind button:</th>
+        <td>
+            <input type="checkbox" name="miniAudioPlayer_showRew"
+                   value="true" <?php if ($miniAudioPlayer_showRew == "true") {
+                echo' checked="checked"';
+            }?>/>
 
-                    <p>Check to show the Rewind button</p>
-                </td>
-            </tr>
+            <p>Check to show the Rewind button</p>
+        </td>
+    </tr>
 
-            <tr valign="top">
-                <th scope="row">Exclude audio links with class:</th>
-                <td>
-                    <input type="text" name="miniAudioPlayer_excluded" style="width:140px"
-                           value="<?php if (!empty($miniAudioPlayer_excluded)) {
-                               echo $miniAudioPlayer_excluded;
-                           } else {
-                               echo 'map_excluded';
-                           }?>"/>
+    <tr valign="top">
+        <th scope="row">Exclude audio links with class:</th>
+        <td>
+            <input type="text" name="miniAudioPlayer_excluded" style="width:140px"
+                   value="<?php if (!empty($miniAudioPlayer_excluded)) {
+                       echo $miniAudioPlayer_excluded;
+                   } else {
+                       echo 'map_excluded';
+                   }?>"/>
 
-                    <p>Define the class name for the audio liks you don't want to render as player; By default is
-                        "map_excluded"</p>
+            <p>Define the class name for the audio liks you don't want to render as player; By default is
+                "map_excluded"</p>
 
-                    <p><i>You can either manually add this class to the audio links you want to exclude or select
-                            the link and check the "Don't render" checkbox of the popup window in the editor
-                            page.</i></p>
-                    <img style="margin-top:10px;" src="<?php echo plugins_url('images/excludeimg.png', __FILE__);?>"
-                         alt="exclude image"/>
-                </td>
-            </tr>
+            <p><i>You can either manually add this class to the audio links you want to exclude or select
+                    the link and check the "Don't render" checkbox of the popup window in the editor
+                    page.</i></p>
+            <img style="margin-top:10px;" src="<?php echo plugins_url('images/excludeimg.png', __FILE__);?>"
+                 alt="exclude image"/>
+        </td>
+    </tr>
 
-            <tr valign="top">
-                <th scope="row">Allow downloads:</th>
-                <td>
-                    <script>
-                        function manageSecurity(el){
+    <tr valign="top">
+        <th scope="row">Allow downloads:</th>
+        <td>
+            <script>
+                function manageSecurity(el){
 
-                            var security = jQuery('[name=miniAudioPlayer_download_security]');
-                            if(jQuery(el).is(":checked")){
-                                security.removeAttr('disabled');
-                            }else{
-                                security.attr('disabled','disabled');
-                                security.removeAttr('checked');
-                            }
-                        }
-                    </script>
-                    <input type="checkbox" name="miniAudioPlayer_download" onclick="manageSecurity(this)"
-                           value="true" <?php if ($miniAudioPlayer_download == "true") {
-                        echo' checked="checked"';
-                    }?>/>
-
-                    <p>check to add a download button closed to the player</p>
-
-                    <input type="checkbox" name="miniAudioPlayer_download_security" id="miniAudioPlayer_download_security"
-                           value="true" <?php if ($miniAudioPlayer_download_security == "true") {
-                        echo' checked="checked" ';
+                    var security = jQuery('[name=miniAudioPlayer_download_security]');
+                    if(jQuery(el).is(":checked")){
+                        security.removeAttr('disabled');
+                    }else{
+                        security.attr('disabled','disabled');
+                        security.removeAttr('checked');
                     }
-                        if ($miniAudioPlayer_download != "true") {
-                            echo' disabled="disabled"';
-                        }?>/><label for="miniAudioPlayer_download_security" style="color:gray"> Only for registered users</label>
-                    <p>check to allow downloads only for registered user</p>
-                </td>
-            </tr>
+                }
+            </script>
+            <input type="checkbox" name="miniAudioPlayer_download" onclick="manageSecurity(this)"
+                   value="true" <?php if ($miniAudioPlayer_download == "true") {
+                echo' checked="checked"';
+            }?>/>
+
+            <p>check to add a download button closed to the player</p>
+
+            <input type="checkbox" name="miniAudioPlayer_download_security" id="miniAudioPlayer_download_security"
+                   value="true" <?php if ($miniAudioPlayer_download_security == "true") {
+                echo' checked="checked" ';
+            }
+                if ($miniAudioPlayer_download != "true") {
+                    echo' disabled="disabled"';
+                }?>/><label for="miniAudioPlayer_download_security" style="color:gray"> Only for registered users</label>
+            <p>check to allow downloads only for registered user</p>
+        </td>
+    </tr>
 
 
-            <tr valign="top">
-                <th scope="row">Activate the player customizer in the post editor:</th>
-                <td>
-                    <input type="checkbox" name="miniAudioPlayer_customizer" value="true" <?php if ($miniAudioPlayer_customizer == "true") {echo' checked="checked"';}?>/>
-                    <p>check to activate the customization window in the posts and pages TinyMce editor"</p>
-                </td>
-            </tr>
+    <tr valign="top">
+        <th scope="row">Activate the player customizer in the post editor:</th>
+        <td>
+            <input type="checkbox" name="miniAudioPlayer_customizer" value="true" <?php if ($miniAudioPlayer_customizer == "true") {echo' checked="checked"';}?>/>
+            <p>check to activate the customization window in the posts and pages TinyMce editor"</p>
+        </td>
+    </tr>
 
 
-        </table>
+    </table>
 
-        <p>If you are using others HTML5 audio player plug-ins (like Haiku) there could be conflicts with
-            mb.miniAudioPlayer. You should deactivete the others befor using this.</p>
-        <input type="hidden" name="page_options"
-               value="miniAudioPlayer_donate, miniAudioPlayer_getMetadata, miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_animate, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew, miniAudioPlayer_excluded, miniAudioPlayer_download, miniAudioPlayer_download_security, miniAudioPlayer_customizer"/>
-        <input type="hidden" name="action" value="update"/>
+    <p>If you are using others HTML5 audio player plug-ins (like Haiku) there could be conflicts with
+        mb.miniAudioPlayer. You should deactivete the others befor using this.</p>
+    <input type="hidden" name="page_options"
+           value="miniAudioPlayer_donate, miniAudioPlayer_getMetadata, miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_animate, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew, miniAudioPlayer_excluded, miniAudioPlayer_download, miniAudioPlayer_download_security, miniAudioPlayer_customizer"/>
+    <input type="hidden" name="action" value="update"/>
 
-        <p class="submit">
-            <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>"/>
-        </p>
+    <p class="submit">
+        <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>"/>
+    </p>
     </form>
     </div>
 <?php } ?>
