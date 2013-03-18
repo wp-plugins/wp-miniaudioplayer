@@ -213,26 +213,26 @@
 							if (!player.isOpen) {
 
 								if(player.opt.showControls){
-									$controls.parents("td").show()
+									$controls.parent("td").show()
 									$controls.css({display: "block", height: 20}).animate({width: player.opt.width}, speed);
 								}
 
 								if (player.opt.showRew) {
-									$rewBox.parents("td").show()
+									$rewBox.parent("td").show()
 									if (isIE)
 										$rewBox.show().css({width: 20, display: "block"});
 									else
 										$rewBox.show().animate({width: 20}, speed / 2);
 								}
 								if (player.opt.showTime) {
-									$timeBox.parents("td").show()
+									$timeBox.parent("td").show()
 									if (isIE)
 										$timeBox.show().css({width: 30, display: "block"});
 									else
 										$timeBox.animate({width: 30}, speed / 2).show();
 								}
 								if (player.opt.showVolumeLevel) {
-									$volumeLevel.parents("td").show()
+									$volumeLevel.parent("td").show()
 									if (isIE)
 										$volumeLevel.show().css({width: 40, display: "block"});
 									else
@@ -240,21 +240,21 @@
 								}
 							} else {
 								$controls.animate({width: 1}, speed, function () {
-									jQuery(this).parents("td").css({display: "none"})
+									jQuery(this).parent("td").css({display: "none"})
 								});
 								if (player.opt.showRew) {
 									$rewBox.animate({width: 1}, speed / 2, function () {
-										jQuery(this).parents("td").css({display: "none"})
+										jQuery(this).parent("td").css({display: "none"})
 									});
 								}
 								if (player.opt.showTime) {
 									$timeBox.animate({width: 1}, speed / 2, function () {
-										jQuery(this).parents("td").css({display: "none"})
+										jQuery(this).parent("td").css({display: "none"})
 									});
 								}
 								if (player.opt.showVolumeLevel) {
 									$volumeLevel.animate({width: 1}, speed / 2, function () {
-										jQuery(this).parents("td").css({display: "none"})
+										jQuery(this).parent("td").css({display: "none"})
 									});
 								}
 							}
