@@ -4,7 +4,7 @@ Contributors: Pupunzi (Matteo Bicocchi)
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 1.2.6
+Stable tag: 1.2.7
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
 Transform your mp3 audio files into a nice, small light HTML5 player
@@ -70,6 +70,11 @@ to change the player default settings go to the mb.miniAudioPlayer settings pane
 * @ excluded = a string containing the CSS class for audio links that should not be converted into player.
 
 == Changelog ==
+
+= 1.2.7 =
+* Feature: Added FAQ section on the plugin page.
+					 Better display of volumes bar.
+					 if the ID3 meta is empty than the original title is used.
 
 = 1.2.6 =
 * Bug fix: If the player was instanced inside a table, the table disappear once the player was stopped.
@@ -170,3 +175,28 @@ Both are available as general options or as specific option via the popup window
 
 = 0.1 =
 * First release
+
+== Frequently Asked Questions ==
+
+= I installed the plugin and the players are correctly displayed but the customization button doesn't show in the post editor =
+
+ You have to check the "Activate the player customizer in the post editor" to make it available in the post editor.
+
+= I inserted my mp3 file using the add media button but even when I select or click on the inserted link the customization button is disabled =
+
+Be sure that once you inserted the file you set the "Attachment Display Settings -> Link" to "media file" in the media file window.
+
+= I installed the plugin and now I can't display the post editor in "visual" mode anymore =
+
+This is probably due to insufficient user permissions on your server that cause an error loading the TinyMCE mb.miniAudioPlayer component. You should try download the component locally on your computer, unzip it and upload the folder via FTP in the remote plugins folder.
+
+= I installed the plugin but on the page there's only the link to the mp3 file and not the player =
+
+Probably there's a conflict with some other installed plugin or even with the theme you are using.
+Try first deactivating all the other plugins; if it works then reactivate them one by one to find out which is getting in conflict; if it doesn't work then there's a conflict with your theme.
+
+= The player is working fine but it display differently from the examples you gave =
+
+The appearance of the player is all defined in the "miniplayer.css" file located in the "css" folder of the plugin root. You maybe have some CSS classes that are overwriting the plugin ones.
+You can inspect the player using the developer tools within the browser to find out which class is overwritten and fix the problem changing the theme css.
+

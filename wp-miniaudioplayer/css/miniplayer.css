@@ -101,6 +101,7 @@ a.audio{
 }
 
 .mbMiniPlayer .map_controls{
+  position: relative;
   margin:1px;
   display:none;
   width:1px;
@@ -139,6 +140,19 @@ a.audio{
   background:transparent !important;
   text-align:left !important;
   cursor:default !important;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.mbMiniPlayer .map_info{
+  display: none;
+  background: rgb(48, 48, 48);
+  /*border-radius: 10px 10px 10px 10px;*/
+  color: #D1D1D1;
+  padding: 1px 4px;
+  position: absolute;
+  z-index: 10;
+
 }
 
 .mbMiniPlayer table span.map_rew{
@@ -159,6 +173,7 @@ a.audio{
   vertical-align:bottom !important;
   opacity:.1 ;
   cursor:pointer !important;
+  top:-3px;
 }
 
 .mbMiniPlayer table span.map_volumeLevel a.sel{}
@@ -183,7 +198,7 @@ a.audio{
 .mbMiniPlayer[isplaying=true] table span.map_play{
   -webkit-animation: playing .7s infinite alternate;
   -moz-animation: playing .7s infinite alternate;
- /*animation: playing 1s infinite alternate;*/
+  /*animation: playing 1s infinite alternate;*/
 }
 
 @keyframes playing {
