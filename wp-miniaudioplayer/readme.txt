@@ -200,3 +200,7 @@ Try first deactivating all the other plugins; if it works then reactivate them o
 The appearance of the player is all defined in the "miniplayer.css" file located in the "css" folder of the plugin root. You maybe have some CSS classes that are overwriting the plugin ones.
 You can inspect the player using the developer tools within the browser to find out which class is overwritten and fix the problem changing the theme css.
 
+= It doesn't work on Firefox and neither on IE, what is the problem? =
+
+On both those browsers the player falls back to the Flash® solution instead of the standard HTML5 one as FF doesn't accept mp3 files natively and IE is a mess :-).
+So if the player doesn't work on them probably is your Flash plugin that is not update or is not working correctly.
