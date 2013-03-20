@@ -202,5 +202,5 @@ You can inspect the player using the developer tools within the browser to find 
 
 = It doesn't work on Firefox and neither on IE, what is the problem? =
 
-On both those browsers the player falls back to the Flash® solution instead of the standard HTML5 one as FF doesn't accept mp3 files natively and IE is a mess :-).
+On both those browsers the player falls back to the Flash® solution instead of the standard HTML5; That because FF doesn't accept mp3 files natively and IE is a mess :-).
 So if the player doesn't work on them probably is your Flash plugin that is not update or is not working correctly.
