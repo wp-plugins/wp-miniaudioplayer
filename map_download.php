@@ -87,7 +87,7 @@ header ('Content-Type: ' . $content_type);
 header("Content-Description: File Transfer");
 
 header("Content-Transfer-Encoding: Binary");
-header("Content-disposition: attachment; filename=\"".$file_name."\"");
+header("Content-disposition: attachment; filename=\"".$filename."\"");
 
 readfile($file_url);
 
