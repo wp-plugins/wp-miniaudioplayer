@@ -64,6 +64,9 @@ if(typeof map != "object")
 		author  : "Matteo Bicocchi",
 		version : "1.6.5",
 		name    : "mb.miniPlayer",
+
+		isMobile: false,
+
 		icon    : {
 			play      : "P",
 			pause     : "p",
@@ -96,6 +99,8 @@ if(typeof map != "object")
 		},
 
 		buildPlayer: function (options) {
+
+
 			this.each(function (idx) {
 				var $master = jQuery(this);
 				$master.hide();
@@ -110,10 +115,13 @@ if(typeof map != "object")
 				var player = $player.get(0);
 				player.opt = {};
 				jQuery.extend(player.opt, jQuery.mbMiniPlayer.defaults, options);
+
+				player.isMobile = 'ontouchstart' in window;
+
+				player.eventEnd = player.isMobile ? "touchend" : "mouseup";
+
 				player.idx = idx;
 				player.title = title;
-
-				player.opt.isIE9 = jQuery.browser.msie && jQuery.browser.version == 9;
 
 				if (jQuery.metadata) {
 					jQuery.metadata.setType("class");
@@ -130,12 +138,11 @@ if(typeof map != "object")
 					player.opt.showControls = false;
 				}
 
-				if ('ontouchstart' in window) { //'ontouchstart' in window
+				if (player.isMobile) { //'ontouchstart' in window
 
 					player.opt.showVolumeLevel = false;
 					player.opt.autoplay = false;
 					player.opt.downloadable = false;
-
 				}
 
 				if (!player.opt.mp3)
@@ -156,7 +163,7 @@ if(typeof map != "object")
 				if (typeof map.downloadUrl == "undefined")
 					map.downloadUrl = "";
 
-				var download = jQuery("<span/>").addClass("map_download").css({display: "inline-block", cursor: "pointer"}).html("d").on("click",function () {
+				var download = jQuery("<span/>").addClass("map_download").css({display: "inline-block", cursor: "pointer"}).html("d").on(player.eventEnd,function () {
 //					window.open(player.opt.mp3, "map_download");
 					location.href = map.downloadUrl + "?filename=" + encodeURI(downloadURL) + ".mp3" + "&fileurl=" + encodeURI(player.opt.mp3); //title.asId()
 				}).attr("title", "download: " + downloadURL);
@@ -302,7 +309,7 @@ if(typeof map != "object")
 						if (!player.opt.animate)
 							animatePlayer(false)
 
-						$playBox.on("click",
+						$playBox.on(player.eventEnd,
 								function () {
 
 									if (!player.isOpen) {
@@ -313,7 +320,7 @@ if(typeof map != "object")
 										player.isOpen = true;
 
 										if (player.opt.playAlone) {
-											jQuery("[isPlaying=true]").find(".map_play").click();
+											jQuery("[isPlaying=true]").find(".map_play").trigger(player.eventEnd);
 										}
 
 										jQuery(this).html(jQuery.mbMiniPlayer.icon.pause);
@@ -342,6 +349,10 @@ if(typeof map != "object")
 										$controlsBox.attr("isPlaying", "false");
 										el.jPlayer("pause");
 									}
+
+									e.stopPropagation();
+									return false;
+
 								}).hover(
 								function () {
 									jQuery(this).css({opacity: .8})
@@ -351,7 +362,7 @@ if(typeof map != "object")
 								}
 						);
 
-						$volumeBox.click(
+						$volumeBox.on(player.eventEnd,
 								function () {
 									if (jQuery(this).hasClass("mute")) {
 										jQuery(this).removeClass("mute");
@@ -371,7 +382,7 @@ if(typeof map != "object")
 								}
 						);
 
-						$rewBox.click(function () {
+						$rewBox.on(player.eventEnd, function () {
 							el.jPlayer("playHead", 0);
 						}).hover(
 								function () {
@@ -397,7 +408,7 @@ if(typeof map != "object")
 								$volumeLevel.find("a").eq(x).css({opacity: .4}).addClass("sel");
 							}
 
-							jQuery(this).click(function () {
+							jQuery(this).on(player.eventEnd, function () {
 								var vol = (i + 1) * barVol;
 								el.jPlayer("volume", vol);
 								if (i == 0)el.jPlayer("volume", .1);
@@ -416,16 +427,16 @@ if(typeof map != "object")
 							});
 
 						});
-						// autoplay can't work on iOs devices
-						if (player.opt.autoplay && ((player.opt.playAlone && jQuery("[isPlaying=true]").length == 0) || !player.opt.playAlone))
-							$playBox.click();
+						// autoplay can't work on devices
+						if (!player.isMobile && player.opt.autoplay && ((player.opt.playAlone && jQuery("[isPlaying=true]").length == 0) || !player.opt.playAlone))
+							$playBox.trigger(player.eventEnd);
 					},
 					customCssIds       : true,
 					volume             : player.opt.volume,
 					oggSupport         : player.opt.ogg ? true : false,
 					swfPath            : player.opt.swfPath,
 					preload            : "none",
-					solution: player.opt.isIE9 ? 'flash' : 'html, flash',
+					solution: jQuery.browser.msie && jQuery.browser.version == 9 ? 'flash' : 'html, flash',
 					cssSelectorAncestor: "#" + ID, // Remove the ancestor css selector clause
 					cssSelector        : {
 						playBar: "#playBar_" + ID,
@@ -434,11 +445,11 @@ if(typeof map != "object")
 					}
 				})
 						.on(jQuery.jPlayer.event.play, function (e) {})
-						.on(jQuery.jPlayer.event.ended, function () {
+						.on(jQuery.jPlayer.event.ended, function (e) {
 							if (player.opt.loop)
 								$player.jPlayer("play");
 							else
-								$playBox.click();
+								$playBox.trigger(player.eventEnd);
 							if (typeof player.opt.onEnd == "function")
 								player.opt.onEnd(player);
 						})
@@ -475,7 +486,7 @@ if(typeof map != "object")
 				var id = jQuery(this).attr("id");
 				var player = jQuery("#mp_" + id);
 				if (player.attr("isplaying") == "false")
-					player.find(".map_play").click();
+					player.find(".map_play").trigger(player.eventEnd);
 			})
 		},
 		stop       : function () {
@@ -483,7 +494,7 @@ if(typeof map != "object")
 				var id = jQuery(this).attr("id");
 				var player = jQuery("#mp_" + id);
 				if (player.attr("isplaying") == "true")
-					player.find(".map_play").click();
+					player.find(".map_play").trigger(player.eventEnd);
 			})
 		},
 		destroy    : function () {
