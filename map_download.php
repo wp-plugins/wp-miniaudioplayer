@@ -75,20 +75,31 @@ switch ($file_extension)
         $content_type = 'application/force-download' ;
 }
 
-//die($file_extension ."   ". $content_type ."   ". $file_name."  lenght:: ". $file_length);
+//die($file_extension ."   ". $content_type ."   ". $file_name ."   ". $file_url);
+
+ob_clean();
+flush();
 
 header ('Pragma: public') ;
 header ('Expires: 0') ;
 header ('Cache-Control: must-revalidate, post-check=0, pre-check=0') ;
 header ('Cache-Control: public') ;
-
 header ('Content-Type: ' . $content_type);
 //header('Content-Type: application/force-download');
 header("Content-Description: File Transfer");
-
 header("Content-Transfer-Encoding: Binary");
 header("Content-disposition: attachment; filename=\"".$filename."\"");
+//header('Content-Length: ' . filesize($file_url));
 
-readfile($file_url);
+$ch = curl_init();
+curl_setopt ($ch, CURLOPT_URL, $file_url);
+curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+$contents = curl_exec($ch);
+curl_close($ch);
+
+// display file
+echo $contents;
+
+//readfile($file_url);
 
 exit;
