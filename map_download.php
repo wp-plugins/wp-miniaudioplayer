@@ -5,7 +5,7 @@
 $file_name = $_GET["filename"];
 $file_url = $_GET["fileurl"];
 $filename = basename ($file_url) ;
-$file_length = filesize ($file_url) ;
+//$file_length = filesize ($file_url) ;
 $file_extension = strtolower (substr (strrchr ($filename, '.'), 1)) ;
 
 
