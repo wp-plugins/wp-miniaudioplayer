@@ -77,8 +77,8 @@ switch ($file_extension)
 
 //die($file_extension ."   ". $content_type ."   ". $file_name ."   ". $file_url);
 
-ob_clean();
-flush();
+/*ob_clean();
+flush();*/
 
 header ('Pragma: public') ;
 header ('Expires: 0') ;
@@ -90,6 +90,7 @@ header("Content-Description: File Transfer");
 header("Content-Transfer-Encoding: Binary");
 header("Content-disposition: attachment; filename=\"".$filename."\"");
 //header('Content-Length: ' . filesize($file_url));
+
 
 if(! ini_get('allow_url_fopen')){
     $ch = curl_init();
@@ -103,6 +104,5 @@ if(! ini_get('allow_url_fopen')){
 }else{
     readfile($file_url);
 }
-
 
 exit;
