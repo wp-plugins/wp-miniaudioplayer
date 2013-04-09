@@ -309,8 +309,7 @@ if(typeof map != "object")
 						if (!player.opt.animate)
 							animatePlayer(false)
 
-						$playBox.on(player.eventEnd,
-								function () {
+						$playBox.on(player.eventEnd, function (e) {
 
 									if (!player.isOpen) {
 
