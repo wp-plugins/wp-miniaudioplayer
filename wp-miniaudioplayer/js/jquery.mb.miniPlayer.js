@@ -160,12 +160,16 @@ if(typeof map != "object")
 				$master.after($controlsBox);
 				$controlsBox.html($layout);
 
+/*
 				if (typeof map.downloadUrl == "undefined")
 					map.downloadUrl = "";
+*/
 
 				var download = jQuery("<span/>").addClass("map_download").css({display: "inline-block", cursor: "pointer"}).html("d").on(player.eventEnd,function () {
-//					window.open(player.opt.mp3, "map_download");
-					location.href = map.downloadUrl + "?filename=" + encodeURI(downloadURL) + ".mp3" + "&fileurl=" + encodeURI(player.opt.mp3); //title.asId()
+					if(!map.downloadUrl || player.opt.mp3.indexOf(location.hostname)<0)
+						window.open(player.opt.mp3, "map_download");
+					else
+						location.href = map.downloadUrl + "?filename=" + encodeURI(downloadURL) + ".mp3" + "&fileurl=" + encodeURI(player.opt.mp3); //title.asId()
 				}).attr("title", "download: " + downloadURL);
 
 				if (typeof map.userCanDownload == "undefined")
@@ -311,48 +315,48 @@ if(typeof map != "object")
 
 						$playBox.on(player.eventEnd, function (e) {
 
-									if (!player.isOpen) {
+							if (!player.isOpen) {
 
-										if (player.opt.animate)
-											animatePlayer();
+								if (player.opt.animate)
+									animatePlayer();
 
-										player.isOpen = true;
+								player.isOpen = true;
 
-										if (player.opt.playAlone) {
-											jQuery("[isPlaying=true]").find(".map_play").trigger(player.eventEnd);
-										}
+								if (player.opt.playAlone) {
+									jQuery("[isPlaying=true]").find(".map_play").trigger(player.eventEnd);
+								}
 
-										jQuery(this).html(jQuery.mbMiniPlayer.icon.pause);
+								jQuery(this).html(jQuery.mbMiniPlayer.icon.pause);
 
 
-										$controlsBox.attr("isPlaying", "true");
+								$controlsBox.attr("isPlaying", "true");
 
-										el.jPlayer("play");
+								el.jPlayer("play");
 
-										//add track for Google Analytics
-										if (typeof _gaq != "undefined")
-											_gaq.push(['_trackEvent', 'Audio', 'Play', player.title]);
+								//add track for Google Analytics
+								if (typeof _gaq != "undefined")
+									_gaq.push(['_trackEvent', 'Audio', 'Play', player.title]);
 
-										if (typeof player.opt.onPlay == "function")
-											player.opt.onPlay(player);
+								if (typeof player.opt.onPlay == "function")
+									player.opt.onPlay(player);
 
-									} else {
+							} else {
 
-										if (player.opt.animate)
-											animatePlayer();
+								if (player.opt.animate)
+									animatePlayer();
 
-										player.isOpen = false;
+								player.isOpen = false;
 
-										jQuery(this).html(jQuery.mbMiniPlayer.icon.play);
+								jQuery(this).html(jQuery.mbMiniPlayer.icon.play);
 
-										$controlsBox.attr("isPlaying", "false");
-										el.jPlayer("pause");
-									}
+								$controlsBox.attr("isPlaying", "false");
+								el.jPlayer("pause");
+							}
 
-									e.stopPropagation();
-									return false;
+							e.stopPropagation();
+							return false;
 
-								}).hover(
+						}).hover(
 								function () {
 									jQuery(this).css({opacity: .8})
 								},
