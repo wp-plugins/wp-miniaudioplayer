@@ -1,3 +1,23 @@
+/*
+ * ******************************************************************************
+ *  jquery.mb.components
+ *  file: miniplayer.css
+ *
+ *  Copyright (c) 2001-2013. Matteo Bicocchi (Pupunzi);
+ *  Open lab srl, Firenze - Italy
+ *  email: matteo@open-lab.com
+ *  site: 	http://pupunzi.com
+ *  blog:	http://pupunzi.open-lab.com
+ * 	http://open-lab.com
+ *
+ *  Licences: MIT, GPL
+ *  http://www.opensource.org/licenses/mit-license.php
+ *  http://www.gnu.org/licenses/gpl.html
+ *
+ *  last modified: 01/05/13 0.13
+ *  *****************************************************************************
+ */
+
 @charset "UTF-8";
 
 @font-face {
@@ -24,16 +44,23 @@
   display: none!important;
 }
 
-.mbMiniPlayer span{
-  font:20px/22px "mb_audio_fontRegular";
-}
 
 a.audio{
   display:none;
 }
 
+.mbMiniPlayer *{
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
 .mbMiniPlayer{
   vertical-align: baseline!important;
+}
+
+.mbMiniPlayer span{
+  font:20px/20px "mb_audio_fontRegular";
 }
 
 .mbMiniPlayer table{
@@ -44,6 +71,7 @@ a.audio{
   padding:0 !important;
   border: 1px solid white !important;
   color: #777;
+  background: #fff;
   line-height: 0 !important;
   width: auto !important;
   display: inline-block;
@@ -68,8 +96,7 @@ a.audio{
   position:relative;
   background-color: #fff;
   height:8px;
-  margin:2px;
-  margin-top:0;
+  margin: 0 2px 2px;
   top:-2px;
   -moz-box-sizing:border-box;
   cursor:pointer;
@@ -125,6 +152,7 @@ a.audio{
   text-shadow: 1px -1px 1px rgba(0,0,0,0.6)!important;
   background-image:-moz-linear-gradient(100% 100% 110deg,rgba(255, 255, 255,0.3), transparent)!important;
   background-image:-webkit-gradient(linear, 0% 5%, 85% 100%, from(transparent), to(rgba(255, 255, 255,0.3)))!important;
+  background-image:-o-linear-gradient(270deg, rgba(255, 255, 255,0.0), rgba(255, 255, 255,0.3))!important;
   vertical-align: middle;
 }
 
@@ -147,7 +175,6 @@ a.audio{
 .mbMiniPlayer .map_info{
   display: none;
   background: rgb(48, 48, 48);
-  /*border-radius: 10px 10px 10px 10px;*/
   color: #D1D1D1;
   padding: 1px 4px;
   position: absolute;
@@ -188,10 +215,10 @@ a.audio{
 }
 
 .mbMiniPlayer table span.map_play{
-  -moz-border-radius:0 5px 5px 0 !important;
-  -webkit-border-top-right-radius:5px !important;
-  -webkit-border-bottom-right-radius:5px !important;
-  border-radius:0 5px 5px 0 !important;
+  -moz-border-radius:0 4px 4px 0 !important;
+  -webkit-border-top-right-radius:4px !important;
+  -webkit-border-bottom-right-radius:4px !important;
+  border-radius:0 4px 4px 0 !important;
   cursor:pointer !important;
 }
 
@@ -206,8 +233,8 @@ a.audio{
     opacity:1;
   }
   to {
-    opacity:.6;
-    color:rgba(255,255,255,0.5);
+    opacity:.5;
+    /*color:rgba(255,255,255,0.5);*/
   }
 }
 
@@ -216,8 +243,8 @@ a.audio{
     opacity:1;
   }
   to {
-    opacity:.6;
-    color:rgba(255,255,255,0.5);
+    opacity:.5;
+    /*background:rgba(0,0,0,1);*/
   }
 }
 @-moz-keyframes playing {
@@ -225,18 +252,18 @@ a.audio{
     opacity:1;
   }
   to {
-    opacity:.6;
-    color:rgba(255,255,255,0.5);
+    opacity:.5;
+    /*color:rgba(255,255,255,0.5);*/
   }
 }
 
 
 
 .mbMiniPlayer table span.map_volume{
-  -moz-border-radius:5px 0 0 5px !important;
-  -webkit-border-top-left-radius:5px !important;
-  -webkit-border-bottom-left-radius:5px !important;
-  border-radius:5px 0 0 5px !important;
+  -moz-border-radius:4px 0 0 4px !important;
+  -webkit-border-top-left-radius:4px !important;
+  -webkit-border-bottom-left-radius:4px !important;
+  border-radius:4px 0 0 4px !important;
   cursor:pointer !important;
   padding-left:6px !important;
   padding-right:0 !important;
@@ -257,8 +284,8 @@ a.audio{
   font-family: "mb_audio_fontRegular" !important;
   font-size: 50px !important;
   line-height: 22px !important;
-  color: #d1d1d1;
-  text-shadow: 0 0 3px rgba(255,255,255,0.6);
+  color: rgba(0,0,0,.2);
+  /*text-shadow: 0 0 3px rgba(255,255,255,0.6);*/
 
   transition: color 1s;
   -moz-transition: color 1s;
@@ -270,23 +297,23 @@ a.audio{
 
 /*BLACK ----------------------------------------*/
 .mbMiniPlayer.black table span{
-  background-color:#666;
+  background-color:#333;
 }
 
 .mbMiniPlayer.black table span.map_play{
-  border-left:1px solid #333;
+  border-left:1px solid #000;
 }
 
 .mbMiniPlayer.black table span.map_volume{
-  border-right:1px solid #999;
+  border-right:1px solid #333;
 }
 
 .mbMiniPlayer.black table span.map_volume.mute{
-  color: #999999;
+  color: #333;
 }
 
 .mbMiniPlayer.black .map_download:hover{
-  color: #333 ;
+  color: #000 ;
 }
 
 /*GRAY ----------------------------------------*/

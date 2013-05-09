@@ -160,13 +160,10 @@ if(typeof map != "object")
 				$master.after($controlsBox);
 				$controlsBox.html($layout);
 
-/*
-				if (typeof map.downloadUrl == "undefined")
-					map.downloadUrl = "";
-*/
-
 				var download = jQuery("<span/>").addClass("map_download").css({display: "inline-block", cursor: "pointer"}).html("d").on(player.eventEnd,function () {
-					if(!map.downloadUrl || player.opt.mp3.indexOf(location.hostname)<0)
+					var host = location.hostname.split(".");
+					host = host.length ==3 ? host[1] : host[0];
+					if(!map.downloadUrl || player.opt.mp3.indexOf(host)<0)
 						window.open(player.opt.mp3, "map_download");
 					else
 						location.href = map.downloadUrl + "?filename=" + encodeURI(downloadURL) + ".mp3" + "&fileurl=" + encodeURI(player.opt.mp3); //title.asId()
@@ -315,6 +312,10 @@ if(typeof map != "object")
 
 						$playBox.on(player.eventEnd, function (e) {
 
+							if (player.opt.playAlone) {
+								jQuery("[isPlaying=true]").find(".map_play").trigger(player.eventEnd);
+							}
+
 							if (!player.isOpen) {
 
 								if (player.opt.animate)
@@ -322,9 +323,6 @@ if(typeof map != "object")
 
 								player.isOpen = true;
 
-								if (player.opt.playAlone) {
-									jQuery("[isPlaying=true]").find(".map_play").trigger(player.eventEnd);
-								}
 
 								jQuery(this).html(jQuery.mbMiniPlayer.icon.pause);
 
