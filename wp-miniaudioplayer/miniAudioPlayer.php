@@ -139,6 +139,10 @@ function miniAudioPlayer_player_head() {
 	';
 };
 
+add_action('wp_footer', 'miniAudioPlayer_player_head',20);
+add_action('admin_init', 'setup_maplayer_button');
+
+
 function getExcluded(){
     global $miniAudioPlayer_excluded;
     if(!empty($miniAudioPlayer_excluded)){
@@ -157,11 +161,6 @@ function canDownload(){
     }
 }
 // ends miniAudioPlayer_player_head function
-
-add_action('wp_head', 'miniAudioPlayer_player_head');
-
-
-add_action('admin_init', 'setup_maplayer_button');
 
 
 // TinyMCE Button ***************************************************
