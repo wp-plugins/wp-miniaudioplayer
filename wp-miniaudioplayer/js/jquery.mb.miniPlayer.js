@@ -110,7 +110,7 @@ if(typeof map != "object")
 
 		getID3        : function (player) {
 
-			var $player = $(player);
+			var $player = jQuery(player);
 
 			var $titleBox = player.controlBox.find(".map_title");
 
@@ -129,7 +129,7 @@ if(typeof map != "object")
 					}
 
 					function drawInfoPanel() {
-						var getInfo = $("<div/>").addClass("map_info");
+						var getInfo = jQuery("<div/>").addClass("map_info");
 						for (var i in info) {
 							if (info[i] != null) {
 								var str = "<div>" + i + ": " + info[i] + "</div>";
