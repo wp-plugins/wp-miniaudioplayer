@@ -95,7 +95,7 @@ if(typeof map != "object")
 			playAlone           : true,
 			loop                : false,
 			inLine              : false,
-			volumeLevels        : 30,
+			volumeLevels        : 12,
 			showControls        : true,
 			showVolumeLevel     : true,
 			showTime            : true,
