@@ -5,7 +5,7 @@
 $file_name = $_GET["filename"];
 $file_url = $_GET["fileurl"];
 $filename = basename ($file_url) ;
-$filesize = filesize($dir_name);
+//$filesize = filesize($dir_name);
 $file_extension = strtolower (substr (strrchr ($filename, '.'), 1)) ;
 
 
@@ -92,7 +92,7 @@ header ('Content-Type: ' . $content_type);
 header("Content-Description: File Transfer");
 header("Content-Transfer-Encoding: Binary");
 header("Content-disposition: attachment; filename=\"".$filename."\"");
-header('Content-Length: '.$filesize+1);
+//header('Content-Length: '.$filesize+1);
 
 
 if(!ini_get('allow_url_fopen')){
