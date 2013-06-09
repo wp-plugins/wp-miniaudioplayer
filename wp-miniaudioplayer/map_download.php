@@ -5,7 +5,7 @@
 $file_name = $_GET["filename"];
 $file_url = $_GET["fileurl"];
 $filename = basename ($file_url) ;
-//$file_length = filesize ($file_url) ;
+$filesize = filesize($dir_name);
 $file_extension = strtolower (substr (strrchr ($filename, '.'), 1)) ;
 
 
@@ -49,6 +49,9 @@ switch ($file_extension)
     case 'mp3':
         $content_type = 'audio/mpeg' ;
         break ;
+    case 'mp4a':
+        $content_type = 'audio/mp4' ;
+        break ;
     case 'wav':
         $content_type = 'audio/x-wav' ;
         break ;
@@ -75,7 +78,7 @@ switch ($file_extension)
         $content_type = 'application/force-download' ;
 }
 
-//die($file_extension ."   ". $content_type ."   ". $file_name ."   ". $file_url);
+//die($file_extension ."   ". $content_type ."   ". $file_name ."   ". $file_url."   ". ini_get('allow_url_fopen'));
 
 /*ob_clean();
 flush();*/
@@ -89,10 +92,10 @@ header ('Content-Type: ' . $content_type);
 header("Content-Description: File Transfer");
 header("Content-Transfer-Encoding: Binary");
 header("Content-disposition: attachment; filename=\"".$filename."\"");
-//header('Content-Length: ' . filesize($file_url));
+header('Content-Length: '.$filesize+1);
 
 
-if(! ini_get('allow_url_fopen')){
+if(!ini_get('allow_url_fopen')){
     $ch = curl_init();
     curl_setopt ($ch, CURLOPT_URL, $file_url);
     curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -102,6 +105,8 @@ if(! ini_get('allow_url_fopen')){
 // display file
     echo $contents;
 }else{
+    ob_clean();
+    flush();
     readfile($file_url);
 }
 

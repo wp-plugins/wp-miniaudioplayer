@@ -4,11 +4,11 @@ Plugin Name: mb.miniAudioPlayer
 Plugin URI: http://wordpress.org/extend/plugins/wp-miniaudioplayer/
 Description: Transform your mp3 audio file link into a nice, small light player
 Author: Pupunzi (Matteo Bicocchi)
-Version: 1.3.2
+Version: 1.3.3
 Author URI: http://pupunzi.com
 */
 
-define("MINIAUDIOPLAYER_VERSION", "1.3.2");
+define("MINIAUDIOPLAYER_VERSION", "1.3.3");
 register_activation_hook( __FILE__, 'miniAudioPlayer_install' );
 
 function miniAudioPlayer_install() {
@@ -101,7 +101,7 @@ function miniAudioPlayer_init() {
         wp_enqueue_script('jquery');
         wp_enqueue_script('jplayer', plugins_url( '/js/jquery.jplayer.min.js', __FILE__ ), false, '2.1.0', false);
         wp_enqueue_script('mb.miniPlayer', plugins_url( '/js/jquery.mb.miniPlayer.js', __FILE__ ), false, $miniAudioPlayer_version, false);
-        wp_enqueue_style('miniAudioPlayer', plugins_url( 'css/miniplayer.css', __FILE__ ), false, $miniAudioPlayer_version, 'screen');
+        wp_enqueue_style('miniAudioPlayer', plugins_url( '/css/miniplayer.css', __FILE__ ), false, $miniAudioPlayer_version, 'screen');
     }
 }
 add_action('init', 'miniAudioPlayer_init');
@@ -118,7 +118,7 @@ function miniAudioPlayer_player_head() {
 
 
 	jQuery(function(){
-           	jQuery("a[href*=\'.mp3\']")'.getExcluded().'mb_miniPlayer({
+           	jQuery("a[href*=\'.mp3\'] ,a[href*=\'.m4a\']")'.getExcluded().'mb_miniPlayer({
 				inLine:true,
                 width:"'.$miniAudioPlayer_width.'",
 				skin:"'.$miniAudioPlayer_skin.'",

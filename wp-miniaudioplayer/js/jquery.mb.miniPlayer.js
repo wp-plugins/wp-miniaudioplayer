@@ -14,7 +14,7 @@
  *  http://www.opensource.org/licenses/mit-license.php
  *  http://www.gnu.org/licenses/gpl.html
  *
- *  last modified: 11/05/13 16.04
+ *  last modified: 02/06/13 13.37
  *  *****************************************************************************
  */
 
@@ -86,6 +86,7 @@ if(typeof map != "object")
 		},
 		defaults: {
 			ogg                 :null,
+			m4a                 :null,
 			width               : 150,
 			skin                : "black", // available: black, blue, orange, red, gray or use the skinMaker tool to create your.
 			volume              : .5,
@@ -110,12 +111,11 @@ if(typeof map != "object")
 
 		getID3        : function (player) {
 
-			var $player = jQuery(player);
-
 			var $titleBox = player.controlBox.find(".map_title");
 
-			if (player.opt.id3 && typeof ID3 == "object") {
-				ID3.loadTags(player.opt.mp3, function () {
+			var url = (player.opt.id3 || player.opt.m4a);
+			if (url && typeof ID3 == "object") {
+				ID3.loadTags(url, function () {
 
 					var info = {};
 					info.title = ID3.getTag(player.opt.mp3, "title");
@@ -123,9 +123,8 @@ if(typeof map != "object")
 					info.album = ID3.getTag(player.opt.mp3, "album");
 					info.track = ID3.getTag(player.opt.mp3, "track");
 
-					if (ID3.getTag(player.opt.mp3, "title") != undefined){
+					if (info.title != undefined){
 						$titleBox.html(info.title + " - " + info.artist);
-
 					}
 
 					function drawInfoPanel() {
@@ -181,7 +180,7 @@ if(typeof map != "object")
 				player.idx = idx;
 				player.title = title;
 
-				player.opt.isIE9 = jQuery.browser.msie && jQuery.browser.version === 9;
+				player.opt.isIE = jQuery.browser.msie ;//&& jQuery.browser.version === 9;
 
 				if (jQuery.metadata) {
 					jQuery.metadata.setType("class");
@@ -206,8 +205,15 @@ if(typeof map != "object")
 
 				}
 
-				if (!player.opt.mp3)
+				if (!player.opt.mp3 && url.indexOf("mp3")>0)
 					player.opt.mp3 = url;
+				if (!player.opt.m4a && url.indexOf("m4a")>0)
+					player.opt.m4a = url;
+				if( typeof player.opt.mp3 == "undefined")
+					player.opt.mp3 = null;
+				if( typeof player.opt.m4a == "undefined")
+					player.opt.m4a = null;
+
 
 				var skin = player.opt.skin;
 
@@ -226,8 +232,9 @@ if(typeof map != "object")
 				var download = jQuery("<span/>").addClass("map_download").css({display: "inline-block", cursor: "pointer"}).html("d").on(jQuery.mbMiniPlayer.eventEnd,function () {
 					var host = location.hostname.split(".");
 					host = host.length ==3 ? host[1] : host[0];
-					if(!map.downloadUrl || player.opt.mp3.indexOf(host)<0)
-						window.open(player.opt.mp3, "map_download");
+					var downloadableFile = player.opt.mp3 || player.opt.m4a;
+					if(!map.downloadUrl || downloadableFile.indexOf(host)<0)
+						window.open(downloadableFile, "map_download");
 					else
 						location.href = map.downloadUrl + "?filename=" + encodeURI(downloadURL) + ".mp3" + "&fileurl=" + encodeURI(player.opt.mp3); //title.asId()
 				}).attr("title", "download: " + downloadURL);
@@ -269,14 +276,33 @@ if(typeof map != "object")
 				$tds.eq(4).append($rewBox).hide();
 				$tds.eq(5).append($playBox);
 
+				player.opt.media = {};
+				player.opt.supplied = [];
+
+				if(player.opt.mp3){
+					player.opt.media.mp3 = player.opt.mp3;
+					player.opt.supplied.push("mp3");
+				}
+				if(player.opt.m4a){
+					player.opt.media.m4a = player.opt.m4a;
+					player.opt.supplied.push("m4a");
+				}
+				if(player.opt.ogg){
+					player.opt.media.oga = player.opt.ogg;
+					player.opt.supplied.push("oga");
+				}
+
+				player.opt.supplied = player.opt.supplied.toString();
+
 				//init jPlayer component (Happyworm Ltd - http://www.jplayer.org)
 				$player.jPlayer({
 
-					ready              : function () {
+					ready  : function () {
 						var el = jQuery(this);
 
-						el.jPlayer("setMedia", {mp3: player.opt.mp3, oga: player.opt.ogg});
+						el.jPlayer("setMedia", player.opt.media);
 
+						//if(player.opt.mp3)
 						jQuery.mbMiniPlayer.getID3(player);
 
 						function animatePlayer(anim) {
@@ -451,21 +477,19 @@ if(typeof map != "object")
 								for (var x = 0; x <= IDX; x++) {
 									$volumeLevel.find("a").eq(x).css({opacity: .4}).addClass("sel");
 								}
-
 							});
-
 						});
 						// autoplay can't work on devices
 						if (!jQuery.mbMiniPlayer.isMobile && player.opt.autoplay && ((player.opt.playAlone && jQuery("[isPlaying=true]").length == 0) || !player.opt.playAlone))
 							$playBox.trigger(jQuery.mbMiniPlayer.eventEnd);
 					},
-
+					supplied           : player.opt.supplied,
+					wmode              : "window",
+					smoothPlayBar      : true,
 					volume             : player.opt.volume,
-					oggSupport         : player.opt.ogg ? true : false,
 					swfPath            : player.opt.swfPath,
-					preload            : "none",
-//					solution           : 'html, flash',
-					solution           : player.opt.isIE9 ? 'flash' : 'html, flash',
+					solution           : player.opt.isIE ? 'flash' : 'html, flash',
+					preload            : isDevice ? 'none' : 'metadata',
 					cssSelectorAncestor: "#" + playerID, // Remove the ancestor css selector clause
 					cssSelector        : {
 						playBar: "#playBar_" + playerID,
@@ -499,15 +523,19 @@ if(typeof map != "object")
 						})
 			})
 		},
-		changeFile : function (mp3, ogg, title) {
+		changeFile : function (media, title) {
 			var ID = jQuery(this).attr("id");
 			var $controlsBox = jQuery("#mp_" + ID);
 			var $player = jQuery("#JPL_mp_" + ID);
 			var player = $player.get(0);
 			var $titleBox = $controlsBox.find(".map_title");
-			if (!ogg) ogg = "";
+
+			if (!media.ogg) media.ogg = null;
+			if (!media.mp3) media.mp3 = null;
+			if (!media.m4a) media.m4a = null;
+
 			if (!title) title = "audio file";
-			$player.jPlayer("setMedia", {mp3: mp3, oga: ogg});
+			$player.jPlayer("setMedia", media);
 
 			if ($controlsBox.attr("isPlaying") == "true")
 				$player.jPlayer("play");
