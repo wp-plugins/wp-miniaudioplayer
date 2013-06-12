@@ -105,8 +105,6 @@ if(!ini_get('allow_url_fopen')){
 // display file
     echo $contents;
 }else{
-    ob_clean();
-    flush();
     readfile($file_url);
 }
 

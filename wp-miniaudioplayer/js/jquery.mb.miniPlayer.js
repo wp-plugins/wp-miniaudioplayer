@@ -236,7 +236,7 @@ if(typeof map != "object")
 					if(!map.downloadUrl || downloadableFile.indexOf(host)<0)
 						window.open(downloadableFile, "map_download");
 					else
-						location.href = map.downloadUrl + "?filename=" + encodeURI(downloadURL) + ".mp3" + "&fileurl=" + encodeURI(player.opt.mp3); //title.asId()
+						location.href = map.downloadUrl + "?filename=" + encodeURI(downloadURL) + ".mp3" + "&fileurl=" + encodeURI(player.opt.mp3);
 				}).attr("title", "download: " + downloadURL);
 
 				if (typeof map.userCanDownload == "undefined")
