@@ -233,7 +233,9 @@ if(typeof map != "object")
 					var host = location.hostname.split(".");
 					host = host.length ==3 ? host[1] : host[0];
 					var downloadableFile = player.opt.mp3 || player.opt.m4a;
-					if(!map.downloadUrl || downloadableFile.indexOf(host)<0)
+
+					//todo: verify if it works crossdomain
+					if(!map.downloadUrl) // || downloadableFile.indexOf(host)<0
 						window.open(downloadableFile, "map_download");
 					else
 						location.href = map.downloadUrl + "?filename=" + encodeURI(downloadURL) + ".mp3" + "&fileurl=" + encodeURI(player.opt.mp3);
