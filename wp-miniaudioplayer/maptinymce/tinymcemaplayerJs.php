@@ -1,6 +1,6 @@
 <?php
 	if (!headers_sent()) {
-	    header("Content-Type: application/x-javascript; charset=UTF-8");
+	    header("Content-Type: text/javascript; charset=UTF-8");
 	}
 ?>
 (function() {
