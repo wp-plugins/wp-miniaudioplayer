@@ -74,6 +74,7 @@ to change the player default settings go to the mb.miniAudioPlayer settings pane
 = 1.3.6 =
 * The player initializer is call on every Ajax success callback to show players loaded via Ajax.
 
+
 = 1.3.5 =
 * Updated TinyMCE js header.
 
