@@ -116,9 +116,8 @@ function miniAudioPlayer_player_head() {
     map.downloadUrl = "'.plugins_url( 'map_download.php', __FILE__ ).'";
     map.userCanDownload = '.(current_user_can('read') == 1 ? "true" : "false").';
 
-
-	jQuery(function(){
-           	jQuery("a[href*=\'.mp3\'] ,a[href*=\'.m4a\']")'.getExcluded().'mb_miniPlayer({
+    function initializeMiniAudioPlayer(){
+         jQuery("a[href*=\'.mp3\'] ,a[href*=\'.m4a\']")'.getExcluded().'mb_miniPlayer({
 				inLine:true,
                 width:"'.$miniAudioPlayer_width.'",
 				skin:"'.$miniAudioPlayer_skin.'",
@@ -131,7 +130,14 @@ function miniAudioPlayer_player_head() {
 				showRew:'.$miniAudioPlayer_showRew.',
 				downloadable:'.canDownload().',
 				swfPath:"'.plugins_url( '/js/', __FILE__ ).'"
-			});
+		});
+    }
+
+	jQuery(function(){
+          initializeMiniAudioPlayer();
+          jQuery(document).ajaxSuccess(function(event, xhr, settings) {
+           	initializeMiniAudioPlayer();
+          });
 	});
 	</script>
 	<!-- end miniAudioPlayer initializer -->
