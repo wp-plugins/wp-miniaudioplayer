@@ -151,7 +151,14 @@ if(typeof map != "object")
 		buildPlayer: function (options) {
 
 			this.each(function (idx) {
+
+				if(this.isInit)
+					return;
+
+				this.isInit = true;
+
 				var $master = jQuery(this);
+
 				$master.hide();
 				var url = $master.attr("href");
 				var playerID = "mp_" + ($master.attr("id") ? $master.attr("id") : new Date().getTime());
