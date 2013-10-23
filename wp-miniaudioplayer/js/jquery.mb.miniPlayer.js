@@ -204,7 +204,7 @@ if(typeof map != "object")
 					player.opt.showControls = false;
 				}
 
-				if (jQuery.mbMiniPlayer.isMobile) { //'ontouchstart' in window
+				if (jQuery.mbMiniPlayer.isMobile) {
 
 					player.opt.showVolumeLevel = false;
 					player.opt.autoplay = false;
