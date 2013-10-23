@@ -60,7 +60,9 @@ a.audio{
 }
 
 .mbMiniPlayer span{
-  font:20px/20px "mb_audio_fontRegular";
+  font-family: "mb_audio_fontRegular"!important;
+  font-size:20px;
+  line-height: 20px!important;
 }
 
 .mbMiniPlayer table{
@@ -89,7 +91,7 @@ a.audio{
   padding:0 !important;
   line-height: 0 !important;
   border: none!important;
-  vertical-align: middle;
+  vertical-align: middle!important;
 }
 
 .jp-progress{
