@@ -14,7 +14,7 @@
  *  http://www.opensource.org/licenses/mit-license.php
  *  http://www.gnu.org/licenses/gpl.html
  *
- *  last modified: 02/06/13 13.37
+ *  last modified: 02/10/13 22.42
  *  *****************************************************************************
  */
 
@@ -72,7 +72,7 @@ if(typeof map != "object")
 
 	jQuery.mbMiniPlayer = {
 		author  : "Matteo Bicocchi",
-		version : "1.7.0",
+		version : "1.7.1",
 		name    : "mb.miniPlayer",
 		isMobile: false,
 
@@ -104,6 +104,7 @@ if(typeof map != "object")
 			addShadow           : true,
 			downloadable        : false,
 			downloadablesecurity: false,
+			downloadPage        :null,
 			swfPath             : "inc/",
 			onPlay              : function () {},
 			onEnd               : function () {}
@@ -142,8 +143,6 @@ if(typeof map != "object")
 									getInfo.fadeOut(300);
 								})
 					}
-
-					//drawInfoPanel();
 				})
 			}
 		},
@@ -152,13 +151,12 @@ if(typeof map != "object")
 
 			this.each(function (idx) {
 
-				if(this.isInit)
+				if (this.isInit)
 					return;
 
 				this.isInit = true;
 
 				var $master = jQuery(this);
-
 				$master.hide();
 				var url = $master.attr("href");
 				var playerID = "mp_" + ($master.attr("id") ? $master.attr("id") : new Date().getTime());
@@ -172,9 +170,6 @@ if(typeof map != "object")
 
 					return;
 				}
-
-				var downloadURL = $master.attr("href").replace(".mp3", "").split("/");
-				downloadURL = downloadURL[downloadURL.length - 1];
 
 				var $player = jQuery("<div/>").attr({id: "JPL_" + playerID});
 				var player = $player.get(0);
@@ -204,7 +199,7 @@ if(typeof map != "object")
 					player.opt.showControls = false;
 				}
 
-				if (jQuery.mbMiniPlayer.isMobile) {
+				if (jQuery.mbMiniPlayer.isMobile) { //'ontouchstart' in window
 
 					player.opt.showVolumeLevel = false;
 					player.opt.autoplay = false;
@@ -221,7 +216,6 @@ if(typeof map != "object")
 				if( typeof player.opt.m4a == "undefined")
 					player.opt.m4a = null;
 
-
 				var skin = player.opt.skin;
 
 				var $controlsBox = jQuery("<div/>").attr({id: playerID, isPlaying: false}).addClass("mbMiniPlayer").addClass(skin);
@@ -236,25 +230,16 @@ if(typeof map != "object")
 				$master.after($controlsBox);
 				$controlsBox.html($layout);
 
+				var fileName = encodeURI($master.attr("href").replace(".mp3", "").split("/").pop());
+				var fileUrl = encodeURI(player.opt.mp3 || player.opt.m4a);
+
 				var download = jQuery("<span/>").addClass("map_download").css({display: "inline-block", cursor: "pointer"}).html("d").on(jQuery.mbMiniPlayer.eventEnd,function () {
-					var host = location.hostname.split(".");
-					host = host.length ==3 ? host[1] : host[0];
-					var downloadableFile = player.opt.mp3 || player.opt.m4a;
+					jQuery.mbMiniPlayer.saveFile(player, fileUrl, fileName);
 
-					//todo: verify if it works crossdomain
-					if(!map.downloadUrl) // || downloadableFile.indexOf(host)<0
-						window.open(downloadableFile, "map_download");
-					else
-						location.href = map.downloadUrl + "?filename=" + encodeURI(downloadURL) + ".mp3" + "&fileurl=" + encodeURI(player.opt.mp3);
-				}).attr("title", "download: " + downloadURL);
-
-				if (typeof map.userCanDownload == "undefined")
-					map.userCanDownload = true;
+				}).attr("title", "download: " + fileName);
 
 				if (player.opt.downloadable) {
-					//works only for WP plugin
-					if (!player.opt.downloadablesecurity || (player.opt.downloadablesecurity && map.userCanDownload))
-						$controlsBox.append(download);
+					$controlsBox.append(download);
 				}
 
 				var $tds = $controlsBox.find("td").unselectable();
@@ -532,6 +517,7 @@ if(typeof map != "object")
 						})
 			})
 		},
+
 		changeFile : function (media, title) {
 			var ID = jQuery(this).attr("id");
 			var $controlsBox = jQuery("#mp_" + ID);
@@ -551,6 +537,19 @@ if(typeof map != "object")
 			$titleBox.html(title);
 
 			jQuery.mbMiniPlayer.getID3(player);
+		},
+
+		saveFile      : function (player, fileUrl, fileName) {
+			var host = location.hostname.split(".");
+			host = host.length == 3 ? host[1] : host[0];
+
+			if (!player.opt.downloadPage && fileUrl.indexOf(host) < 0) {
+				window.open(fileUrl, "map_download");
+			} else {
+
+				/* player.opt.downloadPage = path to the PHP page that stream the file and download it.*/
+				location.href = player.opt.downloadPage + "?filename=" + encodeURI(fileName) + ".mp3" + "&fileurl=" + encodeURI(fileUrl);
+			}
 		},
 
 		play       : function () {

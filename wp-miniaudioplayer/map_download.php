@@ -5,7 +5,7 @@
 $file_name = $_GET["filename"];
 $file_url = $_GET["fileurl"];
 $filename = basename ($file_url) ;
-//$filesize = filesize($dir_name);
+$filesize = filesize($dir_name);
 $file_extension = strtolower (substr (strrchr ($filename, '.'), 1)) ;
 
 //This will set the Content-Type to the appropriate setting for the file
@@ -95,7 +95,7 @@ header('Connection: close');
 
 if($fp=@fopen($file_url,'rb')){
 
-    //$fp=@fopen($file_url,'rb');
+    $fp=@fopen($file_url,'rb');
     // send the file content
     fpassthru($fp);
     // close the file

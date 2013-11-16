@@ -382,7 +382,7 @@ if (!headers_sent()) {
                 var isExcluded = jQuery("[name='exclude']").is(":checked") ? "<?php echo $exclude_class ?> " : "";
 
                 var map_a = "<a id='mbmaplayer_"+new Date().getTime()+"' class=";
-                map_a += "\"" + isExcluded + map_params + "\" ";
+                map_a += "\"mb_map " + isExcluded + map_params + "\" ";
                 map_a += "href=\""+jQuery("[name='url']").val()+"\">";
                 map_a+=jQuery("[name='audiotitle']").val();
                 map_a+="</a>";
@@ -391,9 +391,11 @@ if (!headers_sent()) {
                 if($desc.length)
                     $desc.remove();
 
-                var map_desc="<span class='map_params' style='display:block; width: 100px;font-family: arial, sans-serif; padding: 5px; border-radius: 7px; background: #6f6f6f;color:#fff; text-decoration: none'> ▶ custom player</span>";
-                if(!isExcluded)
-                    ed.execCommand('mceInsertContent', 0, map_desc);
+                /*
+                 var map_desc="<span class='map_params' style='display:block; width: 100px;font-family: arial, sans-serif; padding: 5px; border-radius: 7px; background: #6f6f6f;color:#fff; text-decoration: none'> ▶ custom player</span>";
+                 if(!isExcluded)
+                 ed.execCommand('mceInsertContent', 0, map_desc);
+                 */
 
                 tinyMCEPopup.close();
 
