@@ -231,7 +231,7 @@ a.audio{
 
 .mbMiniPlayer table span.map_time{
   width:1px;
-  font:11px/20px sans-serif;
+  font:11px/20px "DroidSansMonoRegular", sans-serif !important;
   overflow:hidden;
   white-space:nowrap;
   cursor:default !important;
