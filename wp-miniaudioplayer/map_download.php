@@ -7,6 +7,7 @@ $file_url = $_GET["fileurl"];
 $filename = basename ($file_url) ;
 $file_extension = strtolower (substr (strrchr ($filename, '.'), 1)) ;
 
+
 function getFileSize($url) {
     if (substr($url,0,4)=='http') {
         $x = array_change_key_case(get_headers($url, 1),CASE_LOWER);
@@ -18,7 +19,6 @@ function getFileSize($url) {
 }
 
 $filesize = getFileSize($file_url);
-//$filesize = filesize($file_url);
 
 //This will set the Content-Type to the appropriate setting for the file
 switch ($file_extension)
@@ -89,7 +89,7 @@ switch ($file_extension)
         $content_type = 'application/force-download' ;
 }
 
-//die($file_extension ."   ". $content_type ."   ". $file_name ."   ". $file_url."   ". ini_get('allow_url_fopen'));
+//die("<br> - file_extension::  ". $file_extension ."<br> - content_type::  ". $content_type ."<br> - file_name::  ". $file_name ."<br> - file_url::  ". $file_url ."<br> - file size::  ". $filesize . "<br> - curl exist::  ". function_exists('curl_version') ."<br> - allow_url_fopen::  ". ini_get('allow_url_fopen'));
 
 header ('Pragma: public') ;
 header ('Expires: 0') ;
@@ -114,14 +114,18 @@ if($fp=@fopen($file_url,'rb')){
     }
     fclose ($fp);
 
-}else{
+}else if(function_exists('curl_version')){
+
     $ch = curl_init();
     curl_setopt ($ch, CURLOPT_URL, $file_url);
     curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
     $contents = curl_exec($ch);
-    curl_close($ch);
-// display file
+    // display file
     echo $contents;
+    curl_close($ch);
+
+}else{
+    @readfile ($file_url) ;
 }
 
 clearstatcache();

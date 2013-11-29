@@ -4,7 +4,7 @@ Contributors: pupunzi
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.3
 Tested up to: 3.7
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
 Transform your mp3 audio files into a nice, small light HTML5 player
@@ -70,6 +70,10 @@ to change the player default settings go to the mb.miniAudioPlayer settings pane
 * @ excluded = a string containing the CSS class for audio links that should not be converted into player.
 
 == Changelog ==
+
+= 1.4.1 =
+* fixed a bug that could create conflict with other plugins using "string.prototype.asId"
+* Feature: created a more robust map_download.php for the file download that falls back to three methods: fopen(), curl() or readfile() depending on server support.
 
 = 1.4.0 =
 * Download now get file size

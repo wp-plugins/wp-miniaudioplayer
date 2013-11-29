@@ -631,8 +631,10 @@
 	jQuery.fn.mb_miniPlayer_destroy = jQuery.mbMiniPlayer.destroy;
 	jQuery.fn.mb_miniPlayer_getPlayer = jQuery.mbMiniPlayer.getPlayer;
 
-	String.prototype.asId = function () {
-		return this.replace(/[^a-zA-Z0-9_]+/g, '');
-	};
+	/*
+	 String.prototype.asId = function () {
+	 return this.replace(/[^a-zA-Z0-9_]+/g, '');
+	 };
+	 */
 
 })(jQuery);
