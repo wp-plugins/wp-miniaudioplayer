@@ -103,7 +103,7 @@
 
 	jQuery.mbMiniPlayer = {
 		author  : "Matteo Bicocchi",
-		version : "1.7.2",
+		version : "1.7.3",
 		name    : "mb.miniPlayer",
 		isMobile: false,
 
@@ -356,9 +356,9 @@
 								if (player.opt.showTime) {
 									$timeBox.parent("td").show()
 									if (isIE)
-										$timeBox.show().css({width: 30, display: "block"});
+										$timeBox.show().css({width: 34, display: "block"});
 									else
-										$timeBox.animate({width: 30}, speed / 2).show();
+										$timeBox.animate({width: 34}, speed / 2).show();
 								}
 								if (player.opt.showVolumeLevel) {
 									$volumeLevel.parent("td").show()
@@ -509,8 +509,8 @@
 							$playBox.trigger(jQuery.mbMiniPlayer.eventEnd);
 					},
 					supplied           : player.opt.supplied,
-					wmode              : "window",
-					smoothPlayBar      : true,
+					wmode              : "transparent",
+					smoothPlayBar      : false,
 					volume             : player.opt.volume,
 					swfPath            : player.opt.swfPath,
 					solution           : player.opt.isIE ? 'flash' : 'html, flash',
@@ -518,7 +518,7 @@
 					cssSelectorAncestor: "#" + playerID, // Remove the ancestor css selector clause
 					cssSelector        : {
 						playBar: "#playBar_" + playerID,
-						seekBar: "#loadBar_" + playerID // Set a custom css selector for the play button
+						seekBar: "#loadBar_" + playerID
 						// The other defaults remain unchanged
 					}
 				})
@@ -541,8 +541,8 @@
 							player.currentTime = e.jPlayer.status.currentTime;
 							player.seekPercent = e.jPlayer.status.seekPercent;
 
-							$loadBar.css({width: ((player.opt.width - 5) * player.seekPercent) / 100});
-							$playBar.css({width: ((player.opt.width - 5) * player.currentTime) / player.duration});
+//							$loadBar.css({width: ((player.opt.width - 5) * player.seekPercent) / 100});
+//							$playBar.css({width: ((player.opt.width - 5) * player.currentTime) / player.duration});
 
 							$timeBox.html(jQuery.jPlayer.convertTime(e.jPlayer.status.currentTime)).attr("title", jQuery.jPlayer.convertTime(e.jPlayer.status.duration));
 						})
