@@ -4,6 +4,32 @@
  */
 $file_name = $_GET["filename"];
 $file_url = $_GET["fileurl"];
+
+$web_root = $_SERVER["DOCUMENT_ROOT"];
+$web_address = $_SERVER['HTTP_HOST'];
+
+$pos = strrpos($file_url, $web_address);
+
+if($pos){
+
+    if (isset($_SERVER['HTTPS']) &&
+        ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||
+        isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
+        $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+        $protocol = 'https://';
+    }
+    else {
+        $protocol = 'http://';
+    }
+
+    $file_url = str_replace ($protocol. $web_address .'/', '', $file_url);
+    $file_url = $web_root ."/". $file_url;
+    $file_url = str_replace('//', '/', $file_url);
+
+    //die($protocol . " --- " .$web_root . " --- " .$web_address . " --- " . $file_url );
+
+}
+
 $filename = basename ($file_url) ;
 $file_extension = strtolower (substr (strrchr ($filename, '.'), 1)) ;
 
@@ -19,6 +45,14 @@ function getFileSize($url) {
 }
 
 $filesize = getFileSize($file_url);
+
+function fileExists($path){
+    return (@fopen($path,"r")==true);
+}
+
+if(!fileExists($file_url))
+    die("<br> The file <b>" .$file_url. "</b> doesn't exist; check the URL");
+
 
 //This will set the Content-Type to the appropriate setting for the file
 switch ($file_extension)
@@ -89,7 +123,8 @@ switch ($file_extension)
         $content_type = 'application/force-download' ;
 }
 
-//die("<br> - file_extension::  ". $file_extension ."<br> - content_type::  ". $content_type ."<br> - file_name::  ". $file_name ."<br> - file_url::  ". $file_url ."<br> - file size::  ". $filesize . "<br> - curl exist::  ". function_exists('curl_version') ."<br> - allow_url_fopen::  ". ini_get('allow_url_fopen'));
+//phpinfo();
+//die("<br> - file_extension::  ". $file_extension ."<br> - content_type::  ". $content_type ."<br> - file_name::  ". $file_name ."<br> - file_url::  ". $file_url ."<br> - file size::  ". $filesize . "<br> - curl exist::  ". function_exists('curl_version') ."<br> - allow_url_fopen::  ". ($fp=@fopen($file_url,'rb')) );
 
 header ('Pragma: public') ;
 header ('Expires: 0') ;
@@ -115,7 +150,6 @@ if($fp=@fopen($file_url,'rb')){
     fclose ($fp);
 
 }else if(function_exists('curl_version')){
-
     $ch = curl_init();
     curl_setopt ($ch, CURLOPT_URL, $file_url);
     curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -125,6 +159,8 @@ if($fp=@fopen($file_url,'rb')){
     curl_close($ch);
 
 }else{
+    ob_clean();
+    flush();
     @readfile ($file_url) ;
 }
 
