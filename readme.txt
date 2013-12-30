@@ -69,6 +69,13 @@ to change the player default settings go to the mb.miniAudioPlayer settings pane
 * @ downloadable = a boolean to show the download button next to the player.
 * @ excluded = a string containing the CSS class for audio links that should not be converted into player.
 
+**Ubuntu Chromium issue**
+
+Due to some codecs missing in the default Ubuntu Chromium install the player will not work. This problem can be resolved by simply by installing that codecs via console:
+sudo apt-get-install chromium-codecs-ffmpeg-extra
+
+After that your player should work fine.
+
 == Changelog ==
 
 = 1.4.2 =
