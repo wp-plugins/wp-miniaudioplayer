@@ -4,11 +4,11 @@ Plugin Name: mb.miniAudioPlayer
 Plugin URI: http://wordpress.org/extend/plugins/wp-miniaudioplayer/
 Description: Transform your mp3 audio file link into a nice, small light player
 Author: Pupunzi (Matteo Bicocchi)
-Version: 1.4.2
+Version: 1.4.3
 Author URI: http://pupunzi.com
 */
 
-define("MINIAUDIOPLAYER_VERSION", "1.4.2");
+define("MINIAUDIOPLAYER_VERSION", "1.4.3");
 register_activation_hook( __FILE__, 'miniAudioPlayer_install' );
 
 function miniAudioPlayer_install() {
@@ -24,7 +24,7 @@ function miniAudioPlayer_install() {
     add_option('miniAudioPlayer_showVolumeLevel','true');
     add_option('miniAudioPlayer_showTime','true');
     add_option('miniAudioPlayer_showRew','true');
-    add_option('miniAudioPlayer_excluded','map_excuded');
+    add_option('miniAudioPlayer_excluded','map_excluded');
     add_option('miniAudioPlayer_download','false');
     add_option('miniAudioPlayer_download_security','false');
     add_option('miniAudioPlayer_customizer','true');
@@ -193,34 +193,8 @@ function register_maplayer_button($buttons) {
 
 // Register our TinyMCE Script
 function add_maplayer_button_script($plugin_array) {
-    $plugin_array['maplayer'] = plugins_url('maptinymce/tinymcemaplayerJs.php?params='.get_maplayer_pop_up_params(), __FILE__);
+    $plugin_array['maplayer'] = plugins_url('maptinymce/tinymcemaplayer.js', __FILE__);
     return $plugin_array;
-}
-
-function get_maplayer_pop_up_params(){
-    global $miniAudioPlayer_version,$miniAudioPlayer_donate,$miniAudioPlayer_excluded,$miniAudioPlayer_showVolumeLevel,
-           $miniAudioPlayer_showTime,$miniAudioPlayer_showRew,$miniAudioPlayer_width,$miniAudioPlayer_skin,
-           $miniAudioPlayer_volume,$miniAudioPlayer_download,$miniAudioPlayer_download_security,
-           $miniAudioPlayer_animate,$miniAudioPlayer_getMetadata;
-
-    return urlencode(
-        'plugin_version='.$miniAudioPlayer_version.'&'.
-        'includes_url='.urlencode(includes_url()).'&'.
-        'plugins_url='.urlencode(plugins_url()).'&'.
-        'charset='.urlencode(get_option('blog_charset')).'&'.
-        'exclude_class='.$miniAudioPlayer_excluded.'&'.
-        'showVolumeLevel='.$miniAudioPlayer_showVolumeLevel.'&'.
-        'showTime='.$miniAudioPlayer_showTime.'&'.
-        'showRew='.$miniAudioPlayer_showRew.'&'.
-        'width='.$miniAudioPlayer_width.'&'.
-        'skin='.$miniAudioPlayer_skin.'&'.
-        'animate='.$miniAudioPlayer_animate.'&'.
-        'volume='.$miniAudioPlayer_volume.'&'.
-        'downloadable='.$miniAudioPlayer_download.'&'.
-        'metadata='.$miniAudioPlayer_getMetadata .'&'.
-        'downloadable_security='.$miniAudioPlayer_download_security.'&'.
-        'donate='.$miniAudioPlayer_donate
-    );
 }
 
 if ( is_admin() ) {
