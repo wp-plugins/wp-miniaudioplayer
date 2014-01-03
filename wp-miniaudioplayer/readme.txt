@@ -78,6 +78,9 @@ After that your player should work fine.
 
 == Changelog ==
 
+= 1.4.4 =
+* Bug fixed: the mute volume did't unmute.
+
 = 1.4.3 =
 * fixed a vulnerability issue in the TinyMCE popup.
 

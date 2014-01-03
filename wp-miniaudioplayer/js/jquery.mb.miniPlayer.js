@@ -439,10 +439,11 @@
 									if (jQuery(this).hasClass("mute")) {
 										jQuery(this).removeClass("mute");
 										jQuery(this).html(jQuery.mbMiniPlayer.icon.volume);
-										el.jPlayer("volume", player.opt.volume);
+										el.jPlayer("volume", player.opt.vol);
 									} else {
 										jQuery(this).addClass("mute");
 										jQuery(this).html(jQuery.mbMiniPlayer.icon.volumeMute);
+										player.opt.vol = player.opt.volume;
 										el.jPlayer("volume", 0);
 									}
 								}).hover(
@@ -538,13 +539,14 @@
 							}
 						})
 
-				$controlsBox.on("keydown",function(e){
-					if (e.keyCode == 32) { //toggle play
+				$controlsBox.on("keypress",function(e){
+
+					if (e.charCode == 32) { //toggle play
 						$master.mb_miniPlayer_toggle();
 						e.preventDefault();
 						e.stopPropagation();
 					}
-					if (e.keyCode == 171) { // volume +
+					if (e.charCode == 43) { // volume +
 
 						var bars = player.opt.volumeLevels;
 						var barVol = 1 / bars;
@@ -560,7 +562,7 @@
 						e.preventDefault();
 						e.stopPropagation();
 					}
-					if (e.keyCode == 173) { //volume -
+					if (e.charCode == 45) { //volume -
 
 						var bars = player.opt.volumeLevels;
 						var barVol = 1 / bars;
@@ -695,7 +697,7 @@
 	jQuery.fn.mb_miniPlayer_destroy = jQuery.mbMiniPlayer.destroy;
 	jQuery.fn.mb_miniPlayer_getPlayer = jQuery.mbMiniPlayer.getPlayer;
 
-	jQuery(document).on("keydown.mbMiniPlayer",function(e){
+	jQuery(document).on("keypress.mbMiniPlayer",function(e){
 
 		if (e.keyCode == 32) {
 
