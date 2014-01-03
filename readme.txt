@@ -266,10 +266,6 @@ You can inspect the player using the developer tools within the browser to find 
 On both those browsers the player falls back to the Flash® solution instead of the standard HTML5; That because FF doesn't accept mp3 files natively and IE is a mess :-).
 So if the player doesn't work on them probably is your Flash plugin that is not update or is not working correctly.
 
-= I checked the downloadable option but when I click the download button it opens a new window with the mp3 file instead of downloading it =
-
-That happens because the audio file you are pointing to is on a different domain. The downloader doesn't work for files that are not on your site repository.
-
 = It doesn't work on Ubuntu Chromium =
 
 Due to some codecs missing in the default Ubuntu Chromium install the player will not work. This problem can be resolved by simply by installing that codecs via console:
