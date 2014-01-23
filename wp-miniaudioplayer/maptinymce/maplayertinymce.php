@@ -1,6 +1,7 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <?php
 require('../../../../wp-blog-header.php');
-$plugin_version =get_option('mbYTPlayer_version');
+$plugin_version = get_option('mbYTPlayer_version');
 $includes_url = includes_url();
 $plugins_url = plugins_url();
 $charset = get_option('blog_charset');
@@ -16,15 +17,14 @@ $miniAudioPlayer_animate = get_option('miniAudioPlayer_animate');
 $volume = get_option('miniAudioPlayer_volume');
 $downloadable = get_option('miniAudioPlayer_download');
 $downloadable_security = get_option('miniAudioPlayer_download_security');
-$metadata = get_option('miniAudioPlayer_getMetadata');
 
 if (!headers_sent()) {
     header('Content-Type: text/html; charset='.$charset);
 }
+
 if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
 
     ?>
-    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
     <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $charset; ?>" />
@@ -288,11 +288,6 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
             ed.selection.select(selection,true);
             var $selection = jQuery(selection);
 
-            var url= "";
-            var title = "";
-            var isExcluded = false;
-            var excluded = "";
-
             var map_element = $selection.find("a[href *= '.mp3']");
             if (map_element.length){
                 selection = ed.selection.select(map_element.get(0),true);
@@ -306,7 +301,6 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
             isExcluded = $selection.hasClass("<?php echo $exclude_class ?>");
 
             var $desc = $selection.next(".map_params");
-            console.debug($desc)
             var metadata = $selection.metadata();
 
             if(metadata.volume)
@@ -331,8 +325,6 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
             jQuery.extend(metadata, {exclude:isExcluded});
 
             jQuery("[name='url']").val(url);
-
-            var getFromMeta = <?php echo $metadata ?>;
 
             jQuery("[name='audiotitle']").val(title);
 

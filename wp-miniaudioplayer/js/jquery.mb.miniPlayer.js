@@ -612,7 +612,7 @@
 			var a = document.createElement('a');
 			if (!player.opt.downloadPage && isSameDomain && typeof a.download != "undefined") {
 
-				var downloadA = jQuery("<a/>").attr({id:"mb_dwnl",href: encodeURI(fileUrl), download: fileName+"."+fileExtension}).html("dwnload")//.hide();
+				var downloadA = jQuery("<a/>").attr({id:"mb_dwnl",href: fileUrl, download: fileName+"."+fileExtension}).html("dwnload")//.hide();
 				jQuery("body").append(downloadA);
 
 				function fakeClick(anchorObj) {
@@ -632,7 +632,7 @@
 				window.open(fileUrl, "map_download");
 			} else {
 				/* player.opt.downloadPage = path to the PHP page that stream the file and download it.*/
-				location.href = player.opt.downloadPage + "?filename=" + encodeURI(fileName) + ".mp3" + "&fileurl=" + encodeURI(fileUrl);
+				location.href = player.opt.downloadPage + "?filename=" + fileName +"."+ fileExtension + "&fileurl=" + fileUrl;
 			}
 		},
 
