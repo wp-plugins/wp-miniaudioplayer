@@ -12,7 +12,7 @@ function add_miniAudioPlayer_option_page()
 
 function miniAudioPlayer_options_page()
 { // Output the options page
-    global $miniAudioPlayer_donate, $miniAudioPlayer_getMetadata, $miniAudioPlayer_version, $miniAudioPlayer_width, $miniAudioPlayer_skin, $miniAudioPlayer_animate, $miniAudioPlayer_volume, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_excluded, $miniAudioPlayer_download, $miniAudioPlayer_download_security, $miniAudioPlayer_customizer ?>
+    global $miniAudioPlayer_donate, $miniAudioPlayer_getMetadata, $miniAudioPlayer_version, $miniAudioPlayer_width, $miniAudioPlayer_skin, $miniAudioPlayer_animate, $miniAudioPlayer_volume, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_excluded, $miniAudioPlayer_download, $miniAudioPlayer_download_security, $miniAudioPlayer_customizer, $miniAudioPlayer_custom_skin_css ?>
 
     <!--DONATE POPUP-->
     <style>
@@ -196,8 +196,7 @@ function miniAudioPlayer_options_page()
 
     <h2>mb.miniAudioPlayer Settings</h2>
 
-    <p>You're using mb.miniAudioPlayer v. <?php echo $miniAudioPlayer_version;?> by <a href="http://pupunzi.com">Pupunzi</a>.
-    </p>
+    <p>You're using mb.miniAudioPlayer v. <?php echo $miniAudioPlayer_version;?> by <a href="http://pupunzi.com">Pupunzi</a>.</p>
 
     <div id="share" style="position: absolute; left:650px; top:20px">
 
@@ -314,9 +313,29 @@ function miniAudioPlayer_options_page()
                     echo' selected';
                 }?>>green
                 </option>
+                <option value='-' disabled>______________</option>
+                <option value="mySkin" <?php if ($miniAudioPlayer_skin == "mySkin") {
+                    echo' selected';
+                }?>>mySkin (customizable)
+                </option>
             </select>
 
             <p>Set the palyer skin</p>
+            <p>The "mySkin" option let you customize the aspect of the player modifying the below CSS.</p>
+        </td>
+    </tr>
+
+    <tr valign="top">
+        <th scope="row">change the "mySkin" appearance:</th>
+        <td>
+            <p>Customize the below CSS to modify the "mySkin" appearance. </p>
+            <p>You can use the <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank">online miniAudioPlayer skin maker</a> to generate the CSS for your player skin (give <b>mySkin</b> as name). </p>
+            <br><textarea class="meta_skin_css"
+                      name="miniAudioPlayer_custom_skin_css"
+                      cols="50"
+                      value="<?php esc_html_e( $miniAudioPlayer_custom_skin_css ); ?>"
+                      style="height: 450px; width: 580px; font-size: 12px"
+                ><?php esc_html_e( $miniAudioPlayer_custom_skin_css ); ?></textarea>
         </td>
     </tr>
 
@@ -341,6 +360,7 @@ function miniAudioPlayer_options_page()
                    }?>"/>
 
             <p>Set the player width in pixel</p>
+            <p>The size is relative to the inner part of the player; if you want you can set the with as percentage, in that case the player will be adaptive for different screen resolutions, included mobile devices.</p>
         </td>
     </tr>
 
@@ -457,9 +477,9 @@ function miniAudioPlayer_options_page()
                    value="true" <?php if ($miniAudioPlayer_download_security == "true") {
                 echo' checked="checked" ';
             }
-                if ($miniAudioPlayer_download != "true") {
-                    echo' disabled="disabled"';
-                }?>/><label for="miniAudioPlayer_download_security" style="color:gray"> Only for registered users</label>
+            if ($miniAudioPlayer_download != "true") {
+                echo' disabled="disabled"';
+            }?>/><label for="miniAudioPlayer_download_security" style="color:gray"> Only for registered users</label>
             <p>check to allow downloads only for registered user</p>
         </td>
     </tr>
@@ -479,7 +499,7 @@ function miniAudioPlayer_options_page()
     <p>If you are using others HTML5 audio player plug-ins (like Haiku) there could be conflicts with
         mb.miniAudioPlayer. You should deactivete the others befor using this.</p>
     <input type="hidden" name="page_options"
-           value="miniAudioPlayer_donate, miniAudioPlayer_getMetadata, miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_animate, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew, miniAudioPlayer_excluded, miniAudioPlayer_download, miniAudioPlayer_download_security, miniAudioPlayer_customizer"/>
+           value="miniAudioPlayer_donate, miniAudioPlayer_getMetadata, miniAudioPlayer_width, miniAudioPlayer_skin, miniAudioPlayer_animate, miniAudioPlayer_volume, miniAudioPlayer_showVolumeLevel, miniAudioPlayer_showTime, miniAudioPlayer_showRew, miniAudioPlayer_excluded, miniAudioPlayer_download, miniAudioPlayer_download_security, miniAudioPlayer_customizer, miniAudioPlayer_custom_skin_css"/>
     <input type="hidden" name="action" value="update"/>
 
     <p class="submit">

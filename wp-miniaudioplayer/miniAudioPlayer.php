@@ -4,11 +4,11 @@ Plugin Name: mb.miniAudioPlayer
 Plugin URI: http://wordpress.org/extend/plugins/wp-miniaudioplayer/
 Description: Transform your mp3 audio file link into a nice, small light player
 Author: Pupunzi (Matteo Bicocchi)
-Version: 1.4.5
+Version: 1.4.6
 Author URI: http://pupunzi.com
 */
 
-define("MINIAUDIOPLAYER_VERSION", "1.4.5");
+define("MINIAUDIOPLAYER_VERSION", "1.4.6");
 register_activation_hook( __FILE__, 'miniAudioPlayer_install' );
 
 function miniAudioPlayer_install() {
@@ -28,6 +28,7 @@ function miniAudioPlayer_install() {
     add_option('miniAudioPlayer_download','false');
     add_option('miniAudioPlayer_download_security','false');
     add_option('miniAudioPlayer_customizer','true');
+    add_option('miniAudioPlayer_custom_skin_css','');
 }
 
 $miniAudioPlayer_donate = get_option('miniAudioPlayer_donate');
@@ -45,6 +46,7 @@ $miniAudioPlayer_excluded = get_option('miniAudioPlayer_excluded');
 $miniAudioPlayer_download = get_option('miniAudioPlayer_download');
 $miniAudioPlayer_download_security = get_option('miniAudioPlayer_download_security');
 $miniAudioPlayer_customizer = get_option('miniAudioPlayer_customizer');
+$miniAudioPlayer_custom_skin_css = get_option('miniAudioPlayer_custom_skin_css');
 
 //set up defaults if these fields are empty
 if ($miniAudioPlayer_version != MINIAUDIOPLAYER_VERSION) {$miniAudioPlayer_version = MINIAUDIOPLAYER_VERSION;}
@@ -62,6 +64,46 @@ if (empty($miniAudioPlayer_excluded)) {$miniAudioPlayer_excluded = "map_excluded
 if (empty($miniAudioPlayer_download)) {$miniAudioPlayer_download = "false";}
 if (empty($miniAudioPlayer_download_security)) {$miniAudioPlayer_download_security = "false";}
 if (empty($miniAudioPlayer_customizer)) {$miniAudioPlayer_customizer = "false";}
+if (empty($miniAudioPlayer_custom_skin_css)) {$miniAudioPlayer_custom_skin_css = "/*++++++++++++++++++++++++++++++++++++++++++++++++++
+MAP custom skin: mySkin
+http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html
+
+background: rgba(235, 21, 21, 1)
+icons: rgba(255, 254, 250, 1)
+border: rgba(235, 101, 110, 1)
+borderLeft: rgba(230, 3, 3, 1)
+borderRight: rgba(184, 14, 14, 1)
+mute: rgba(255, 61, 61, 1)
+download: rgba(212, 32, 38, 0.48)
+downloadHover: rgba(255, 3, 3, 1)
+++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+/* Older browser (IE8) not supporting rgba() */
+.mbMiniPlayer.mySkin.shadow table{box-shadow:0 0 3px #1c0606;}
+.mbMiniPlayer.mySkin table span{background-color:#eb1515;}
+.mbMiniPlayer.mySkin table span.map_play{border-left:1px solid #e60303;}
+.mbMiniPlayer.mySkin table span.map_volume{border-right:1px solid #b80e0e;}
+.mbMiniPlayer.mySkin table span.map_volume.mute{color: #ff3d3d;}
+.mbMiniPlayer.mySkin .map_download{color: #d42026;}
+.mbMiniPlayer.mySkin .map_download:hover{color: #ff0303;}
+.mbMiniPlayer.mySkin table span{color: #fffefa;}
+.mbMiniPlayer.mySkin table {border: 1px solid #eb656e !important;}
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+.mbMiniPlayer.mySkin table{background-color:transparent;}
+.mbMiniPlayer.mySkin.shadow table{box-shadow:0 0 3px rgba(28, 6, 6, 0.01);}
+.mbMiniPlayer.mySkin table span{background-color:rgba(235, 21, 21, 1);}
+.mbMiniPlayer.mySkin table span.map_play{border-left:1px solid rgba(230, 3, 3, 1);}
+.mbMiniPlayer.mySkin table span.map_volume{border-right:1px solid rgba(184, 14, 14, 1);}
+.mbMiniPlayer.mySkin table span.map_volume.mute{color: rgba(255, 61, 61, 1);}
+.mbMiniPlayer.mySkin .map_download{color: rgba(212, 32, 38, 0.48);}
+.mbMiniPlayer.mySkin .map_download:hover{color: rgba(255, 3, 3, 1);}
+.mbMiniPlayer.mySkin table span{color: rgba(255, 254, 250, 1);text-shadow: 1px -1px 1px rgba(189, 11, 11, 1)!important;}
+.mbMiniPlayer.mySkin table span{color: rgba(255, 254, 250, 1);}
+.mbMiniPlayer.mySkin table {border: 1px solid rgba(235, 101, 110, 1) !important;}
+.mbMiniPlayer.mySkin table span.map_title{color: #000; text-shadow:none!important}
+/*++++++++++++++++++++++++++++++++++++++++++++++++*/";}
 
 function miniAudioPlayer_action_links($links, $file) {
     static $this_plugin;
@@ -107,9 +149,14 @@ function miniAudioPlayer_init() {
 add_action('init', 'miniAudioPlayer_init');
 
 function miniAudioPlayer_player_head() {
-    global $miniAudioPlayer_getMetadata, $miniAudioPlayer_width,$miniAudioPlayer_skin, $miniAudioPlayer_animate,$miniAudioPlayer_volume,$miniAudioPlayer_autoplay,$miniAudioPlayer_showVolumeLevel,$miniAudioPlayer_showTime,$miniAudioPlayer_showRew;
+    global $miniAudioPlayer_getMetadata, $miniAudioPlayer_width,$miniAudioPlayer_skin, $miniAudioPlayer_animate,$miniAudioPlayer_volume,$miniAudioPlayer_autoplay,$miniAudioPlayer_showVolumeLevel,$miniAudioPlayer_showTime,$miniAudioPlayer_showRew, $miniAudioPlayer_custom_skin_css;
     echo '
 	<!-- start miniAudioPlayer initializer -->
+	
+	<style>
+	'.$miniAudioPlayer_custom_skin_css.'
+	</style>
+
 	<script type="text/javascript">
 
     function initializeMiniAudioPlayer(){

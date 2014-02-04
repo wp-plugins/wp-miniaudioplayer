@@ -98,6 +98,7 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
                     <option value="red">red</option>
                     <option value="gray">gray</option>
                     <option value="green">green</option>
+                    <option value="mySkin">mySkin</option>
                 </select>
                 <span class="help-inline">Set the skin color for the player</span>
             </label>

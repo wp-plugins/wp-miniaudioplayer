@@ -4,7 +4,7 @@ Contributors: pupunzi
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.3
 Tested up to: 3.8
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
 Transform your mp3 audio files into a nice, small light HTML5 player
@@ -77,6 +77,10 @@ sudo apt-get-install chromium-codecs-ffmpeg-extra
 After that your player should work fine.
 
 == Changelog ==
+
+= 1.4.6 =
+* Feature: You can now create your own skin modifying the "mySkin" css from the plug-in setting page; you can also use the online "miniAudioPlayer Skin Maker" tool (http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html).
+* feature: The plug-in button in the TinyMCE editor is more clever as it doesn't disappear anymore if you don't place the cursor on a link to an mp3 file; it just advice you what to do :-).
 
 = 1.4.5 =
 * Bug fixed: On certain server configuration the editor window didn't save the customizations. This should be resolved.
