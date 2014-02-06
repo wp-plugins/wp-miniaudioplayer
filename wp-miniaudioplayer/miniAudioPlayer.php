@@ -128,6 +128,8 @@ add_filter('plugin_action_links', 'miniAudioPlayer_action_links', 10, 2);
 function miniAudioPlayer_init() {
     global $miniAudioPlayer_version;
 
+    load_plugin_textdomain('mbMiniAudioPlayer', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+
     if(isset($_COOKIE['mapdonate']) && $_COOKIE['mapdonate'] === "true"){
         echo '
             <script type="text/javascript">

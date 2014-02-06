@@ -67,102 +67,102 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
 
     <form class="form-stacked" action="#">
         <fieldset>
-            <legend>mb.miniAudioPlayer parameters:</legend>
+            <legend><?php _e('mb.miniAudioPlayer parameters', 'mbMiniAudioPlayer'); ?>:</legend>
 
             <label>
-                <span class="label">Don't render: </span>
+                <span class="label"><?php _e('Don’t render', 'mbMiniAudioPlayer'); ?>: </span>
                 <input type="checkbox" name="exclude" value="true"/>
-                <span class="help-inline">check to exclude this link (<?php echo $exclude_class ?>)</span>
+                <span class="help-inline"><?php _e('check to exclude this link', 'mbMiniAudioPlayer'); ?> (<?php echo $exclude_class ?>)</span>
             </label>
 
             <label>
-                <span class="label">Audio url <span style="color:red">*</span> : </span>
+                <span class="label"><?php _e('Audio url', 'mbMiniAudioPlayer'); ?> <span style="color:red">*</span> : </span>
                 <input type="text" name="url" class="span5"/>
-                <span class="help-inline">A valid .mp3 url</span>
+                <span class="help-inline"><?php _e('A valid .mp3 url', 'mbMiniAudioPlayer'); ?></span>
             </label>
 
             <label>
-                <span class="label">Audio title : </span>
+                <span class="label"><?php _e('Audio title', 'mbMiniAudioPlayer'); ?>: </span>
                 <input type="text" name="audiotitle" class="span5"/>
-                <span class="help-inline">The audio title</span><br>
+                <span class="help-inline"><?php _e('The audio title', 'mbMiniAudioPlayer'); ?></span><br>
                 <span class="label"> </span>
-                <button id="metadata" onclick="getFromMetatags();$(this).hide(); return false" style="color: gray" >get the title from meta-data</button>
+                <button id="metadata" onclick="getFromMetatags();$(this).hide(); return false" style="color: gray" ><?php _e('Get the title from meta-data', 'mbMiniAudioPlayer'); ?></button>
             </label>
 
             <label>
-                <span class="label">Skin:</span>
+                <span class="label"><?php _e('Skin', 'mbMiniAudioPlayer'); ?>:</span>
                 <select name="skin">
-                    <option value="black">black</option>
-                    <option value="blue">blue</option>
-                    <option value="orange">orange</option>
-                    <option value="red">red</option>
-                    <option value="gray">gray</option>
-                    <option value="green">green</option>
-                    <option value="mySkin">mySkin</option>
+                    <option value="black"><?php _e('black', 'mbMiniAudioPlayer'); ?></option>
+                    <option value="blue"><?php _e('blue', 'mbMiniAudioPlayer'); ?></option>
+                    <option value="orange"><?php _e('orange', 'mbMiniAudioPlayer'); ?></option>
+                    <option value="red"><?php _e('red', 'mbMiniAudioPlayer'); ?></option>
+                    <option value="gray"><?php _e('gray', 'mbMiniAudioPlayer'); ?></option>
+                    <option value="green"><?php _e('green', 'mbMiniAudioPlayer'); ?></option>
+                    <option value="mySkin"><?php _e('mySkin', 'mbMiniAudioPlayer'); ?></option>
                 </select>
-                <span class="help-inline">Set the skin color for the player</span>
+                <span class="help-inline"><?php _e('Set the skin color for the player', 'mbMiniAudioPlayer'); ?></span>
             </label>
 
             <label>
-                <span class="label">Animate:</span>
+                <span class="label"><?php _e('Animate', 'mbMiniAudioPlayer'); ?>:</span>
                 <input type="checkbox" name="animate" value="true"/>
-                <span class="help-inline">Check to activate the opening / closing animation</span>
+                <span class="help-inline"><?php _e('Check to activate the opening / closing animation', 'mbMiniAudioPlayer'); ?></span>
             </label>
 
             <label>
-                <span class="label">Width: </span>
+                <span class="label"><?php _e('Width', 'mbMiniAudioPlayer'); ?>: </span>
                 <input type="text" name="width" class="span6"/>
-                <span class="help-inline">Set the player width</span>
+                <span class="help-inline"><?php _e('Set the player width', 'mbMiniAudioPlayer'); ?></span>
             </label>
 
             <label>
-                <span class="label">Volume: </span>
+                <span class="label"><?php _e('Volume', 'mbMiniAudioPlayer'); ?>: </span>
                 <input type="text" name="volume" class="span6"/>
-                <span class="help-inline">(from 1 to 10) Set the player initial volume</span>
+                <span class="help-inline"><?php _e('(from 1 to 10) Set the player initial volume', 'mbMiniAudioPlayer'); ?></span>
             </label>
 
             <label>
-                <span class="label">Autoplay: </span>
+                <span class="label"><?php _e('Autoplay', 'mbMiniAudioPlayer'); ?>: </span>
                 <input type="checkbox" name="autoplay" value="true"/>
-                <span class="help-inline">check to start playing on page load</span>
+                <span class="help-inline"><?php _e('check to start playing on page load', 'mbMiniAudioPlayer'); ?></span>
             </label>
 
             <label>
-                <span class="label">Loop: </span>
+                <span class="label"><?php _e('Loop', 'mbMiniAudioPlayer'); ?>: </span>
                 <input type="checkbox" name="loop" value="false"/>
-                <span class="help-inline">check to loop the sound</span>
+                <span class="help-inline"><?php _e('check to loop the sound', 'mbMiniAudioPlayer'); ?></span>
             </label>
 
-            <h3>Show/Hide</h3>
+            <h3><?php _e('Show/Hide', 'mbMiniAudioPlayer'); ?></h3>
 
             <label>
-                <span class="label">Volume control: </span>
+                <span class="label"><?php _e('Volume control', 'mbMiniAudioPlayer'); ?>: </span>
                 <input type="checkbox" name="showVolumeLevel" value="true"/>
-                <span class="help-inline">check to show the volume control</span>
+                <span class="help-inline"><?php _e('Check to show the volume control', 'mbMiniAudioPlayer'); ?></span>
             </label>
 
             <label>
-                <span class="label">Time control: </span>
+                <span class="label"><?php _e('Time control', 'mbMiniAudioPlayer'); ?>: </span>
                 <input type="checkbox" name="showTime" value="true"/>
-                <span class="help-inline">check to show the time control</span>
+                <span class="help-inline"><?php _e('Check to show the time control', 'mbMiniAudioPlayer'); ?></span>
             </label>
 
             <label>
-                <span class="label">Rewind control: </span>
+                <span class="label"><?php _e('Rewind control', 'mbMiniAudioPlayer'); ?>: </span>
                 <input type="checkbox" name="showRew" value="true"/>
-                <span class="help-inline">check to show the rewind control</span>
+                <span class="help-inline"><?php _e('Check to show the rewind control', 'mbMiniAudioPlayer'); ?></span>
             </label>
 
             <label>
-                <span class="label">Downloadable: </span>
+                <span class="label"><?php _e('Downloadable', 'mbMiniAudioPlayer'); ?>: </span>
                 <input type="checkbox" name="downloadable" value="false" onclick="manageSecurity(this)"/>
-                <span class="help-inline">check to show the download button</span><br>
+                <span class="help-inline"><?php _e('Check to show the download button', 'mbMiniAudioPlayer'); ?></span><br>
             </label>
 
             <label>
-                <span class="label" style="font-weight: normal; color: gray">Only registered: </span>
+                <span class="label" style="font-weight: normal; color: gray"><?php _e('Only registered', 'mbMiniAudioPlayer'); ?>: </span>
                 <input type="checkbox" name="downloadablesecurity" value="false"/>
-                <span class="help-inline">Check to limit downloads to registered users</span>
+                <span class="help-inline"><?php _e('Check to limit downloads to registered users', 'mbMiniAudioPlayer'); ?></span>
             </label>
 
             <script>
@@ -200,14 +200,14 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
     <div id="donate">
         <div id="donateContent">
             <h2>mb.miniAudioPlayer</h2>
-            <p >If you like it and you are using it then you should consider a donation <br> (€15,00 or more) :-)</p>
+            <p ><?php _e('If you like it and you are using it then you should consider a donation <br> (€15,00 or more) :-)', 'mbMiniAudioPlayer'); ?></p>
             <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y" target="_blank" onclick="donate();">
                     <img border="0" alt="PayPal" src="https://www.paypalobjects.com/en_US/IT/i/btn/btn_donateCC_LG.gif">
                 </a></p>
             <p id="timer">&nbsp;</p>
             <br>
             <br>
-            <button onclick="donate()">I already donate</button>
+            <button onclick="donate()"><?php _e('I already donate', 'mbMiniAudioPlayer'); ?></button>
         </div>
     </div>
     <script type="text/javascript">
