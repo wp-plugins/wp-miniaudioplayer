@@ -175,7 +175,12 @@ function miniAudioPlayer_player_head() {
 				showRew:'.$miniAudioPlayer_showRew.',
 				downloadable:'.canDownload().',
 				downloadPage:"'.plugins_url( 'map_download.php', __FILE__ ).'",
-				swfPath:"'.plugins_url( '/js/', __FILE__ ).'"
+				swfPath:"'.plugins_url( '/js/', __FILE__ ).'",
+				onReady: function(player, $controlsBox){
+				   if(player.opt.downloadable && player.opt.downloadablesecurity && !'.userCanRead().'){
+				        jQuery(".map_download", $controlsBox).remove();
+				   }
+				}
 		});
     }
 
@@ -211,6 +216,13 @@ function canDownload(){
     }else{
         return 'false';
     }
+}
+
+function userCanRead(){
+    if (current_user_can('read') == 1)
+        return 'true';
+    else
+        return 'false';
 }
 // ends miniAudioPlayer_player_head function
 

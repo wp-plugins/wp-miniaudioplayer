@@ -137,6 +137,7 @@
 			downloadablesecurity: false,
 			downloadPage        :null,
 			swfPath             : "inc/",
+			onReady             : function () {},
 			onPlay              : function () {},
 			onEnd               : function () {}
 		},
@@ -320,6 +321,10 @@
 							jQuery.mbMiniPlayer.getID3(player);
 						}
 
+						if(typeof player.opt.onReady == "function"){
+							player.opt.onReady(player, $controlsBox);
+						}
+
 						function animatePlayer(anim) {
 
 							if (anim == undefined)
@@ -486,6 +491,7 @@
 								$volumeBox.removeClass("mute");
 							});
 						});
+
 						// autoplay can't work on devices
 						if (!jQuery.mbMiniPlayer.isMobile && player.opt.autoplay && ((player.opt.playAlone && jQuery("[isPlaying=true]").length == 0) || !player.opt.playAlone))
 							$playBox.trigger(jQuery.mbMiniPlayer.eventEnd);
