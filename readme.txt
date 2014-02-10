@@ -29,6 +29,8 @@ Links:
 * pupunzi blog: http://pupunzi.open-lab.com
 * pupunzi site: http://pupunzi.com
 
+<b>From version 1.4.x you can customize your player appearance by using the <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html">on-line miniAudioPlayer Skin Editor</a>.</b>
+
 If you are using others HTML5 audio plugins (like Haiku) there could be conflicts with mb.miniAudioPlayer. You should deactivete the others befor using it.
 
 Other WP plugins:
