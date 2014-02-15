@@ -227,10 +227,10 @@ a.audio{
   padding:0 ;
   background-color:white ;
   height:0 ;
-  vertical-align:bottom !important;
+  vertical-align:middle !important;
   opacity:.1 ;
   cursor:pointer !important;
-  top:-2px !important;
+  /*top:-2px !important;*/
 }
 
 .mbMiniPlayer table span.map_volumeLevel a:hover{

@@ -3,7 +3,7 @@
  *  jquery.mb.components
  *  file: jquery.mb.miniPlayer.js
  *
- *  Copyright (c) 2001-2013. Matteo Bicocchi (Pupunzi);
+ *  Copyright (c) 2001-2014. Matteo Bicocchi (Pupunzi);
  *  Open lab srl, Firenze - Italy
  *  email: matteo@open-lab.com
  *  site: 	http://pupunzi.com
@@ -14,7 +14,7 @@
  *  http://www.opensource.org/licenses/mit-license.php
  *  http://www.gnu.org/licenses/gpl.html
  *
- *  last modified: 24/12/13 19.37
+ *  last modified: 27/01/14 20.07
  *  *****************************************************************************
  */
 
@@ -27,28 +27,16 @@
 
 	/*Browser detection patch*/
 	if (!jQuery.browser) {
-		jQuery.browser = {};
-		jQuery.browser.mozilla = !1;
-		jQuery.browser.webkit = !1;
-		jQuery.browser.opera = !1;
-		jQuery.browser.msie = !1;
+		jQuery.browser = {}, jQuery.browser.mozilla = !1, jQuery.browser.webkit = !1, jQuery.browser.opera = !1, jQuery.browser.safari = !1, jQuery.browser.chrome = !1, jQuery.browser.msie = !1;
 		var nAgt = navigator.userAgent;
-		jQuery.browser.ua = nAgt;
-		jQuery.browser.name = navigator.appName;
-		jQuery.browser.fullVersion = "" + parseFloat(navigator.appVersion);
-		jQuery.browser.majorVersion = parseInt(navigator.appVersion, 10);
+		jQuery.browser.ua = nAgt, jQuery.browser.name = navigator.appName, jQuery.browser.fullVersion = "" + parseFloat(navigator.appVersion), jQuery.browser.majorVersion = parseInt(navigator.appVersion, 10);
 		var nameOffset, verOffset, ix;
 		if (-1 != (verOffset = nAgt.indexOf("Opera")))jQuery.browser.opera = !0, jQuery.browser.name = "Opera", jQuery.browser.fullVersion = nAgt.substring(verOffset + 6), -1 != (verOffset = nAgt.indexOf("Version")) && (jQuery.browser.fullVersion = nAgt.substring(verOffset + 8)); else if (-1 != (verOffset = nAgt.indexOf("MSIE")))jQuery.browser.msie = !0, jQuery.browser.name = "Microsoft Internet Explorer", jQuery.browser.fullVersion = nAgt.substring(verOffset + 5); else if (-1 != nAgt.indexOf("Trident")) {
-			jQuery.browser.msie = !0;
-			jQuery.browser.name = "Microsoft Internet Explorer";
+			jQuery.browser.msie = !0, jQuery.browser.name = "Microsoft Internet Explorer";
 			var start = nAgt.indexOf("rv:") + 3, end = start + 4;
 			jQuery.browser.fullVersion = nAgt.substring(start, end)
-		} else-1 != (verOffset = nAgt.indexOf("Chrome")) ? (jQuery.browser.webkit = !0, jQuery.browser.name = "Chrome", jQuery.browser.fullVersion = nAgt.substring(verOffset + 7)) : -1 != (verOffset = nAgt.indexOf("Safari")) ? (jQuery.browser.webkit = !0, jQuery.browser.name = "Safari", jQuery.browser.fullVersion = nAgt.substring(verOffset + 7), -1 != (verOffset = nAgt.indexOf("Version")) && (jQuery.browser.fullVersion = nAgt.substring(verOffset + 8))) : -1 != (verOffset = nAgt.indexOf("AppleWebkit")) ? (jQuery.browser.webkit = !0, jQuery.browser.name = "Safari", jQuery.browser.fullVersion = nAgt.substring(verOffset + 7), -1 != (verOffset = nAgt.indexOf("Version")) && (jQuery.browser.fullVersion = nAgt.substring(verOffset + 8))) : -1 != (verOffset = nAgt.indexOf("Firefox")) ? (jQuery.browser.mozilla = !0, jQuery.browser.name = "Firefox", jQuery.browser.fullVersion = nAgt.substring(verOffset + 8)) : (nameOffset = nAgt.lastIndexOf(" ") + 1) < (verOffset = nAgt.lastIndexOf("/")) && (jQuery.browser.name = nAgt.substring(nameOffset, verOffset), jQuery.browser.fullVersion = nAgt.substring(verOffset + 1), jQuery.browser.name.toLowerCase() == jQuery.browser.name.toUpperCase() && (jQuery.browser.name = navigator.appName));
-		-1 != (ix = jQuery.browser.fullVersion.indexOf(";")) && (jQuery.browser.fullVersion = jQuery.browser.fullVersion.substring(0, ix));
-		-1 != (ix = jQuery.browser.fullVersion.indexOf(" ")) && (jQuery.browser.fullVersion = jQuery.browser.fullVersion.substring(0, ix));
-		jQuery.browser.majorVersion = parseInt("" + jQuery.browser.fullVersion, 10);
-		isNaN(jQuery.browser.majorVersion) && (jQuery.browser.fullVersion = "" + parseFloat(navigator.appVersion), jQuery.browser.majorVersion = parseInt(navigator.appVersion, 10));
-		jQuery.browser.version = jQuery.browser.majorVersion
+		} else-1 != (verOffset = nAgt.indexOf("Chrome")) ? (jQuery.browser.webkit = !0, jQuery.browser.chrome = !0, jQuery.browser.name = "Chrome", jQuery.browser.fullVersion = nAgt.substring(verOffset + 7)) : -1 != (verOffset = nAgt.indexOf("Safari")) ? (jQuery.browser.webkit = !0, jQuery.browser.safari = !0, jQuery.browser.name = "Safari", jQuery.browser.fullVersion = nAgt.substring(verOffset + 7), -1 != (verOffset = nAgt.indexOf("Version")) && (jQuery.browser.fullVersion = nAgt.substring(verOffset + 8))) : -1 != (verOffset = nAgt.indexOf("AppleWebkit")) ? (jQuery.browser.webkit = !0, jQuery.browser.name = "Safari", jQuery.browser.fullVersion = nAgt.substring(verOffset + 7), -1 != (verOffset = nAgt.indexOf("Version")) && (jQuery.browser.fullVersion = nAgt.substring(verOffset + 8))) : -1 != (verOffset = nAgt.indexOf("Firefox")) ? (jQuery.browser.mozilla = !0, jQuery.browser.name = "Firefox", jQuery.browser.fullVersion = nAgt.substring(verOffset + 8)) : (nameOffset = nAgt.lastIndexOf(" ") + 1) < (verOffset = nAgt.lastIndexOf("/")) && (jQuery.browser.name = nAgt.substring(nameOffset, verOffset), jQuery.browser.fullVersion = nAgt.substring(verOffset + 1), jQuery.browser.name.toLowerCase() == jQuery.browser.name.toUpperCase() && (jQuery.browser.name = navigator.appName));
+		-1 != (ix = jQuery.browser.fullVersion.indexOf(";")) && (jQuery.browser.fullVersion = jQuery.browser.fullVersion.substring(0, ix)), -1 != (ix = jQuery.browser.fullVersion.indexOf(" ")) && (jQuery.browser.fullVersion = jQuery.browser.fullVersion.substring(0, ix)), jQuery.browser.majorVersion = parseInt("" + jQuery.browser.fullVersion, 10), isNaN(jQuery.browser.majorVersion) && (jQuery.browser.fullVersion = "" + parseFloat(navigator.appVersion), jQuery.browser.majorVersion = parseInt(navigator.appVersion, 10)), jQuery.browser.version = jQuery.browser.majorVersion
 	}
 
 	/*******************************************************************************
@@ -116,8 +104,8 @@
 			volumeMute: "Vm"
 		},
 		defaults: {
-			ogg                 :null,
-			m4a                 :null,
+			ogg                 : null,
+			m4a                 : null,
 			width               : 150,
 			skin                : "black", // available: black, blue, orange, red, gray or use the skinMaker tool to create your.
 			volume              : .5,
@@ -135,7 +123,7 @@
 			addShadow           : true,
 			downloadable        : false,
 			downloadablesecurity: false,
-			downloadPage        :null,
+			downloadPage        : null,
 			swfPath             : "inc/",
 			onReady             : function () {},
 			onPlay              : function () {},
@@ -252,6 +240,12 @@
 
 				var fileUrl = encodeURI(player.opt.mp3 || player.opt.m4a);
 				var fileExtension = fileUrl.substr((Math.max(0, fileUrl.lastIndexOf(".")) || Infinity) + 1);
+
+				//if there's a querystring remove it
+				if(fileExtension.indexOf("?")>=0){
+					fileExtension = fileExtension.split("?")[0];
+				}
+
 				var fileName = encodeURI(fileUrl.replace("."+fileExtension, "").split("/").pop());
 
 				var download = jQuery("<span/>").addClass("map_download").css({display: "inline-block", cursor: "pointer"}).html("d").on(jQuery.mbMiniPlayer.eventEnd,function () {
@@ -275,7 +269,8 @@
 				var $timeBox = jQuery("<span/>").addClass("map_time").html("").hide();
 
 				var $controls = jQuery("<div/>").addClass("map_controls");
-				var $titleBox = jQuery("<span/>").addClass("map_title").html(player.title);
+				var titleText = player.title;
+				var $titleBox = jQuery("<span/>").addClass("map_title").html(titleText);
 				var $progress = jQuery("<div/>").addClass("jp-progress");
 
 				var $loadBar = jQuery("<div/>").addClass("jp-load-bar").attr("id", "loadBar_" + playerID);
@@ -687,13 +682,16 @@
 	jQuery.fn.unselectable = function () {
 		this.each(function () {
 			jQuery(this).css({
-				"-moz-user-select"  : "none",
-				"-khtml-user-select": "none",
-				"user-select"       : "none"
+				"-webkit-user-select": "none",
+				"-moz-user-select": "none",
+				"-ms-user-select": "none",
+				"-o-user-select": "none",
+				"user-select": "none"
 			}).attr("unselectable", "on");
 		});
 		return jQuery(this);
 	};
+
 	//Public method
 	jQuery.fn.mb_miniPlayer = jQuery.mbMiniPlayer.buildPlayer;
 	jQuery.fn.mb_miniPlayer_changeFile = jQuery.mbMiniPlayer.changeFile;
