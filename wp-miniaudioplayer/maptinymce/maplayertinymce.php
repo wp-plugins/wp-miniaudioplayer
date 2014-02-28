@@ -18,10 +18,6 @@ $volume = get_option('miniAudioPlayer_volume');
 $downloadable = get_option('miniAudioPlayer_download');
 $downloadable_security = get_option('miniAudioPlayer_download_security');
 
-/*if (!headers_sent()) {
-    header('Content-Type: text/html; charset='.$charset);
-}*/
-
 if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
 
 ?>
