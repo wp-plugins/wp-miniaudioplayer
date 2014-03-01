@@ -80,6 +80,9 @@ After that your player should work fine.
 
 == Changelog ==
 
+= 1.4.8 =
+* bugFix: Windows 8+ running Chrome behaved as a mobile instead of as a desktop browser.
+
 = 1.4.7 =
 * bugFix: On certain web server the editor window didn't display correctly due to a double HTML header declaration.
 * bugFix: The "download" was ignoring the "only registerd user" option.
