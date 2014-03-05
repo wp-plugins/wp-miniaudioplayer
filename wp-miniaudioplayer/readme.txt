@@ -80,6 +80,9 @@ After that your player should work fine.
 
 == Changelog ==
 
+= 1.4.9 =
+* bugFix: Fixed a bug introduced in the 1.4.8 update that prevent the player to work on IE browser.
+
 = 1.4.8 =
 * bugFix: Windows 8+ running Chrome behaved as a mobile instead of as a desktop browser.
 

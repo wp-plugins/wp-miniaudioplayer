@@ -259,13 +259,11 @@
 					$controlsBox.addClass("shadow");
 				var $layout = "<table cellpadding='0' cellspacing='0' border='0'><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>";
 
-				/*
-				 if(!jQuery("#JPLContainer").length){
-				 var JPLContainer = jQuery("<div/>").attr({id:"JPLContainer"});
-				 jQuery("body").append(JPLContainer);
-				 }
-				 jQuery("#JPLContainer").append($player);
-				 */
+				if(!jQuery("#JPLContainer").length){
+					var JPLContainer = jQuery("<div/>").attr({id:"JPLContainer"}).hide();
+					jQuery("body").append(JPLContainer);
+				}
+				jQuery("#JPLContainer").append($player);
 
 				$master.after($controlsBox);
 				$controlsBox.html($layout);

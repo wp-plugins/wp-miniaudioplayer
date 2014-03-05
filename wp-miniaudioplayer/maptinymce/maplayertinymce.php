@@ -57,7 +57,6 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
         }
     </style>
 
-
 </head>
 <body>
 
@@ -288,14 +287,14 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
         var map_element = $selection.find("a[href *= '.mp3']");
         if (map_element.length){
             selection = ed.selection.select(map_element.get(0),true);
-            $selection = jQuery(selection);
         }else if($selection.prev().is("a[href *= '.mp3']")){
             selection = ed.selection.select($selection.prev().get(0),true);
-            $selection = jQuery(selection);
         }
-        url = document.audioURL = $selection.attr("href");
-        title = $selection.html();
-        isExcluded = $selection.hasClass("<?php echo $exclude_class ?>");
+        $selection = jQuery(selection);
+
+        var url = document.audioURL = $selection.attr("href");
+        var title = $selection.html();
+        var isExcluded = $selection.hasClass("<?php echo $exclude_class ?>");
 
         var $desc = $selection.next(".map_params");
         var metadata = $selection.metadata();
