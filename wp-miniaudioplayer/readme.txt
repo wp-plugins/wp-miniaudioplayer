@@ -80,6 +80,9 @@ After that your player should work fine.
 
 == Changelog ==
 
+= 1.5.2 =
+* Feature: Updated jPlayer to the latest version.
+
 = 1.5.1 =
 * bugFix: if the Wordpress instance was running jQuery 1.8--  mobile devices where not detected.
 
