@@ -1,0 +1,423 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mb.miniAudioPlayer\n"
+"POT-Creation-Date: 2014-02-06 23:37+0100\n"
+"PO-Revision-Date: 2014-02-06 23:39+0100\n"
+"Last-Translator: Pupunzi <matteo@open-lab.com>\n"
+"Language-Team: Pupunzi <matteo@open-lab.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.3\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: miniAudioPlayer-admin.php:93 maptinymce/maplayertinymce.php:203
+msgid ""
+"If you like it and you are using it then you should consider a donation <br> "
+"(€15,00 or more) :-)"
+msgstr ""
+"If you like it and you are using it then you should consider a donation <br> "
+"(€15,00 or more) :-)"
+
+#: miniAudioPlayer-admin.php:103 maptinymce/maplayertinymce.php:210
+msgid "I already donate"
+msgstr "I already donate"
+
+#: miniAudioPlayer-admin.php:197
+msgid "mb.miniAudioPlayer Settings"
+msgstr "mb.miniAudioPlayer Settings"
+
+#: miniAudioPlayer-admin.php:199
+#, php-format
+msgid "You’re using mb.miniAudioPlayer v. %s"
+msgstr "You’re using mb.miniAudioPlayer v. %s"
+
+#: miniAudioPlayer-admin.php:199
+msgid "by"
+msgstr "by"
+
+#: miniAudioPlayer-admin.php:231
+msgid "Thanks for downloading mb.miniAudioPlayer!"
+msgstr "Thanks for downloading mb.miniAudioPlayer!"
+
+#: miniAudioPlayer-admin.php:234
+msgid ""
+"If you like it and you are using it<br>then you should consider a donation "
+"(€15,00 or more) :-)"
+msgstr ""
+"If you like it and you are using it<br>then you should consider a donation "
+"(€15,00 or more) :-)"
+
+#: miniAudioPlayer-admin.php:238
+msgid "If you donate, the start popup will nevermore display"
+msgstr "If you donate, the start popup will nevermore display"
+
+#: miniAudioPlayer-admin.php:241
+msgid "Don’t forget to follow me on twitter"
+msgstr "Don’t forget to follow me on twitter"
+
+#: miniAudioPlayer-admin.php:243
+msgid "Visit my site"
+msgstr "Visit my site"
+
+#: miniAudioPlayer-admin.php:245
+msgid "Visit my blog"
+msgstr "Visit my blog"
+
+#: miniAudioPlayer-admin.php:247
+msgid "Paypal"
+msgstr "Paypal"
+
+#: miniAudioPlayer-admin.php:249
+msgid "donate"
+msgstr "donate"
+
+#: miniAudioPlayer-admin.php:255
+msgid "Subscribe to my mailing list<br>to stay in touch"
+msgstr "Subscribe to my mailing list<br>to stay in touch"
+
+#: miniAudioPlayer-admin.php:266
+msgid "Default settings"
+msgstr "Default settings"
+
+#: miniAudioPlayer-admin.php:268
+msgid ""
+"Here you define the default settings for all the audio links in your "
+"Wordpress site"
+msgstr ""
+"Here you define the default settings for all the audio links in your "
+"Wordpress site"
+
+#: miniAudioPlayer-admin.php:270
+msgid ""
+"You can overwrite the single player settings by selecting the audio link in "
+"the post editor and clicking on the mb.miniAudioPlayer button on the top of "
+"the TinyMCE editor toolbar"
+msgstr ""
+"You can overwrite the single player settings by selecting the audio link in "
+"the post editor and clicking on the mb.miniAudioPlayer button on the top of "
+"the TinyMCE editor toolbar"
+
+#: miniAudioPlayer-admin.php:276 maptinymce/maplayertinymce.php:89
+msgid "Get the title from meta-data"
+msgstr "Get the title from meta-data"
+
+#: miniAudioPlayer-admin.php:283
+msgid "Check to retrieve the title from meta-data"
+msgstr "Check to retrieve the title from meta-data"
+
+#: miniAudioPlayer-admin.php:288
+msgid "Choose the skin color"
+msgstr "Choose the skin color"
+
+#: miniAudioPlayer-admin.php:293 maptinymce/maplayertinymce.php:95
+msgid "black"
+msgstr "black"
+
+#: miniAudioPlayer-admin.php:297 maptinymce/maplayertinymce.php:96
+msgid "blue"
+msgstr "blue"
+
+#: miniAudioPlayer-admin.php:301 maptinymce/maplayertinymce.php:97
+msgid "orange"
+msgstr "orange"
+
+#: miniAudioPlayer-admin.php:305 maptinymce/maplayertinymce.php:98
+msgid "red"
+msgstr "red"
+
+#: miniAudioPlayer-admin.php:309 maptinymce/maplayertinymce.php:99
+msgid "gray"
+msgstr "gray"
+
+#: miniAudioPlayer-admin.php:313 maptinymce/maplayertinymce.php:100
+msgid "green"
+msgstr "green"
+
+#: miniAudioPlayer-admin.php:318
+msgid "mySkin (customizable)"
+msgstr "mySkin (customizable)"
+
+#: miniAudioPlayer-admin.php:322
+msgid "Set the palyer skin"
+msgstr "Set the palyer skin"
+
+#: miniAudioPlayer-admin.php:323
+msgid ""
+"The \"mySkin\" option let you customize the aspect of the player modifying "
+"the below CSS"
+msgstr ""
+"The \"mySkin\" option let you customize the aspect of the player modifying "
+"the below CSS"
+
+#: miniAudioPlayer-admin.php:328
+msgid "change the \"mySkin\" appearance"
+msgstr "change the \"mySkin\" appearance"
+
+#: miniAudioPlayer-admin.php:330
+msgid "Customize the below CSS to modify the \"mySkin\" appearance"
+msgstr "Customize the below CSS to modify the \"mySkin\" appearance"
+
+#: miniAudioPlayer-admin.php:331
+msgid ""
+"You can use the <a href=\"http://pupunzi.com/mb.components/mb."
+"miniAudioPlayer/demo/skinMaker.html\" target=\"_blank\">online "
+"miniAudioPlayer skin maker</a> to generate the CSS for your player skin "
+"(give <b>mySkin</b> as name)"
+msgstr ""
+"You can use the <a href=\"http://pupunzi.com/mb.components/mb."
+"miniAudioPlayer/demo/skinMaker.html\" target=\"_blank\">online "
+"miniAudioPlayer skin maker</a> to generate the CSS for your player skin "
+"(give <b>mySkin</b> as name)"
+
+#: miniAudioPlayer-admin.php:342
+msgid "Player animation"
+msgstr "Player animation"
+
+#: miniAudioPlayer-admin.php:349 maptinymce/maplayertinymce.php:109
+msgid "Check to activate the opening / closing animation"
+msgstr "Check to activate the opening / closing animation"
+
+#: miniAudioPlayer-admin.php:354
+msgid "Set the width"
+msgstr "Set the width"
+
+#: miniAudioPlayer-admin.php:361
+msgid "Set the player width in pixel"
+msgstr "Set the player width in pixel"
+
+#: miniAudioPlayer-admin.php:362
+msgid ""
+"The size is relative to the inner part of the player; if you want you can "
+"set the with as percentage, in that case the player will be adaptive for "
+"different screen resolutions, included mobile devices"
+msgstr ""
+"The size is relative to the inner part of the player; if you want you can "
+"set the with as percentage, in that case the player will be adaptive for "
+"different screen resolutions, included mobile devices"
+
+#: miniAudioPlayer-admin.php:367
+msgid "Set the volume"
+msgstr "Set the volume"
+
+#: miniAudioPlayer-admin.php:392
+msgid "Set the default volume for the player"
+msgstr "Set the default volume for the player"
+
+#: miniAudioPlayer-admin.php:397
+msgid "show volume level"
+msgstr "Show volume level"
+
+#: miniAudioPlayer-admin.php:404
+msgid "Check to show the volume levels"
+msgstr "Check to show the volume levels"
+
+#: miniAudioPlayer-admin.php:409
+msgid "show time info"
+msgstr "Show time info"
+
+#: miniAudioPlayer-admin.php:416
+msgid "Check to show the time info"
+msgstr "Check to show the time info"
+
+#: miniAudioPlayer-admin.php:421
+msgid "Show the Rewind button"
+msgstr "Show the Rewind button"
+
+#: miniAudioPlayer-admin.php:428
+msgid "Check to show the Rewind button"
+msgstr "Check to show the Rewind button"
+
+#: miniAudioPlayer-admin.php:433
+msgid "Exclude audio links with class"
+msgstr "Exclude audio links with class"
+
+#: miniAudioPlayer-admin.php:442
+msgid ""
+"Define the class name for the audio links you don’t want to render as "
+"player; By default is \"map_excluded\""
+msgstr ""
+"Define the class name for the audio links you don’t want to render as "
+"player; By default is \"map_excluded\""
+
+#: miniAudioPlayer-admin.php:443
+msgid ""
+"You can either manually add this class to the audio links you want to "
+"exclude or select the link and check the \"Don’t render\" checkbox of the "
+"popup window in the editor page"
+msgstr ""
+"You can add a mb.YTPlayer to any of your posts via the short code editor "
+"available by clicking the button placed on the button-bar of the post "
+"content editor"
+
+#: miniAudioPlayer-admin.php:450
+msgid "Allow downloads"
+msgstr "Allow downloads"
+
+#: miniAudioPlayer-admin.php:469
+msgid "Check to add a download button closed to the player"
+msgstr "Check to add a download button closed to the player"
+
+#: miniAudioPlayer-admin.php:477
+msgid "Only for registered users"
+msgstr "Only for registered users"
+
+#: miniAudioPlayer-admin.php:478
+msgid "Check to allow downloads only for registered user"
+msgstr "Check to allow downloads only for registered user"
+
+#: miniAudioPlayer-admin.php:484
+msgid "Activate the player customizer in the post editor"
+msgstr ""
+"You can add a mb.YTPlayer to any of your posts via the short code editor "
+"available by clicking the button placed on the button-bar of the post "
+"content editor"
+
+#: miniAudioPlayer-admin.php:487
+msgid ""
+"Check to activate the customization window in the posts and pages TinyMce "
+"editor\""
+msgstr ""
+"Check to activate the customization window in the posts and pages TinyMce "
+"editor\""
+
+#: miniAudioPlayer-admin.php:494
+msgid ""
+"If you are using others HTML5 audio player plug-ins (like Haiku) there could "
+"be conflicts with mb.miniAudioPlayer. You should deactivete the others befor "
+"using this"
+msgstr ""
+"If you are using others HTML5 audio player plug-ins (like Haiku) there could "
+"be conflicts with mb.miniAudioPlayer. You should deactivete the others befor "
+"using this"
+
+#: miniAudioPlayer-admin.php:500
+msgid "Save Changes"
+msgstr "Save Changes"
+
+#: maptinymce/maplayertinymce.php:70
+msgid "mb.miniAudioPlayer parameters"
+msgstr "mb.miniAudioPlayer parameters"
+
+#: maptinymce/maplayertinymce.php:73
+msgid "Don’t render"
+msgstr "Don’t render"
+
+#: maptinymce/maplayertinymce.php:75
+msgid "check to exclude this link"
+msgstr "Check to exclude this link"
+
+#: maptinymce/maplayertinymce.php:79
+msgid "Audio url"
+msgstr "Audio url"
+
+#: maptinymce/maplayertinymce.php:81
+msgid "A valid .mp3 url"
+msgstr "A valid .mp3 url"
+
+#: maptinymce/maplayertinymce.php:85
+msgid "Audio title"
+msgstr "Audio title"
+
+#: maptinymce/maplayertinymce.php:87
+msgid "The audio title"
+msgstr "The audio title"
+
+#: maptinymce/maplayertinymce.php:93
+msgid "Skin"
+msgstr "Skin"
+
+#: maptinymce/maplayertinymce.php:101
+msgid "mySkin"
+msgstr "mySkin"
+
+#: maptinymce/maplayertinymce.php:103
+msgid "Set the skin color for the player"
+msgstr "Set the skin color for the player"
+
+#: maptinymce/maplayertinymce.php:107
+msgid "Animate"
+msgstr "Animate"
+
+#: maptinymce/maplayertinymce.php:113
+msgid "Width"
+msgstr "Width"
+
+#: maptinymce/maplayertinymce.php:115
+msgid "Set the player width"
+msgstr "Set the player width"
+
+#: maptinymce/maplayertinymce.php:119
+msgid "Volume"
+msgstr "Volume"
+
+#: maptinymce/maplayertinymce.php:121
+msgid "(from 1 to 10) Set the player initial volume"
+msgstr "(from 1 to 10) Set the player initial volume"
+
+#: maptinymce/maplayertinymce.php:125
+msgid "Autoplay"
+msgstr "Autoplay"
+
+#: maptinymce/maplayertinymce.php:127
+msgid "check to start playing on page load"
+msgstr "check to start playing on page load"
+
+#: maptinymce/maplayertinymce.php:131
+msgid "Loop"
+msgstr "Loop"
+
+#: maptinymce/maplayertinymce.php:133
+msgid "check to loop the sound"
+msgstr "check to loop the sound"
+
+#: maptinymce/maplayertinymce.php:136
+msgid "Show/Hide"
+msgstr "Show/Hide"
+
+#: maptinymce/maplayertinymce.php:139
+msgid "Volume control"
+msgstr "Volume control"
+
+#: maptinymce/maplayertinymce.php:141
+msgid "Check to show the volume control"
+msgstr "Check to show the volume control"
+
+#: maptinymce/maplayertinymce.php:145
+msgid "Time control"
+msgstr "Time control"
+
+#: maptinymce/maplayertinymce.php:147
+msgid "Check to show the time control"
+msgstr "Check to show the time control"
+
+#: maptinymce/maplayertinymce.php:151
+msgid "Rewind control"
+msgstr "Rewind control"
+
+#: maptinymce/maplayertinymce.php:153
+msgid "Check to show the rewind control"
+msgstr "Check to show the rewind control"
+
+#: maptinymce/maplayertinymce.php:157
+msgid "Downloadable"
+msgstr "Downloadable"
+
+#: maptinymce/maplayertinymce.php:159
+msgid "Check to show the download button"
+msgstr "Check to show the download button"
+
+#: maptinymce/maplayertinymce.php:163
+msgid "Only registered"
+msgstr "Only registered"
+
+#: maptinymce/maplayertinymce.php:165
+msgid "Only registeredCheck to limit downloads to registered users"
+msgstr "Only registeredCheck to limit downloads to registered users"
