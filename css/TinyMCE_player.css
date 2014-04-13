@@ -12,7 +12,7 @@
  *
  ******************************************************************************/
 
-.mb_map{
+.mb_map, a[href*='.mp3']:not(.map_excluded){
   display: inline-block;
   padding: 5px;
   background: #222222;
@@ -22,6 +22,6 @@
   font-weight: bold;
 }
 
-.mb_map:before{
+.mb_map:before, a[href*='.mp3']:not(.map_excluded):before{
   content: "▶ ";
 }

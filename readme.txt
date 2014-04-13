@@ -4,7 +4,7 @@ Contributors: pupunzi
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.3
 Tested up to: 3.8
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
 Transform your mp3 audio files into a nice, small light HTML5 player
@@ -81,7 +81,9 @@ After that your player should work fine.
 == Changelog ==
 
 = 1.5.2 =
-* Features: Updated jPlayer to the latest version.
+* Feature: Updated jPlayer to the latest version.
+* Feature: Added the GA track event also for downloads.
+* Feature: Updated to the latest jquery.mb.CSSAnimate component.
 
 = 1.5.1 =
 * bugFix: if the Wordpress instance was running jQuery 1.8--  mobile devices where not detected.

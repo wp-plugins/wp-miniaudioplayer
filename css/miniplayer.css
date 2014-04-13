@@ -3,7 +3,7 @@
  *  jquery.mb.components
  *  file: miniplayer.css
  *
- *  Copyright (c) 2001-2013. Matteo Bicocchi (Pupunzi);
+ *  Copyright (c) 2001-2014. Matteo Bicocchi (Pupunzi);
  *  Open lab srl, Firenze - Italy
  *  email: matteo@open-lab.com
  *  site: 	http://pupunzi.com
@@ -14,7 +14,7 @@
  *  http://www.opensource.org/licenses/mit-license.php
  *  http://www.gnu.org/licenses/gpl.html
  *
- *  last modified: 18/12/13 1.06
+ *  last modified: 07/01/14 22.50
  *  *****************************************************************************
  */
 
@@ -230,7 +230,6 @@ a.audio{
   vertical-align:middle !important;
   opacity:.1 ;
   cursor:pointer !important;
-  /*top:-2px !important;*/
 }
 
 .mbMiniPlayer table span.map_volumeLevel a:hover{
@@ -249,16 +248,13 @@ a.audio{
 }
 
 .mbMiniPlayer table span.map_play{
-  -moz-border-radius:0 4px 4px 0 !important;
-  -webkit-border-top-right-radius:4px !important;
-  -webkit-border-bottom-right-radius:4px !important;
   border-radius:0 4px 4px 0 !important;
   cursor:pointer !important;
 }
 
 .mbMiniPlayer[isplaying=true] table span.map_play{
   -webkit-animation: playing .7s infinite alternate;
-  -moz-animation: playing .7s infinite alternate;
+  animation: playing .7s infinite alternate;
 }
 
 @keyframes playing {
@@ -288,9 +284,6 @@ a.audio{
 }
 
 .mbMiniPlayer table span.map_volume{
-  -moz-border-radius:4px 0 0 4px !important;
-  -webkit-border-top-left-radius:4px !important;
-  -webkit-border-bottom-left-radius:4px !important;
   border-radius:4px 0 0 4px !important;
   cursor:pointer !important;
   padding-left:6px !important;
