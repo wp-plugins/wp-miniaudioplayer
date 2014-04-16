@@ -10,7 +10,7 @@
 					ed.windowManager.open({
 						url : popUpURL,
 						width : 600,
-						height : 620,
+						height : 820,
 						inline : 1
 					});
 				else
@@ -25,15 +25,17 @@
 
 			ed.onNodeChange.add(function(ed) {
 				var selection = ed.selection.getNode();
-				var btn = ed.controlManager.get("maplayerbutton");
+
+				var btnId = typeof ed.controlManager.buttons != "undefined" ? ed.controlManager.buttons.maplayerbutton._id : ed.controlManager.get("maplayerbutton").id;
+
 				var disable = false;
 				ed.canOpenPopUp = false;
 
-				jQuery("#"+btn.id).css({opacity:.5, border:"1px solid transparent"});
+				jQuery("#"+btnId).css({opacity:.5, border:"1px solid transparent"});
 				if (jQuery(selection).is("a[href *= '.mp3']") || jQuery(selection).find("a[href *= '.mp3']").lenght>0 || jQuery(selection).prev().is("a[href *= '.mp3']")) {
 					ed.canOpenPopUp = true;
 					disable = false;
-					jQuery("#"+btn.id).css({border:"1px solid gray", opacity:1});
+					jQuery("#"+btnId).css({border:"1px solid gray", opacity:1});
 				}
 				ed.controlManager.setDisabled("maplayerbutton", disable);
 
