@@ -34,7 +34,7 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
     <style>
         fieldset span.label{
             display: inline-block;
-            width: 100px;
+            width: 150px;
         }
 
         fieldset label {

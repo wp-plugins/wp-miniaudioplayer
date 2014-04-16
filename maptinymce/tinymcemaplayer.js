@@ -9,8 +9,8 @@
 				if(ed.canOpenPopUp)
 					ed.windowManager.open({
 						url : popUpURL,
-						width : 600,
-						height : 820,
+						width : 900,
+						height : 680,
 						inline : 1
 					});
 				else
