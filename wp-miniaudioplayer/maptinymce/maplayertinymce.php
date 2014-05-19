@@ -119,13 +119,13 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
         <label>
             <span class="label"><?php _e('Autoplay', 'mbMiniAudioPlayer'); ?>: </span>
             <input type="checkbox" name="autoplay" value="true"/>
-            <span class="help-inline"><?php _e('check to start playing on page load', 'mbMiniAudioPlayer'); ?></span>
+            <span class="help-inline"><?php _e('Check to start playing on page load', 'mbMiniAudioPlayer'); ?></span>
         </label>
 
         <label>
             <span class="label"><?php _e('Loop', 'mbMiniAudioPlayer'); ?>: </span>
             <input type="checkbox" name="loop" value="false"/>
-            <span class="help-inline"><?php _e('check to loop the sound', 'mbMiniAudioPlayer'); ?></span>
+            <span class="help-inline"><?php _e('Check to loop the sound', 'mbMiniAudioPlayer'); ?></span>
         </label>
 
         <h3><?php _e('Show/Hide', 'mbMiniAudioPlayer'); ?></h3>

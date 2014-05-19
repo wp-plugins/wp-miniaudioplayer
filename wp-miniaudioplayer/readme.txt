@@ -4,7 +4,7 @@ Contributors: pupunzi
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.3
 Tested up to: 3.9
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
 Transform your mp3 audio files into a nice, small light HTML5 player
@@ -80,6 +80,9 @@ After that your player should work fine.
 
 == Changelog ==
 
+= 1.5.4 =
+* New feature: the plug-in customizer editor will open even if the URL is not explicitally pointing to an MP3 file.
+
 = 1.5.3 =
 * Major update: Updated to solve issue compatibilities with WP 3.9 - Needed if you are updating your Wordpress to the latest 3.9 release.
 
@@ -124,154 +127,8 @@ After that your player should work fine.
 * fixed a bug that could create conflict with other plugins using "string.prototype.asId"
 * Feature: created a more robust map_download.php for the file download that falls back to three methods: fopen(), curl() or readfile() depending on server support.
 
-= 1.4.0 =
-* Download now get file size
-* fixed a font problem on the player
+...
 
-= 1.3.9 =
-* Feature: No more injection of extra code into the tinyMCE while customizing the player.
-* Optimization of the download method both in JS and PHP.
-
-= 1.3.8 =
-* Bug fix: The "Don't render" option was not working anymore.
-* Feature: Removed the gray textarea for the custom player from the post editor.
-
-= 1.3.7 =
-* Bug fix: on multiple Ajax call the player was initialized each time. Solved.
-
-= 1.3.6 =
-* The player initializer is call on every Ajax success callback to show players loaded via Ajax.
-
-
-= 1.3.5 =
-* Updated TinyMCE js header.
-
-= 1.3.4 =
-* Updated CSS for IE10 compatibility.
-
-= 1.3.3 =
-* Bug fix: Updated for IE10 compatibility.
-
-= 1.3.2 =
-* Bug fix: Fixed an issue with the volume bar that was displaying too many bars.
-
-= 1.3.1 =
-* Bug fix: Fixed a bug introduced on v. 1.3.0.
-
-= 1.3.0 =
-* Update: Updated to jPlayer 2.3.0.
-* Updated the CSS file.
-* Introduced the player customization tool (not yet available).
-* Feature: refined the ID3 metatag analyzer.
-
-= 1.2.9 =
-* Bug fix: fixed an event bug.
-* Feature: refined the download to work both with cURL and readfile() methods depending on the web server settings.
-
-= 1.2.8 =
-* Feature: Made a more solid map_download.php to prevent inconsistent downloads.
-
-= 1.2.7 =
-* Feature: Added FAQ section on the plugin page.
-					 Better display of volumes bar.
-					 if the ID3 meta is empty than the original title is used.
-
-= 1.2.6 =
-* Bug fix: If the player was instanced inside a table, the table disappear once the player was stopped.
-
-= 1.2.5 =
-* Removed the base64 encoding from the TinyMCE parameters; this should fix the false positive malicious advice from server that someone had.
-
-= 1.2.2 =
-* Bug fix:
-	Fixed a bug that prevents the player works on IE.
-	Added the "loop" option in the player customization.
-	Setting the width to 0 the player will show in compact mode.
-
-= 1.2.1 =
-* Bug fix:
-	Fixed a bug that prevents the player works if the "downloadable" option was setted to false.
-
-= 1.2 =
-* Features added:
-	Added a new "Get title from metadata" option that will retrieve the title of the audio file from the id3 meta data; it works only if the file is on the same domain and it falls back to the default content if failed.
-
-= 1.1.1 =
-* Bug fix:
-	Fixed a bug in the settings page that prevent the "animate" property to be set.
-
-* Features added:
-	Added the possibility to remove the customization button in the post editor TinyMCE (in some installations this generate a permission bug preventing the post editor to work).
-
-= 1.1 =
-* Features added:
-	1. Added a new parameter to allow download only for registered users (available both on the general settings window and on the post editor player customization window).
-	2. Added a new parameter to set the player always opened (available both on the general settings window and on the post editor player customization window).
-
-= 1.0.1 =
-* Bug fix: solved the inconsistent playing on iOs devices with multiple audio files.
-
-= 1.0 =
-* Fixed a bug that disabled seeking by clicking on the time bar..
-
-= 0.9.9 =
-* Updated for jQuery 1.9 compatibility.
-
-= 0.9.8 =
-* Fixed a potential bug for servers that doesn't allow Camel-case for folders in path.
-
-= 0.9.7 =
-* general bugfix (donate window in TinyMCE)
-
-= 0.9.6 =
-* bug fix: Solved a problem on changing the title of the audio player via the TinyMCE editor window.
-
-= 0.9.5 =
-* Improve: Now you can set the with of the player as percentage; it is not a liquid behaviour as the width will be transformed into pixel unit but it allow a responsive behavior cross devices.
-
-= 0.9.4 =
-* Fix: The name of the downloadable file is now the one of the original file.
-
-= 0.9.3 =
-* bug fix: Prevent conflicts with other components using jPlayer.
-
-= 0.9.2 =
-* bug fix: IE8 didn't read the controls Font face.
-
-= 0.9 =
-* bug fix: solved a major bug that was preventing the correct behaviour within the TinyMCE editor window.
-
-= 0.8 =
-* bug fix: the donate pop up was showing even after the donation.
-* bug fix: the Tiny popup setting didn't work in certain cases.
-
-= 0.7 =
-* added tweet and FB share on plugin settings.
-
-= 0.6 =
-* Better TinyMce Editor (the toolbar button get active only if the cursor is on a .mp3 link.
-* Better download icon.
-
-= 0.5 =
-* Added download action that directly download the audiofile.
-
-= 0.4 =
-* Added "downloadable" property to let download the audio file via a little arrow next to the player.
-* Added "exclude" property to exclude a link from the rendering of the player.
-Both are available as general options or as specific option via the popup window in the post editor TinyMCE.
-* refined the appearance of the player.
-
-= 0.3 =
-* Major bug-fix for the TinyMCE editor plugin --- important update!!
-
-= 0.2 =
-* Added a customize tool in the post/page editor. You can customize the properties for each player by selecting it in the post editor and clicking on the miniAudioPlayer button to edit properties.
-
-= 0.1.2 =
-* Fixed a bug for preferences checks (always true).
-
-= 0.1.1 =
-* Fixed a wrong path for the settings file in the plugin list.
 
 = 0.1 =
 * First release
@@ -308,6 +165,9 @@ So if the player doesn't work on them probably is your Flash plugin that is not 
 = It doesn't work on Ubuntu Chromium =
 
 Due to some codecs missing in the default Ubuntu Chromium install the player will not work. This problem can be resolved by simply by installing that codecs via console:
-sudo apt-get-install chromium-codecs-ffmpeg-extra
-
+sudo apt-get-install chromium-codecs-ffmpeg-extra.
 After that your player should work fine.
+
+= I can't display the download button on touch devices =
+
+The download button is intentionally removed on touch devices as it is impossible to download the file on that devices.
