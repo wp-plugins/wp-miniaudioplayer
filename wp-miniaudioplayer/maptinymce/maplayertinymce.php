@@ -310,7 +310,7 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
             showRew:<?php echo $showRew ?>,
             width:"<?php echo $width ?>",
             skin:"<?php echo $skin ?>",
-            animate:<?php echo $miniAudioPlayer_animate ?>,
+            animate:<?php echo $miniAudioPlayer_animate ? "true" : "false" ?>,
             loop:false,
             downloadable:<?php echo $downloadable ? "true" : "false" ?>,
             downloadable_security:<?php echo $downloadable_security ? "true" : "false" ?>,
