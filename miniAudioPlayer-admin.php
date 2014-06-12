@@ -4,14 +4,12 @@
 // hook in the action for the admin options page
 add_action('admin_menu', 'add_miniAudioPlayer_option_page');
 
-function add_miniAudioPlayer_option_page()
-{
+function add_miniAudioPlayer_option_page(){
     // hook in the options page function
     add_options_page('miniAudioPlayer', 'mb.miniAudioPlayer', 'manage_options', __FILE__, 'miniAudioPlayer_options_page');
 }
 
-function miniAudioPlayer_options_page()
-{ // Output the options page
+function miniAudioPlayer_options_page(){ // Output the options page
     global $miniAudioPlayer_donate, $miniAudioPlayer_getMetadata, $miniAudioPlayer_version, $miniAudioPlayer_width, $miniAudioPlayer_skin, $miniAudioPlayer_animate, $miniAudioPlayer_volume, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_excluded, $miniAudioPlayer_download, $miniAudioPlayer_download_security, $miniAudioPlayer_customizer, $miniAudioPlayer_custom_skin_css ?>
 
     <!--DONATE POPUP-->
