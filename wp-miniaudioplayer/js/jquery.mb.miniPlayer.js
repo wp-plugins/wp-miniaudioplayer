@@ -112,7 +112,7 @@
 
 	jQuery.mbMiniPlayer = {
 		author  : "Matteo Bicocchi",
-		version : "1.7.7",
+		version : "1.7.8",
 		name    : "mb.miniPlayer",
 		isMobile: false,
 
@@ -280,6 +280,10 @@
 					if (typeof _gaq != "undefined" && player.opt.gaTrack)
 						_gaq.push(['_trackEvent', 'Audio', 'map_Download', player.title +" - "+ self.location.href]);
 
+					if (typeof ga != "undefined" && eval(player.opt.gaTrack))
+						ga('send', 'event', 'Audio', 'map_Download', player.title +" - "+ self.location.href);
+
+
 					if(typeof player.opt.onDownload == "function")
 						player.opt.onDownload(player);
 
@@ -438,6 +442,9 @@
 								//add track for Google Analytics
 								if (typeof _gaq != "undefined" && player.opt.gaTrack)
 									_gaq.push(['_trackEvent', 'Audio', 'Play', player.title +" - "+ self.location.href]);
+
+								if (typeof ga != "undefined" && eval(player.opt.gaTrack))
+									ga('send', 'event', 'Audio', 'Play', player.title +" - "+ self.location.href);
 
 								if (typeof player.opt.onPlay == "function")
 									player.opt.onPlay(player);

@@ -4,7 +4,7 @@ Contributors: pupunzi
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.3
 Tested up to: 3.9
-Stable tag: 1.5.5
+Stable tag: 1.5.6
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
 Transform your mp3 audio files into a nice, small light HTML5 player
@@ -79,6 +79,10 @@ sudo apt-get-install chromium-codecs-ffmpeg-extra
 After that your player should work fine.
 
 == Changelog ==
+
+
+= 1.5.6 =
+* New feature: Added support for Google Analytic Universal event tracking; before this update the "play" and the "map_download" events were tracked only if the standard version of GA was present on the page; now they work also if the latest Universal GA is installed.
 
 = 1.5.5 =
 * Bug fix: if the "animate" option was set to false, the editor customizer window throw an error preventing the correct behavior.
