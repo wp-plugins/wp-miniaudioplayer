@@ -159,6 +159,7 @@ if($fp=@fopen($file_url,'rb')){
     curl_close($ch);
 
 }else{
+   // ob_end_flush();
     ob_clean();
     flush();
     @readfile ($file_url) ;

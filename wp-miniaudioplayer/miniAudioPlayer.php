@@ -262,6 +262,3 @@ function add_maplayer_button_script($plugin_array) {
 if ( is_admin() ) {
     require('miniAudioPlayer-admin.php');
 }
-
-//todo: remove the default audio shortcode
-//remove_shortcode( "audio" );
