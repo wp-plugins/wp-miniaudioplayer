@@ -262,6 +262,8 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
 
 <script type="text/javascript">
 
+    var tmpInfo = {};
+
     function getFromMetatags(title){
         if (typeof ID3 == "object") {
             ID3.loadTags(document.audioURL, function () {
@@ -270,13 +272,18 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
                 info.artist = ID3.getTag(document.audioURL, "artist");
                 info.album = ID3.getTag(document.audioURL, "album");
                 info.track = ID3.getTag(document.audioURL, "track");
-                if(info.title)
+                info.size = ID3.getTag(document.audioURL, "size");
+                if(info.title && info.title!=undefined){
                     jQuery("[name='audiotitle']").val(info.title + " - " +info.artist);
-                else
-                    jQuery("[name='audiotitle']").val(title);
+
+                    tmpInfo = info;
+                }else{
+                    $("button#metadata").after("no meta-data available for this file");
+                }
             })
         }
     }
+
 
     // tinyMCEPopup.onInit.add(function(ed) {
     var ed = top.tinymce.activeEditor;
@@ -374,6 +381,10 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
 
             var map_a = "<a id='mbmaplayer_"+new Date().getTime()+"' class=";
             map_a += "\"mb_map " + isExcluded + map_params + "\" ";
+
+            for (var x in tmpInfo){
+                map_a += "meta-"+ x +"=\""+tmpInfo[x]+"\" ";
+            }
             map_a += "href=\""+jQuery("[name='url']").val()+"\">";
             map_a+=jQuery("[name='audiotitle']").val();
             map_a+="</a>";
