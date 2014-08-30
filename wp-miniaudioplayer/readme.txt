@@ -4,7 +4,7 @@ Contributors: pupunzi
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.3
 Tested up to: 3.9
-Stable tag: 1.5.6
+Stable tag: 1.5.7
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
 Transform your mp3 audio files into a nice, small light HTML5 player
@@ -80,6 +80,9 @@ After that your player should work fine.
 
 == Changelog ==
 
+
+= 1.5.7 =
+* Update: Updated the miniAudioPlayer-admin.php using the Wordpress "Settings API".
 
 = 1.5.6 =
 * New feature: Added support for Google Analytic Universal event tracking; before this update the "play" and the "map_download" events were tracked only if the standard version of GA was present on the page; now they work also if the latest Universal GA is installed.
