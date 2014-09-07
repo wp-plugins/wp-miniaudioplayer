@@ -112,7 +112,7 @@ function miniAudioPlayer_options_page(){ // Output the options page
 
             <p><?php _e('If you like it and you are using it then you should consider a donation <br> (€15,00 or more) :-)', 'mbMiniAudioPlayer'); ?></p>
 
-            <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y"
+            <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=V6ZS8JPMZC446&lc=GB&item_name=mb%2eideas&item_number=MBIDEAS&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG_global%2egif%3aNonHosted"
                   target="_blank" onclick="donate()">
                     <img border="0" alt="PayPal" src="https://www.paypalobjects.com/en_US/IT/i/btn/btn_donateCC_LG.gif">
                 </a></p>
@@ -218,7 +218,7 @@ function miniAudioPlayer_options_page(){ // Output the options page
 
         <p id="inlineDonate" style="position: relative; display:block" class="alignrightt">
             <?php _e('If you like it and you are using it<br>then you should consider a donation (€15,00 or more) :-)', 'mbMiniAudioPlayer'); ?><br><br>
-            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y"
+            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=V6ZS8JPMZC446&lc=GB&item_name=mb%2eideas&item_number=MBIDEAS&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG_global%2egif%3aNonHosted"
                target="_blank" onclick="donate()"><img border="0" alt="PayPal"
                                                        src="https://www.paypalobjects.com/en_US/IT/i/btn/btn_donateCC_LG.gif"></a>
             <br><br><i><?php _e('If you donate, the start popup will nevermore display', 'mbMiniAudioPlayer'); ?>.</i><br><br>
@@ -229,7 +229,7 @@ function miniAudioPlayer_options_page(){ // Output the options page
         <p><?php _e('Visit my blog', 'mbMiniAudioPlayer'); ?>: <a href="http://pupunzi.open-lab.com">http://pupunzi.open-lab.com</a></p>
 
         <p id="donateTxt"><?php _e('Paypal', 'mbMiniAudioPlayer'); ?>: <a
-                href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y"
+                href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=V6ZS8JPMZC446&lc=GB&item_name=mb%2eideas&item_number=MBIDEAS&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG_global%2egif%3aNonHosted"
                 target="_blank"><?php _e('donate', 'mbMiniAudioPlayer'); ?></a></p>
     </div>
 
