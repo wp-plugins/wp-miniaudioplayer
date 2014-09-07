@@ -1,6 +1,7 @@
+<?php require('../../../../wp-blog-header.php'); ?>
+
 <!DOCTYPE HTML>
 <?php
-require('../../../../wp-blog-header.php');
 $plugin_version = get_option('mbYTPlayer_version');
 $includes_url = includes_url();
 $plugins_url = plugins_url();
