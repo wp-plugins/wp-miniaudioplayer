@@ -34,7 +34,7 @@
 
 			ed.addButton('maplayerbutton', {
 				title : 'Modify a miniAudioPlayer',
-				image : url + '/maplayerbutton.png',
+				image : url + '/maplayerbutton.svg',
 				cmd : 'maplayerpopup'
 			});
 
@@ -53,7 +53,7 @@
 					ed.isHref = true;
 					ed.isValidURL = true;
 					disable = false;
-					jQuery("#"+btnId).css({border:"1px solid gray", opacity:1});
+					jQuery("#"+btnId).css({opacity:1});
 				} else if(jQuery(selection).is("a") || jQuery(selection).find("a").lenght>0 || jQuery(selection).prev().is("a" )) {
 					ed.isHref = true;
 				}
