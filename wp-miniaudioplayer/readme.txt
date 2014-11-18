@@ -80,10 +80,6 @@ After that your player should work fine.
 
 == Changelog ==
 
-
-= 1.5.8 =
-* Update: ....
-
 = 1.5.7 =
 * Update: Updated the miniAudioPlayer-admin.php using the Wordpress "Settings API".
 
