@@ -15,6 +15,7 @@ $showRew = get_option('miniAudioPlayer_showRew');
 $width = get_option('miniAudioPlayer_width');
 $skin = get_option('miniAudioPlayer_skin');
 $miniAudioPlayer_animate = get_option('miniAudioPlayer_animate');
+$miniAudioPlayer_add_gradient = get_option('miniAudioPlayer_add_gradient');
 $volume = get_option('miniAudioPlayer_volume');
 $downloadable = get_option('miniAudioPlayer_download');
 $downloadable_security = get_option('miniAudioPlayer_download_security');
@@ -97,6 +98,12 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
                 <option value="mySkin"><?php _e('mySkin', 'mbMiniAudioPlayer'); ?></option>
             </select>
             <span class="help-inline"><?php _e('Set the skin color for the player', 'mbMiniAudioPlayer'); ?></span>
+        </label>
+
+        <label>
+            <span class="label"><?php _e('Gradient', 'mbMiniAudioPlayer'); ?>:</span>
+            <input type="checkbox" name="addGradient" value="true"/>
+            <span class="help-inline"><?php  _e('Check to add a gradient to the player skin', 'mbMiniAudioPlayer'); ?></span>
         </label>
 
         <label>
@@ -319,6 +326,7 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
             skin:"<?php echo $skin ?>",
             animate:<?php echo $miniAudioPlayer_animate ? "true" : "false" ?>,
             loop:false,
+            addGradientOverlay: <?php echo $miniAudioPlayer_add_gradient ? "true" : "false" ?>,
             downloadable:<?php echo $downloadable ? "true" : "false" ?>,
             downloadable_security:<?php echo $downloadable_security ? "true" : "false" ?>,
             volume:parseFloat(<?php echo $volume ?>)*10
@@ -371,6 +379,7 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
             map_params+="showVolumeLevel:"+(jQuery("[name='showVolumeLevel']").is(":checked") ? "true" : "false")+", ";
             map_params+="showTime:"+(jQuery("[name='showTime']").is(":checked") ? "true" : "false")+", ";
             map_params+="showRew:"+(jQuery("[name='showRew']").is(":checked") ? "true" : "false")+", ";
+            map_params+="addGradientOverlay:"+(jQuery("[name='addGradient']").is(":checked") ? "true" : "false")+", ";
             map_params+="downloadable:"+(jQuery("[name='downloadable']").is(":checked") ? "true" : "false")+", ";
             map_params+="downloadablesecurity:"+(jQuery("[name='downloadablesecurity']").is(":checked") ? "true" : "false")+", ";
             map_params+="id3: false";

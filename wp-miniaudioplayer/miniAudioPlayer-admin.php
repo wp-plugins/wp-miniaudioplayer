@@ -28,8 +28,8 @@ function register_miniAudioPlayerSettings() {
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_download_security' );
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_customizer' );
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_custom_skin_css' );
+    register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_add_gradient' );
 }
-
 
 function miniAudioPlayer_options_page(){ // Output the options page
     ?>
@@ -309,10 +309,22 @@ function miniAudioPlayer_options_page(){ // Output the options page
     </tr>
 
     <tr valign="top">
+        <th scope="row"><?php _e('Player should have a gradient appearance', 'mbMiniAudioPlayer'); ?>:</th>
+        <td>
+            <input type="checkbox" name="miniAudioPlayer_add_gradient"
+                   value="true" <?php if (get_option('miniAudioPlayer_add_gradient') == "true") {
+                echo' checked="checked"';
+            }?>/>
+
+            <p><?php _e('Check to add a gradient to the player skin', 'mbMiniAudioPlayer'); ?>.</p>
+        </td>
+    </tr>
+
+    <tr valign="top">
         <th scope="row"><?php _e('change the "mySkin" appearance', 'mbMiniAudioPlayer'); ?>:</th>
         <td>
             <p><?php _e('Customize the below CSS to modify the "mySkin" appearance', 'mbMiniAudioPlayer'); ?>. </p>
-            <p><?php _e('You can use the <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank">online miniAudioPlayer skin maker</a> to generate the CSS for your player skin (give <b>mySkin</b> as name)', 'mbMiniAudioPlayer'); ?>. </p>
+            <p><?php _e('You can use the <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinmaker.html" target="_blank">online miniAudioPlayer skin maker</a> to generate the CSS for your player skin (give <b>mySkin</b> as name)', 'mbMiniAudioPlayer'); ?>. </p>
             <br><textarea class="meta_skin_css"
                           name="miniAudioPlayer_custom_skin_css"
                           cols="50"

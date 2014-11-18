@@ -4,7 +4,7 @@ Contributors: pupunzi
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 1.5.7
+Stable tag: 1.5.8
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
 Transform your mp3 audio files into a nice, small light HTML5 player
@@ -80,6 +80,9 @@ After that your player should work fine.
 
 == Changelog ==
 
+
+= 1.5.8 =
+* Update: ....
 
 = 1.5.7 =
 * Update: Updated the miniAudioPlayer-admin.php using the Wordpress "Settings API".
