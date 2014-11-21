@@ -425,7 +425,7 @@
 
 									console.debug(player.width)
 
-									//w = w<40 ? 40 : w;
+									w = w<60 ? 60 : w;
 									$controls.css({display: "block", height: 20}).animate({width:w}, speed);
 								}
 
