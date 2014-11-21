@@ -4,11 +4,10 @@ Contributors: pupunzi
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 1.5.7
+Stable tag: 1.5.8
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
-Transform your mp3 audio files into a nice, small light HTML5 player
-
+Transform your mp3 audio files into a nice, small light HTML5 player.
 == Description ==
 
 **This plug-in let you transform any mp3 file uploaded inside a post into an essential small HTML5 audio player with:**
@@ -21,6 +20,9 @@ Transform your mp3 audio files into a nice, small light HTML5 player
 * play button
 
 [youtube http://www.youtube.com/watch?v=B8Dr4aUNGgo]
+
+**Important!**
+From version 1.5.8 the CSS has been changed; for all the one how have customized the skin they need to recreate their skin from <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank">here</a>.
 
 Links:
 
@@ -79,6 +81,11 @@ sudo apt-get-install chromium-codecs-ffmpeg-extra
 After that your player should work fine.
 
 == Changelog ==
+
+= 1.5.8 =
+* MAJOR UPDATES: From this version the player is built only using DIV elements. The CSS has been changed and if you customized your skin you need to regenerate it!.
+* Feature: better responsiveness on devices.
+* Feature: Customizing the skin you can now increase the size of the player appearance.
 
 = 1.5.7 =
 * Update: Updated the miniAudioPlayer-admin.php using the Wordpress "Settings API".
