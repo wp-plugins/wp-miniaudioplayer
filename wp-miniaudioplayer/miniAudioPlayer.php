@@ -16,7 +16,7 @@ function miniAudioPlayer_install() {
     update_option('miniAudioPlayer_version', MINIAUDIOPLAYER_VERSION);
     add_option('miniAudioPlayer_donate','false');
     add_option('miniAudioPlayer_getMetadata','false');
-    add_option('miniAudioPlayer_width','200');
+    add_option('miniAudioPlayer_width','250');
     add_option('miniAudioPlayer_skin','black');
     add_option('miniAudioPlayer_animate','true');
     add_option('miniAudioPlayer_volume','.5');
@@ -54,7 +54,7 @@ $miniAudioPlayer_add_gradient = get_option('miniAudioPlayer_add_gradient');
 if ($miniAudioPlayer_version != MINIAUDIOPLAYER_VERSION) {$miniAudioPlayer_version = MINIAUDIOPLAYER_VERSION;}
 if (empty($miniAudioPlayer_donate)) {$miniAudioPlayer_donate = "false";}
 if (empty($miniAudioPlayer_getMetadata)) {$miniAudioPlayer_getMetadata = "false";}
-if (empty($miniAudioPlayer_width)) {$miniAudioPlayer_width = "200";}
+if (empty($miniAudioPlayer_width)) {$miniAudioPlayer_width = "250";}
 if (empty($miniAudioPlayer_skin)) {$miniAudioPlayer_skin = "black";}
 if (empty($miniAudioPlayer_animate)) {$miniAudioPlayer_animate = "false";}
 if (empty($miniAudioPlayer_volume)) {$miniAudioPlayer_volume = ".5";}
