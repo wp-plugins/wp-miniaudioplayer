@@ -423,9 +423,7 @@
 
 									var w =  player.width - ($muteBox.outerWidth() + $playBox.outerWidth()+ widthToRemove);
 
-									console.debug(player.width)
-
-									w = w<60 ? 60 : w;
+									w = w<100 ? 100 : w;
 									$controls.css({display: "block", height: 20}).animate({width:w}, speed);
 								}
 
