@@ -4,11 +4,11 @@ Plugin Name: mb.miniAudioPlayer
 Plugin URI: http://wordpress.org/extend/plugins/wp-miniaudioplayer/
 Description: Transform your mp3 audio file link into a nice, small light player. ! IMPORTANT - if you customized the skin for the previous version you need to regenerate it from <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank">here</a>.
 Author: Pupunzi (Matteo Bicocchi)
-Version: 1.5.8
+Version: 1.5.9
 Author URI: http://pupunzi.com
 */
 
-define("MINIAUDIOPLAYER_VERSION", "1.5.8");
+define("MINIAUDIOPLAYER_VERSION", "1.5.9");
 register_activation_hook( __FILE__, 'miniAudioPlayer_install' );
 
 function miniAudioPlayer_install() {
@@ -29,6 +29,7 @@ function miniAudioPlayer_install() {
     add_option('miniAudioPlayer_download_security','false');
     add_option('miniAudioPlayer_customizer','true');
     add_option('miniAudioPlayer_custom_skin_css','');
+    add_option('miniAudioPlayer_custom_skin_name','mySkin');
     add_option('miniAudioPlayer_add_gradient','');
 }
 
@@ -48,6 +49,7 @@ $miniAudioPlayer_download = get_option('miniAudioPlayer_download');
 $miniAudioPlayer_download_security = get_option('miniAudioPlayer_download_security');
 $miniAudioPlayer_customizer = get_option('miniAudioPlayer_customizer');
 $miniAudioPlayer_custom_skin_css = get_option('miniAudioPlayer_custom_skin_css');
+$miniAudioPlayer_custom_skin_name = get_option('miniAudioPlayer_custom_skin_name');
 $miniAudioPlayer_add_gradient = get_option('miniAudioPlayer_add_gradient');
 
 //set up defaults if these fields are empty
@@ -67,6 +69,7 @@ if (empty($miniAudioPlayer_download)) {$miniAudioPlayer_download = "false";}
 if (empty($miniAudioPlayer_download_security)) {$miniAudioPlayer_download_security = "false";}
 if (empty($miniAudioPlayer_customizer)) {$miniAudioPlayer_customizer = "false";}
 if (empty($miniAudioPlayer_add_gradient)) {$miniAudioPlayer_add_gradient = "true";}
+if (empty($miniAudioPlayer_custom_skin_name)) {$miniAudioPlayer_custom_skin_name = "mySkin";}
 if (empty($miniAudioPlayer_custom_skin_css)) {$miniAudioPlayer_custom_skin_css = "/*++++++++++++++++++++++++++++++++++++++++++++++++++
 MAP custom skin: mySkin
 http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html

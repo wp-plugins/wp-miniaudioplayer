@@ -28,6 +28,7 @@ function register_miniAudioPlayerSettings() {
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_download_security' );
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_customizer' );
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_custom_skin_css' );
+    register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_custom_skin_name' );
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_add_gradient' );
 }
 
@@ -297,40 +298,181 @@ function miniAudioPlayer_options_page(){ // Output the options page
                 }?>><?php _e('green', 'mbMiniAudioPlayer'); ?>
                 </option>
                 <option value='-' disabled>______________</option>
-                <option value="mySkin" <?php if (get_option('miniAudioPlayer_skin') == "mySkin") {
+                <option id="skinNameOption" value="<?php echo get_option('miniAudioPlayer_custom_skin_name') ?>" <?php if (get_option('miniAudioPlayer_skin') == get_option('miniAudioPlayer_custom_skin_name')) {
                     echo' selected';
-                }?>><?php _e('mySkin (customizable)', 'mbMiniAudioPlayer'); ?>
-                </option>
+                }?>><?php echo get_option('miniAudioPlayer_custom_skin_name') ?> <?php _e('(customizable)', 'mbMiniAudioPlayer'); ?></option>
             </select>
 
             <p><?php _e('Set the palyer skin', 'mbMiniAudioPlayer'); ?>.</p>
-            <p><?php _e('The "mySkin" option let you customize the aspect of the player modifying the below CSS', 'mbMiniAudioPlayer'); ?>.</p>
+            <p><?php printf( __( 'The "<span class="customSkinName">%1$s</span>" option let you customize the aspect of the player modifying the below CSS or uploading a skin CSS file' ), get_option('miniAudioPlayer_custom_skin_name') ); ?>.</p>
         </td>
     </tr>
 
     <tr valign="top">
+        <th scope="row"><?php  _e( 'change the custom skin appearance' ,'mbMiniAudioPlayer'); ?>:</th>
+        <td>
+            <p><?php printf( __( 'Customize the below CSS to modify the "<span class="customSkinName">%1$s</span>" appearance' ), get_option('miniAudioPlayer_custom_skin_name') ); ?>.</p>
+            <p><?php _e('You can use the <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank">online miniAudioPlayer skin maker</a> to generate and save the CSS for your player skin', 'mbMiniAudioPlayer'); ?>. </p>
+            <br>
+            <p><?php _e('You can upload a CSS file generated from the SkinMaker tool', 'mbMiniAudioPlayer'); ?>. </p>
+            <br>
+            <button onclick="jQuery('#fileToLoad').click(); return false;">upload a saved skin</button>
+            <input type="file" id="fileToLoad" accept="text/css" onchange="jQuery.file.loadText(this,'css',setVarFromLoad)" style="display: none">
+            <p><?php _e('Custom skin name:', 'mbMiniAudioPlayer'); ?>. </p>
+            <input type="text" readonly id="miniAudioPlayer_custom_skin_name" name="miniAudioPlayer_custom_skin_name" value="<?php echo get_option('miniAudioPlayer_custom_skin_name') ?>">
+
+            <script>
+
+                function setVarFromLoad(textFromFileLoaded) {
+
+                    var re = /\/\*{(.*)}\*\//;
+                    var m = textFromFileLoaded.match(re);
+
+                    if(!m){
+                        alert("this is not a miniAudioPlayer skin, sorry.");
+                        return;
+                    }
+
+                    var paramsString = "{" + m[1] + "}";
+                    var params = JSON.parse( paramsString );
+
+
+                    jQuery("#miniAudioPlayer_custom_skin_name").val(params.skinName);
+                    jQuery("#skinNameOption").val(params.skinName).html(params.skinName + " (customizable)");
+                    jQuery(".customSkinName").html(params.skinName);
+
+
+                    jQuery("#customSkinCss").val(textFromFileLoaded);
+
+                }
+
+                jQuery.file = {
+                    defaults:{
+                        type: "txt,html,css"
+                    },
+                    save: function(targetID, defaultExtension, fileName){
+
+                        function getFileExtension ( url ) {
+                            return url.split('.').pop().split(/\#|\?/)[0];
+                        }
+
+                        var fileContent,
+                            textFileAsBlob,
+                            fileNameToSaveAs,
+                            fileExtension,
+                            mimeType,
+                            elToSave = jQuery("#" + targetID);
+
+                        if(elToSave.is("img")) {
+                            fileContent = elToSave.attr("src");
+                            fileExtension = getFileExtension(fileContent);
+                        }else if(elToSave.is("textarea")) {
+                            fileContent = elToSave.val();
+                            fileExtension = defaultExtension || "txt";
+
+                            switch (defaultExtension){
+                                case "txt":
+                                    mimeType = "text/plain";
+                                    break;
+                                case "html":
+                                    mimeType = "text/html";
+                                    break;
+                                case "css":
+                                    mimeType = "text/css";
+                                    break;
+                            }
+
+                            textFileAsBlob = new Blob([fileContent], {type: mimeType});
+                        }
+
+                        fileNameToSaveAs = (fileName || "untitled")+"."+fileExtension;
+                        var downloadLink = document.createElement("a");
+                        downloadLink.download = fileNameToSaveAs;
+                        downloadLink.innerHTML = "Download File";
+                        if (window.webkitURL != null) {
+                            // Chrome allows the link to be clicked
+                            // without actually adding it to the DOM.
+                            downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+                        } else {
+                            // Firefox requires the link to be added to the DOM
+                            // before it can be clicked.
+                            downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+                            downloadLink.onclick = jQuery.file.destroyClickedElement;
+                            downloadLink.style.display = "none";
+                            document.body.appendChild(downloadLink);
+                        }
+                        downloadLink.click();
+                    },
+
+                    destroyClickedElement : function(event){
+                        document.body.removeChild(event.target);
+                    },
+
+                    loadText: function(el, types, callback){
+
+                        var fileName;
+
+                        function test(obj,filter){
+                            var file = obj.value.match(/[^\/\\]+$/gi)[0];
+                            fileName = file.split(".")[0];
+                            var filters = filter.split(",");
+
+                            for (var x in filters){
+                                var newFilter = filters[x].trim();
+
+                                var rx = new RegExp('\\.(' + (newFilter?newFilter:'') + ')$','gi');
+                                var canUpload = false;
+                                if(newFilter && file && file.match(rx)){
+                                    canUpload = true;
+                                    break;
+                                }
+                            }
+                            return canUpload;
+                        }
+
+                        var fileToLoad = el;
+                        var canLoad = test(fileToLoad, types);
+                        if(!canLoad){
+                            alert("check the file types, only "+types+" is accepted");
+                            fileToLoad.value = "";
+                            return;
+                        }
+
+                        fileToLoad = fileToLoad.files[0];
+                        var fileReader = new FileReader();
+                        fileReader.onload = function(fileLoadedEvent){
+                            var textFromFileLoaded = fileLoadedEvent.target.result;
+
+                            if(typeof callback == "function")
+                                callback(textFromFileLoaded);
+                        };
+                        fileReader.readAsText(fileToLoad, "UTF-8");
+                    }
+                };
+
+
+            </script>
+
+            <br>
+            <br>
+            <textarea  id="customSkinCss"
+                       class="meta_skin_css"
+                       name="miniAudioPlayer_custom_skin_css"
+                       cols="50"
+                       value="<?php esc_html_e( get_option('miniAudioPlayer_custom_skin_css ') ); ?>"
+                       style="height: 450px; width: 580px; font-size: 12px"
+                ><?php esc_html_e( get_option('miniAudioPlayer_custom_skin_css ') ); ?></textarea>
+
+        </td>
+    </tr>
+    <tr valign="top">
         <th scope="row"><?php _e('Player should have a gradient appearance', 'mbMiniAudioPlayer'); ?>:</th>
         <td>
-            <input type="checkbox" name="miniAudioPlayer_add_gradient"
-                   value="true" <?php if (get_option('miniAudioPlayer_add_gradient') == "true") {
+            <input type="checkbox" name="miniAudioPlayer_add_gradient" value="true" <?php if (get_option('miniAudioPlayer_add_gradient') == "true") {
                 echo' checked="checked"';
             }?>/>
 
             <p><?php _e('Check to add a gradient to the player skin', 'mbMiniAudioPlayer'); ?>.</p>
-        </td>
-    </tr>
-
-    <tr valign="top">
-        <th scope="row"><?php _e('change the "mySkin" appearance', 'mbMiniAudioPlayer'); ?>:</th>
-        <td>
-            <p><?php _e('Customize the below CSS to modify the "mySkin" appearance', 'mbMiniAudioPlayer'); ?>. </p>
-            <p><?php _e('You can use the <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinmaker.html" target="_blank">online miniAudioPlayer skin maker</a> to generate the CSS for your player skin (give <b>mySkin</b> as name)', 'mbMiniAudioPlayer'); ?>. </p>
-            <br><textarea class="meta_skin_css"
-                          name="miniAudioPlayer_custom_skin_css"
-                          cols="50"
-                          value="<?php esc_html_e( get_option('miniAudioPlayer_custom_skin_css ') ); ?>"
-                          style="height: 450px; width: 580px; font-size: 12px"
-                ><?php esc_html_e( get_option('miniAudioPlayer_custom_skin_css ') ); ?></textarea>
         </td>
     </tr>
 
