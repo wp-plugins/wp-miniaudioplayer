@@ -270,57 +270,16 @@ function miniAudioPlayer_options_page(){ // Output the options page
     </tr>
 
     <tr valign="top">
-        <th scope="row"><?php _e('Choose the skin color', 'mbMiniAudioPlayer'); ?>:</th>
-        <td>
-            <select name="miniAudioPlayer_skin">
-                <option value="black" <?php if (get_option('miniAudioPlayer_skin') == "black") {
-                    echo' selected';
-                }?> ><?php _e('black', 'mbMiniAudioPlayer'); ?>
-                </option>
-                <option value="blue" <?php if (get_option('miniAudioPlayer_skin') == "blue") {
-                    echo' selected';
-                }?>><?php _e('blue', 'mbMiniAudioPlayer'); ?>
-                </option>
-                <option value="orange" <?php if (get_option('miniAudioPlayer_skin') == "orange") {
-                    echo' selected';
-                }?>><?php _e('orange', 'mbMiniAudioPlayer'); ?>
-                </option>
-                <option value="red" <?php if (get_option('miniAudioPlayer_skin') == "red") {
-                    echo' selected';
-                }?>><?php _e('red', 'mbMiniAudioPlayer'); ?>
-                </option>
-                <option value="gray" <?php if (get_option('miniAudioPlayer_skin') == "gray") {
-                    echo' selected';
-                }?>><?php _e('gray', 'mbMiniAudioPlayer'); ?>
-                </option>
-                <option value="green" <?php if (get_option('miniAudioPlayer_skin') == "green") {
-                    echo' selected';
-                }?>><?php _e('green', 'mbMiniAudioPlayer'); ?>
-                </option>
-                <option value='-' disabled>______________</option>
-                <option id="skinNameOption" value="<?php echo get_option('miniAudioPlayer_custom_skin_name') ?>" <?php if (get_option('miniAudioPlayer_skin') == get_option('miniAudioPlayer_custom_skin_name')) {
-                    echo' selected';
-                }?>><?php echo get_option('miniAudioPlayer_custom_skin_name') ?> <?php _e('(customizable)', 'mbMiniAudioPlayer'); ?></option>
-            </select>
+        <th scope="row"><?php  _e( 'Set or edit your custom skin' ,'mbMiniAudioPlayer'); ?>:
 
-            <p><?php _e('Set the palyer skin', 'mbMiniAudioPlayer'); ?>.</p>
-            <p><?php printf( __( 'The "<span class="customSkinName">%1$s</span>" option let you customize the aspect of the player modifying the below CSS or uploading a skin CSS file' ), get_option('miniAudioPlayer_custom_skin_name') ); ?>.</p>
-        </td>
-    </tr>
-
-    <tr valign="top">
-        <th scope="row"><?php  _e( 'change the custom skin appearance' ,'mbMiniAudioPlayer'); ?>:</th>
-        <td>
-            <p><?php printf( __( 'Customize the below CSS to modify the "<span class="customSkinName">%1$s</span>" appearance' ), get_option('miniAudioPlayer_custom_skin_name') ); ?>.</p>
-            <p><?php _e('You can use the <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank">online miniAudioPlayer skin maker</a> to generate and save the CSS for your player skin', 'mbMiniAudioPlayer'); ?>. </p>
-            <br>
             <p><?php _e('You can upload a CSS file generated from the SkinMaker tool', 'mbMiniAudioPlayer'); ?>. </p>
-            <br>
-            <button onclick="jQuery('#fileToLoad').click(); return false;">upload a saved skin</button>
-            <input type="file" id="fileToLoad" accept="text/css" onchange="jQuery.file.loadText(this,'css',setVarFromLoad)" style="display: none">
-            <p><?php _e('Custom skin name:', 'mbMiniAudioPlayer'); ?>. </p>
-            <input type="text" readonly id="miniAudioPlayer_custom_skin_name" name="miniAudioPlayer_custom_skin_name" value="<?php echo get_option('miniAudioPlayer_custom_skin_name') ?>">
 
+            <button onclick="jQuery('#fileToLoad').click(); return false;">upload a saved skin</button>
+
+            <p><?php _e('Or you can copy the code generated from the SkinMaker tool and paste it into the textarea', 'mbMiniAudioPlayer'); ?>. </p>
+            <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank">online miniAudioPlayer skinMaker</a>
+
+            <input type="file" id="fileToLoad" accept="text/css" onchange="jQuery.file.loadText(this,'css',setVarFromLoad)" style="display: none">
             <script>
 
                 function setVarFromLoad(textFromFileLoaded) {
@@ -453,7 +412,12 @@ function miniAudioPlayer_options_page(){ // Output the options page
 
             </script>
 
+        </th>
+        <td>
+            <p><?php printf( __( 'Customize the below CSS to modify the "<span class="customSkinName">%1$s</span>" appearance' ), get_option('miniAudioPlayer_custom_skin_name') ); ?>.</p>
             <br>
+            <p><?php _e('Custom skin name:', 'mbMiniAudioPlayer'); ?>. </p>
+            <input type="text" readonly id="miniAudioPlayer_custom_skin_name" name="miniAudioPlayer_custom_skin_name" value="<?php echo get_option('miniAudioPlayer_custom_skin_name') ?>">
             <br>
             <textarea  id="customSkinCss"
                        class="meta_skin_css"
@@ -465,6 +429,46 @@ function miniAudioPlayer_options_page(){ // Output the options page
 
         </td>
     </tr>
+
+    <tr valign="top">
+        <th scope="row"><?php _e('Choose the skin color', 'mbMiniAudioPlayer'); ?>:</th>
+        <td>
+            <select name="miniAudioPlayer_skin">
+                <option value="black" <?php if (get_option('miniAudioPlayer_skin') == "black") {
+                    echo' selected';
+                }?> ><?php _e('black', 'mbMiniAudioPlayer'); ?>
+                </option>
+                <option value="blue" <?php if (get_option('miniAudioPlayer_skin') == "blue") {
+                    echo' selected';
+                }?>><?php _e('blue', 'mbMiniAudioPlayer'); ?>
+                </option>
+                <option value="orange" <?php if (get_option('miniAudioPlayer_skin') == "orange") {
+                    echo' selected';
+                }?>><?php _e('orange', 'mbMiniAudioPlayer'); ?>
+                </option>
+                <option value="red" <?php if (get_option('miniAudioPlayer_skin') == "red") {
+                    echo' selected';
+                }?>><?php _e('red', 'mbMiniAudioPlayer'); ?>
+                </option>
+                <option value="gray" <?php if (get_option('miniAudioPlayer_skin') == "gray") {
+                    echo' selected';
+                }?>><?php _e('gray', 'mbMiniAudioPlayer'); ?>
+                </option>
+                <option value="green" <?php if (get_option('miniAudioPlayer_skin') == "green") {
+                    echo' selected';
+                }?>><?php _e('green', 'mbMiniAudioPlayer'); ?>
+                </option>
+                <option value='-' disabled>______________</option>
+                <option id="skinNameOption" value="<?php echo get_option('miniAudioPlayer_custom_skin_name') ?>" <?php if (get_option('miniAudioPlayer_skin') == get_option('miniAudioPlayer_custom_skin_name')) {
+                    echo' selected';
+                }?>><?php echo get_option('miniAudioPlayer_custom_skin_name') ?> <?php _e('(customizable)', 'mbMiniAudioPlayer'); ?></option>
+            </select>
+
+            <p><?php _e('Set the palyer skin', 'mbMiniAudioPlayer'); ?>.</p>
+            <p><?php printf( __( 'The "<span class="customSkinName">%1$s</span>" option let you customize the aspect of the player modifying the below CSS or uploading a skin CSS file' ), get_option('miniAudioPlayer_custom_skin_name') ); ?>.</p>
+        </td>
+    </tr>
+
     <tr valign="top">
         <th scope="row"><?php _e('Player should have a gradient appearance', 'mbMiniAudioPlayer'); ?>:</th>
         <td>
