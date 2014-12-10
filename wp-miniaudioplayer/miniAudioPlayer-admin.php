@@ -270,15 +270,13 @@ function miniAudioPlayer_options_page(){ // Output the options page
     </tr>
 
     <tr valign="top">
-        <th scope="row"><?php  _e( 'Set or edit your custom skin' ,'mbMiniAudioPlayer'); ?>:
+        <th scope="row">
 
+            <?php  _e( 'Set or edit your custom skin' ,'mbMiniAudioPlayer'); ?>:
             <p><?php _e('You can upload a CSS file generated from the SkinMaker tool', 'mbMiniAudioPlayer'); ?>. </p>
-
             <button onclick="jQuery('#fileToLoad').click(); return false;">upload a saved skin</button>
-
             <p><?php _e('Or you can copy the code generated from the SkinMaker tool and paste it into the textarea', 'mbMiniAudioPlayer'); ?>. </p>
             <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank">online miniAudioPlayer skinMaker</a>
-
             <input type="file" id="fileToLoad" accept="text/css" onchange="jQuery.file.loadText(this,'css',setVarFromLoad)" style="display: none">
             <script>
 
@@ -586,7 +584,6 @@ function miniAudioPlayer_options_page(){ // Output the options page
         <td>
             <script>
                 function manageSecurity(el){
-
                     var security = jQuery('[name=miniAudioPlayer_download_security]');
                     if(jQuery(el).is(":checked")){
                         security.removeAttr('disabled');
@@ -607,6 +604,7 @@ function miniAudioPlayer_options_page(){ // Output the options page
                    value="true" <?php if (get_option('miniAudioPlayer_download_security') == "true") {
                 echo' checked="checked" ';
             }
+
             if (get_option('miniAudioPlayer_download') != "true") {
                 echo' disabled="disabled"';
             }?>/><label for="miniAudioPlayer_download_security" style="color:gray"><?php _e('Only for registered users', 'mbMiniAudioPlayer'); ?></label>
