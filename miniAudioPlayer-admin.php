@@ -270,15 +270,13 @@ function miniAudioPlayer_options_page(){ // Output the options page
     </tr>
 
     <tr valign="top">
-        <th scope="row"><?php  _e( 'Set or edit your custom skin' ,'mbMiniAudioPlayer'); ?>:
+        <th scope="row">
 
+            <?php  _e( 'Set or edit your custom skin' ,'mbMiniAudioPlayer'); ?>:
             <p><?php _e('You can upload a CSS file generated from the SkinMaker tool', 'mbMiniAudioPlayer'); ?>. </p>
-
             <button onclick="jQuery('#fileToLoad').click(); return false;">upload a saved skin</button>
-
             <p><?php _e('Or you can copy the code generated from the SkinMaker tool and paste it into the textarea', 'mbMiniAudioPlayer'); ?>. </p>
             <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank">online miniAudioPlayer skinMaker</a>
-
             <input type="file" id="fileToLoad" accept="text/css" onchange="jQuery.file.loadText(this,'css',setVarFromLoad)" style="display: none">
             <script>
 
