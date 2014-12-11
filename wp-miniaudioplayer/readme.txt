@@ -75,7 +75,7 @@ to change the player default settings go to the mb.miniAudioPlayer settings pane
 
 **Ubuntu Chromium issue**
 
-Due to some codecs missing in the default Ubuntu Chromium install the player will not work. This problem can be resolved by simply by installing that codecs via console:
+Due to some codecs missing in the default Ubuntu Chromium install the player will not work. This problem can be resolved by simply installing that codecs via console:
 sudo apt-get-install chromium-codecs-ffmpeg-extra
 
 After that your player should work fine.
