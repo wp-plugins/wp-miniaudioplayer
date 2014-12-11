@@ -82,6 +82,9 @@ After that your player should work fine.
 
 == Changelog ==
 
+= 1.6.0 =
+* Bug fix: Solved a Chrome issue where if many player where instanced in a single page it stops working after an arbitrary numbers of playing players.
+
 = 1.5.9 =
 * MAJOR UPDATES: You can now generate a custom skin from the <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html">skinMaker</a> tool, save it as CSS file and upload it from the settings window.
 * The from the skinMaker tool you can now manage also the size of the player.

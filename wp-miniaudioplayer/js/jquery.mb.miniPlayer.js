@@ -78,7 +78,7 @@
 
 	jQuery.mbMiniPlayer = {
 		author  : "Matteo Bicocchi",
-		version : "1.8.1",
+		version : "1.8.2",
 		name    : "mb.miniPlayer",
 		isMobile: false,
 
@@ -90,6 +90,7 @@
 			volume    : "Vm",
 			volumeMute: "Vm"
 		},
+
 		defaults: {
 			ogg                 : null,
 			m4a                 : null,
@@ -118,6 +119,8 @@
 			onReady             : function (player, $controlsBox) {},
 			onPlay              : function (player) {},
 			onEnd               : function (player) {},
+			onPause               : function (player) {},
+			onMute               : function (player) {},
 			onDownload          : function (player) {}
 		},
 
@@ -296,7 +299,7 @@
 					$controlsBox.append(download);
 				}
 
-				var $tds = $controlsBox.find("div").not('.playerTable').unselectable();
+				var $parts = $controlsBox.find("div").not('.playerTable').unselectable();
 
 				var $muteBox = jQuery("<span/>").addClass("map_volume").html(jQuery.mbMiniPlayer.icon.volume);
 				var $volumeLevel = jQuery("<span/>").addClass("map_volumeLevel").html("").hide();
@@ -318,12 +321,12 @@
 				$loadBar.append($playBar);
 				$controls.append($titleBox).append($progress);
 
-				$tds.eq(0).addClass("muteBox").append($muteBox);
-				$tds.eq(1).addClass("volumeLevel").append($volumeLevel).hide();
-				$tds.eq(2).addClass("map_controlsBar").append($controls).hide();
-				$tds.eq(3).addClass("timeBox").append($timeBox).hide();
-				$tds.eq(4).addClass("rewBox").append($rewBox).hide();
-				$tds.eq(5).append($playBox);
+				$parts.eq(0).addClass("muteBox").append($muteBox);
+				$parts.eq(1).addClass("volumeLevel").append($volumeLevel).hide();
+				$parts.eq(2).addClass("map_controlsBar").append($controls).hide();
+				$parts.eq(3).addClass("timeBox").append($timeBox).hide();
+				$parts.eq(4).addClass("rewBox").append($rewBox).hide();
+				$parts.eq(5).append($playBox);
 
 				player.opt.media = {};
 				player.opt.supplied = [];
@@ -423,7 +426,7 @@
 
 									var w =  player.width - ($muteBox.outerWidth() + $playBox.outerWidth()+ widthToRemove);
 
-									w = w<100 ? 100 : w;
+									w = w<60 ? 60 : w;
 									$controls.css({display: "block", height: 20}).animate({width:w}, speed);
 								}
 
@@ -522,6 +525,10 @@
 										jQuery(this).html(jQuery.mbMiniPlayer.icon.volumeMute);
 										player.opt.vol = player.opt.volume;
 										el.jPlayer("volume", 0);
+
+										if(player.opt.onMute == "function")
+											player.opt.onMute(player);
+
 									}
 								}).hover(
 								function () {
@@ -575,7 +582,8 @@
 					swfPath            : player.opt.swfPath,
 					solution           : 'html, flash',
 //					solution           : player.opt.isIE && $.browser.version<11 ? 'flash' : 'html, flash',
-					preload            : jQuery.isMobile ? 'none' : 'metadata',
+//					preload            : jQuery.isMobile ? 'none' : 'metadata',
+					preload            : 'none',
 					cssSelectorAncestor: "#" + playerID, // Remove the ancestor css selector clause
 					cssSelector        : {
 						playBar: "#playBar_" + playerID,
@@ -590,12 +598,16 @@
 							if (isAndroidDefault)
 								return;
 
+							if (player.opt.onEnd == "function")
+								player.opt.onEnd(player);
+
 							if (player.opt.loop)
 								$player.jPlayer("play");
 							else
 								$playBox.trigger(jQuery.mbMiniPlayer.eventEnd);
-							if (typeof player.opt.onEnd == "function")
-								player.opt.onEnd(player);
+							if (typeof player.opt.onPause == "function"){
+								player.opt.onPause(player);
+							}
 
 						})
 						.on(jQuery.jPlayer.event.timeupdate, function (e) {
@@ -649,7 +661,6 @@
 						e.preventDefault();
 						e.stopPropagation();
 					}
-
 				})
 			})
 		},
@@ -767,7 +778,7 @@
 	});
 
 	jQuery.fn.unselectable = function () {
-		this.each(function () {
+		return this.each(function () {
 			jQuery(this).css({
 				"-webkit-user-select": "none",
 				"-moz-user-select": "none",
@@ -776,10 +787,9 @@
 				"user-select": "none"
 			}).attr("unselectable", "on");
 		});
-		return jQuery(this);
 	};
 
-	//Public method
+	//Public methods
 	jQuery.fn.mb_miniPlayer = jQuery.mbMiniPlayer.buildPlayer;
 	jQuery.fn.mb_miniPlayer_changeFile = jQuery.mbMiniPlayer.changeFile;
 	jQuery.fn.mb_miniPlayer_play = jQuery.mbMiniPlayer.play;
