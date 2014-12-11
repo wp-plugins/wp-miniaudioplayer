@@ -121,36 +121,6 @@ After that your player should work fine.
 = 1.5.0 =
 * bugFix: Fixed (Again) a bug introduced in the 1.4.8 update that prevent the player to work on IE browser.
 
-= 1.4.9 =
-* bugFix: Fixed a bug introduced in the 1.4.8 update that prevent the player to work on IE browser.
-
-= 1.4.8 =
-* bugFix: Windows 8+ running Chrome behaved as a mobile instead of as a desktop browser.
-
-= 1.4.7 =
-* bugFix: On certain web server the editor window didn't display correctly due to a double HTML header declaration.
-* bugFix: The "download" was ignoring the "only registerd user" option.
-
-= 1.4.6 =
-* Feature: You can now create your own skin modifying the "mySkin" css from the plug-in setting page; you can also use the online "miniAudioPlayer Skin Maker" tool (http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html).
-* feature: The plug-in button in the TinyMCE editor is more clever as it doesn't disappear anymore if you don't place the cursor on a link to an mp3 file; it just advice you what to do :-).
-
-= 1.4.5 =
-* Bug fixed: On certain server configuration the editor window didn't save the customizations. This should be resolved.
-
-= 1.4.4 =
-* Bug fixed: the mute volume did't unmute.
-
-= 1.4.3 =
-* fixed a vulnerability issue in the TinyMCE popup.
-
-= 1.4.2 =
-* fixed a bug that made the progress bar flicker.
-
-= 1.4.1 =
-* fixed a bug that could create conflict with other plugins using "string.prototype.asId"
-* Feature: created a more robust map_download.php for the file download that falls back to three methods: fopen(), curl() or readfile() depending on server support.
-
 ...
 
 
