@@ -173,6 +173,15 @@ function miniAudioPlayer_options_page(){ // Output the options page
         .submit {
             text-align: right;
         }
+
+        #miniAudioPlayer_custom_skin_name{
+            background: transparent;
+            border: none;
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 20px;
+            box-shadow: none;
+        }
     </style>
 
     <div class="wrap" style="width:800px">
@@ -274,10 +283,14 @@ function miniAudioPlayer_options_page(){ // Output the options page
 
             <?php  _e( 'Set or edit your custom skin' ,'mbMiniAudioPlayer'); ?>:
             <p><?php _e('You can upload a CSS file generated from the SkinMaker tool', 'mbMiniAudioPlayer'); ?>. </p>
-            <button onclick="jQuery('#fileToLoad').click(); return false;">upload a saved skin</button>
-            <p><?php _e('Or you can copy the code generated from the SkinMaker tool and paste it into the textarea', 'mbMiniAudioPlayer'); ?>. </p>
-            <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank">online miniAudioPlayer skinMaker</a>
+            <button onclick="jQuery('#fileToLoad').click(); return false;">Upload a skin</button>
             <input type="file" id="fileToLoad" accept="text/css" onchange="jQuery.file.loadText(this,'css',setVarFromLoad)" style="display: none">
+
+            <p style="margin-top: 20px">
+                <b>If you want to modify the CSS you should save and upload it on the skinMaker tool</b>; after the changes save it back and upload it here again.<br>
+            </p>
+            <p><button onclick="jQuery.file.save('customSkinCss', 'css','<?php echo get_option('miniAudioPlayer_custom_skin_name') ?>'); return false ">Save this skin File</button></p>
+            <p><a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank">miniAudioPlayer skinMaker Tool</a></p>
             <script>
 
                 function setVarFromLoad(textFromFileLoaded) {
@@ -309,6 +322,15 @@ function miniAudioPlayer_options_page(){ // Output the options page
                     },
                     save: function(targetID, defaultExtension, fileName){
 
+                        if(jQuery.browser.safari){
+                            var txt;
+                            var r = confirm("Safari will open the content you want to save on a new window instead of saving it.\n You should then save it giving as name:" +
+                                "<?php echo get_option('miniAudioPlayer_custom_skin_name') ?>.css. Do you want to continue anyway? ");
+                            if (r == false) {
+                                return;
+                            }
+                        }
+
                         function getFileExtension ( url ) {
                             return url.split('.').pop().split(/\#|\?/)[0];
                         }
@@ -320,11 +342,17 @@ function miniAudioPlayer_options_page(){ // Output the options page
                             mimeType,
                             elToSave = jQuery("#" + targetID);
 
+                        console.debug(elToSave)
+
+
                         if(elToSave.is("img")) {
                             fileContent = elToSave.attr("src");
                             fileExtension = getFileExtension(fileContent);
                         }else if(elToSave.is("textarea")) {
                             fileContent = elToSave.val();
+
+                            console.debug(fileContent);
+
                             fileExtension = defaultExtension || "txt";
 
                             switch (defaultExtension){
@@ -414,17 +442,17 @@ function miniAudioPlayer_options_page(){ // Output the options page
         <td>
             <p><?php printf( __( 'Customize the below CSS to modify the "<span class="customSkinName">%1$s</span>" appearance' ), get_option('miniAudioPlayer_custom_skin_name') ); ?>.</p>
             <br>
-            <p><?php _e('Custom skin name:', 'mbMiniAudioPlayer'); ?>. </p>
+            <p><?php _e('Custom skin name:', 'mbMiniAudioPlayer'); ?> </p>
             <input type="text" readonly id="miniAudioPlayer_custom_skin_name" name="miniAudioPlayer_custom_skin_name" value="<?php echo get_option('miniAudioPlayer_custom_skin_name') ?>">
             <br>
             <textarea  id="customSkinCss"
+                       readonly
                        class="meta_skin_css"
                        name="miniAudioPlayer_custom_skin_css"
                        cols="50"
                        value="<?php esc_html_e( get_option('miniAudioPlayer_custom_skin_css ') ); ?>"
                        style="height: 450px; width: 580px; font-size: 12px"
                 ><?php esc_html_e( get_option('miniAudioPlayer_custom_skin_css ') ); ?></textarea>
-
         </td>
     </tr>
 
@@ -463,7 +491,7 @@ function miniAudioPlayer_options_page(){ // Output the options page
             </select>
 
             <p><?php _e('Set the palyer skin', 'mbMiniAudioPlayer'); ?>.</p>
-            <p><?php printf( __( 'The "<span class="customSkinName">%1$s</span>" option let you customize the aspect of the player modifying the below CSS or uploading a skin CSS file' ), get_option('miniAudioPlayer_custom_skin_name') ); ?>.</p>
+            <p><?php printf( __( 'The "<span class="customSkinName">%1$s</span>" option let you use the customized CSS to skin the player' ), get_option('miniAudioPlayer_custom_skin_name') ); ?>.</p>
         </td>
     </tr>
 
