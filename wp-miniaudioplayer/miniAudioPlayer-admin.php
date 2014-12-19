@@ -306,11 +306,9 @@ function miniAudioPlayer_options_page(){ // Output the options page
                     var paramsString = "{" + m[1] + "}";
                     var params = JSON.parse( paramsString );
 
-
                     jQuery("#miniAudioPlayer_custom_skin_name").val(params.skinName);
                     jQuery("#skinNameOption").val(params.skinName).html(params.skinName + " (customizable)");
                     jQuery(".customSkinName").html(params.skinName);
-
 
                     jQuery("#customSkinCss").val(textFromFileLoaded);
 
@@ -342,17 +340,11 @@ function miniAudioPlayer_options_page(){ // Output the options page
                             mimeType,
                             elToSave = jQuery("#" + targetID);
 
-                        console.debug(elToSave)
-
-
                         if(elToSave.is("img")) {
                             fileContent = elToSave.attr("src");
                             fileExtension = getFileExtension(fileContent);
                         }else if(elToSave.is("textarea")) {
                             fileContent = elToSave.val();
-
-                            console.debug(fileContent);
-
                             fileExtension = defaultExtension || "txt";
 
                             switch (defaultExtension){

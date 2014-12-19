@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: mb.miniAudioPlayer\n"
-"POT-Creation-Date: 2014-12-10 21:21+0100\n"
-"PO-Revision-Date: 2014-12-10 21:28+0100\n"
+"POT-Creation-Date: 2014-12-19 22:26+0100\n"
+"PO-Revision-Date: 2014-12-19 22:26+0100\n"
 "Last-Translator: Matteo Bicochi <matteo@open-lab.com>\n"
 "Language-Team: Pupunzi <matteo@open-lab.com>\n"
 "Language: it\n"
@@ -46,7 +46,7 @@ msgstr "Titolo dell'audio"
 msgid "The audio title"
 msgstr "Inserire il titolo dell'audio"
 
-#: maptinymce/maplayertinymce.php:87 miniAudioPlayer-admin.php:263
+#: maptinymce/maplayertinymce.php:87 miniAudioPlayer-admin.php:272
 msgid "Get the title from meta-data"
 msgstr "Recupera il titolo dai meta-data"
 
@@ -54,27 +54,27 @@ msgstr "Recupera il titolo dai meta-data"
 msgid "Skin"
 msgstr "Apparenza"
 
-#: maptinymce/maplayertinymce.php:93 miniAudioPlayer-admin.php:439
+#: maptinymce/maplayertinymce.php:93 miniAudioPlayer-admin.php:457
 msgid "black"
 msgstr "nera"
 
-#: maptinymce/maplayertinymce.php:94 miniAudioPlayer-admin.php:443
+#: maptinymce/maplayertinymce.php:94 miniAudioPlayer-admin.php:461
 msgid "blue"
 msgstr "blu"
 
-#: maptinymce/maplayertinymce.php:95 miniAudioPlayer-admin.php:447
+#: maptinymce/maplayertinymce.php:95 miniAudioPlayer-admin.php:465
 msgid "orange"
 msgstr "arancione"
 
-#: maptinymce/maplayertinymce.php:96 miniAudioPlayer-admin.php:451
+#: maptinymce/maplayertinymce.php:96 miniAudioPlayer-admin.php:469
 msgid "red"
 msgstr "rossa"
 
-#: maptinymce/maplayertinymce.php:97 miniAudioPlayer-admin.php:455
+#: maptinymce/maplayertinymce.php:97 miniAudioPlayer-admin.php:473
 msgid "gray"
 msgstr "grigia"
 
-#: maptinymce/maplayertinymce.php:98 miniAudioPlayer-admin.php:459
+#: maptinymce/maplayertinymce.php:98 miniAudioPlayer-admin.php:477
 msgid "green"
 msgstr "verde"
 
@@ -86,7 +86,7 @@ msgstr "Imposta il colore del player"
 msgid "Gradient"
 msgstr ""
 
-#: maptinymce/maplayertinymce.php:107 miniAudioPlayer-admin.php:479
+#: maptinymce/maplayertinymce.php:107 miniAudioPlayer-admin.php:497
 msgid "Check to add a gradient to the player skin"
 msgstr "Seleziona per aggiungere un gradiente alla skin del player"
 
@@ -94,7 +94,7 @@ msgstr "Seleziona per aggiungere un gradiente alla skin del player"
 msgid "Animate"
 msgstr "Animazione"
 
-#: maptinymce/maplayertinymce.php:113 miniAudioPlayer-admin.php:491
+#: maptinymce/maplayertinymce.php:113 miniAudioPlayer-admin.php:509
 msgid "Check to activate the opening / closing animation"
 msgstr "Seleziona per attivare l'effetto di apertura / chiusura"
 
@@ -186,24 +186,24 @@ msgstr ""
 msgid "I already donate"
 msgstr "Ho già fatto una donazione"
 
-#: miniAudioPlayer-admin.php:184
+#: miniAudioPlayer-admin.php:193
 msgid "mb.miniAudioPlayer Settings"
 msgstr "Impostazioni - mb.miniAudioPlayer"
 
-#: miniAudioPlayer-admin.php:186
+#: miniAudioPlayer-admin.php:195
 #, php-format
 msgid "You’re using mb.miniAudioPlayer v. %s"
 msgstr "Stai usando la versione %s di mb.MiniAudioPlayer per Wordpress"
 
-#: miniAudioPlayer-admin.php:186
+#: miniAudioPlayer-admin.php:195
 msgid "by"
 msgstr "realizzato da"
 
-#: miniAudioPlayer-admin.php:218
+#: miniAudioPlayer-admin.php:227
 msgid "Thanks for downloading mb.miniAudioPlayer!"
 msgstr "Grazie per aver scaricato mb.MiniAudioPlayer!"
 
-#: miniAudioPlayer-admin.php:221
+#: miniAudioPlayer-admin.php:230
 msgid ""
 "If you like it and you are using it<br>then you should consider a donation "
 "(€15,00 or more) :-)"
@@ -211,47 +211,47 @@ msgstr ""
 "Se stai usando questo plug-in e ti piace allora dovresti considerare di fare "
 "una donazione <br> (€15,00 o più) :-)"
 
-#: miniAudioPlayer-admin.php:225
+#: miniAudioPlayer-admin.php:234
 msgid "If you donate, the start popup will nevermore display"
 msgstr "Se fai una donazione la finestra popup non verrà più visualizzata"
 
-#: miniAudioPlayer-admin.php:228
+#: miniAudioPlayer-admin.php:237
 msgid "Don’t forget to follow me on twitter"
 msgstr "Non scordarti di seguirmi su Twitter"
 
-#: miniAudioPlayer-admin.php:229
+#: miniAudioPlayer-admin.php:238
 msgid "Visit my site"
 msgstr "Visita il mio sito"
 
-#: miniAudioPlayer-admin.php:230
+#: miniAudioPlayer-admin.php:239
 msgid "Visit my blog"
 msgstr "Visita il mio blog"
 
-#: miniAudioPlayer-admin.php:232
+#: miniAudioPlayer-admin.php:241
 msgid "Paypal"
 msgstr "Paypal"
 
-#: miniAudioPlayer-admin.php:234
+#: miniAudioPlayer-admin.php:243
 msgid "donate"
 msgstr "Fai una donazione"
 
-#: miniAudioPlayer-admin.php:240
+#: miniAudioPlayer-admin.php:249
 msgid "Subscribe to my mailing list<br>to stay in touch"
 msgstr "Iscriviti alla mia newsletter"
 
-#: miniAudioPlayer-admin.php:241
+#: miniAudioPlayer-admin.php:250
 msgid "your email address"
 msgstr "Il tuo indirizzo email"
 
-#: miniAudioPlayer-admin.php:242
+#: miniAudioPlayer-admin.php:251
 msgid "Subscribe"
 msgstr "Sottoscrivi"
 
-#: miniAudioPlayer-admin.php:253
+#: miniAudioPlayer-admin.php:262
 msgid "Default settings"
 msgstr "Impostazioni di default"
 
-#: miniAudioPlayer-admin.php:255
+#: miniAudioPlayer-admin.php:264
 msgid ""
 "Here you define the default settings for all the audio links in your "
 "Wordpress site"
@@ -259,7 +259,7 @@ msgstr ""
 "Qui puoi definire le impostazioni che verranno applicate a tutti i link a "
 "file .mp3 nel tuo sito"
 
-#: miniAudioPlayer-admin.php:257
+#: miniAudioPlayer-admin.php:266
 msgid ""
 "You can overwrite the single player settings by selecting the audio link in "
 "the post editor and clicking on the mb.miniAudioPlayer button on the top of "
@@ -269,27 +269,19 @@ msgstr ""
 "selezionando il link al file .mp3 nel testo e cliccando sul bottone nella "
 "barra dei comandi dell'editor"
 
-#: miniAudioPlayer-admin.php:268
+#: miniAudioPlayer-admin.php:277
 msgid "Check to retrieve the title from meta-data"
 msgstr "Seleziona per cercare di ottenere il titolo del brano dai meta-data"
 
-#: miniAudioPlayer-admin.php:273
+#: miniAudioPlayer-admin.php:284
 msgid "Set or edit your custom skin"
 msgstr "Aggiungi o modifica la skin personalizzata"
 
-#: miniAudioPlayer-admin.php:275
+#: miniAudioPlayer-admin.php:285
 msgid "You can upload a CSS file generated from the SkinMaker tool"
 msgstr "Puoi caricare un file CSS generato da spinnaker"
 
-#: miniAudioPlayer-admin.php:279
-msgid ""
-"Or you can copy the code generated from the SkinMaker tool and paste it into "
-"the textarea"
-msgstr ""
-"Oppure puoi copiare il codice generato da spinnaker ed incollarlo nella "
-"textarea"
-
-#: miniAudioPlayer-admin.php:417
+#: miniAudioPlayer-admin.php:435
 #, php-format
 msgid ""
 "Customize the below CSS to modify the \"<span class=\"customSkinName\">%1$s</"
@@ -298,49 +290,49 @@ msgstr ""
 "Personalizza il CSS sottostante per modificare l'apparenza di \"<span class="
 "\"customSkinName\">%1$s</span>\""
 
-#: miniAudioPlayer-admin.php:419
+#: miniAudioPlayer-admin.php:437
 msgid "Custom skin name:"
 msgstr "Nome della skin personalizzata"
 
-#: miniAudioPlayer-admin.php:434
+#: miniAudioPlayer-admin.php:452
 msgid "Choose the skin color"
 msgstr "Scegli la skin"
 
-#: miniAudioPlayer-admin.php:464
+#: miniAudioPlayer-admin.php:482
 msgid "(customizable)"
 msgstr "(personalizzabile)"
 
-#: miniAudioPlayer-admin.php:467
+#: miniAudioPlayer-admin.php:485
 msgid "Set the palyer skin"
 msgstr "Imposta l'apparenza del player"
 
-#: miniAudioPlayer-admin.php:468
+#: miniAudioPlayer-admin.php:486
 #, php-format
 msgid ""
-"The \"<span class=\"customSkinName\">%1$s</span>\" option let you customize "
-"the aspect of the player modifying the below CSS or uploading a skin CSS file"
+"The \"<span class=\"customSkinName\">%1$s</span>\" option let you use the "
+"customized CSS to skin the player"
 msgstr ""
-"L'opzione \"<span class=\"customSkinName\">%1$s</span>\" ti permette di "
+"﻿L'opzione \"<span class=\"customSkinName\">%1$s</span>\" ti permette di "
 "personalizzare l'aspetto del player modificando il CSS sottostante o "
 "caricando il file CSS della skin generata da skinMaker"
 
-#: miniAudioPlayer-admin.php:473
+#: miniAudioPlayer-admin.php:491
 msgid "Player should have a gradient appearance"
 msgstr "Il player ha un gradiente"
 
-#: miniAudioPlayer-admin.php:484
+#: miniAudioPlayer-admin.php:502
 msgid "Player animation"
 msgstr "Animazione del player"
 
-#: miniAudioPlayer-admin.php:496
+#: miniAudioPlayer-admin.php:514
 msgid "Set the width"
 msgstr "Imposta la larghezza"
 
-#: miniAudioPlayer-admin.php:501
+#: miniAudioPlayer-admin.php:519
 msgid "Set the player width in pixel"
 msgstr "Imposta la larghezza in pixel del player"
 
-#: miniAudioPlayer-admin.php:502
+#: miniAudioPlayer-admin.php:520
 msgid ""
 "The size is relative to the inner part of the player; if you want you can "
 "set the with as percentage, in that case the player will be adaptive for "
@@ -350,43 +342,43 @@ msgstr ""
 "impostare la larghezza in percentuale per far si che il player si adatti a "
 "schermi di diverse dimensioni, inclusi i mobile"
 
-#: miniAudioPlayer-admin.php:507
+#: miniAudioPlayer-admin.php:525
 msgid "Set the volume"
 msgstr "Imposta il livello del volume"
 
-#: miniAudioPlayer-admin.php:532
+#: miniAudioPlayer-admin.php:550
 msgid "Set the default volume for the player"
 msgstr "Imposta il livello del volume di default"
 
-#: miniAudioPlayer-admin.php:537
+#: miniAudioPlayer-admin.php:555
 msgid "show volume level"
 msgstr "mostra il livello volume"
 
-#: miniAudioPlayer-admin.php:544
+#: miniAudioPlayer-admin.php:562
 msgid "Check to show the volume levels"
 msgstr "Seleziona per visualizzare il livello del volume"
 
-#: miniAudioPlayer-admin.php:549
+#: miniAudioPlayer-admin.php:567
 msgid "show time info"
 msgstr "Mostra il tempo trascorso"
 
-#: miniAudioPlayer-admin.php:556
+#: miniAudioPlayer-admin.php:574
 msgid "Check to show the time info"
 msgstr "Seleziona per visualizzare il tempo trascorso del brano"
 
-#: miniAudioPlayer-admin.php:561
+#: miniAudioPlayer-admin.php:579
 msgid "Show the Rewind button"
 msgstr "Mostra il tasto Rewind"
 
-#: miniAudioPlayer-admin.php:568
+#: miniAudioPlayer-admin.php:586
 msgid "Check to show the Rewind button"
 msgstr "Seleziona per visualizzare il tasto Rewind"
 
-#: miniAudioPlayer-admin.php:573
+#: miniAudioPlayer-admin.php:591
 msgid "Exclude audio links with class"
 msgstr "Escludi i link con classe"
 
-#: miniAudioPlayer-admin.php:577
+#: miniAudioPlayer-admin.php:595
 msgid ""
 "Define the class name for the audio links you don’t want to render as "
 "player; By default is \"map_excluded\""
@@ -394,7 +386,7 @@ msgstr ""
 "Definisci il nome  della classe CSS che esclude i link a file .mp3 dalla "
 "conversione a player. Di default è \"map_excluded\""
 
-#: miniAudioPlayer-admin.php:578
+#: miniAudioPlayer-admin.php:596
 msgid ""
 "You can either manually add this class to the audio links you want to "
 "exclude or select the link and check the \"Don’t render\" checkbox of the "
@@ -404,28 +396,28 @@ msgstr ""
 "dalla conversione a player, oppure puoi selezionare \"Non convertire\" nella "
 "finestra popup accessibile dall'editar del post"
 
-#: miniAudioPlayer-admin.php:585
+#: miniAudioPlayer-admin.php:603
 msgid "Allow downloads"
 msgstr "Abilita il download"
 
-#: miniAudioPlayer-admin.php:604
+#: miniAudioPlayer-admin.php:621
 msgid "Check to add a download button closed to the player"
 msgstr "Seleziona per aggiungere un bottone di download accanto al player"
 
-#: miniAudioPlayer-admin.php:612
+#: miniAudioPlayer-admin.php:630
 msgid "Only for registered users"
 msgstr "Solo per utenti registrati"
 
-#: miniAudioPlayer-admin.php:613
+#: miniAudioPlayer-admin.php:631
 msgid "Check to allow downloads only for registered user"
 msgstr "Seleziona per abilitare il download solo ad utenti registrati"
 
-#: miniAudioPlayer-admin.php:618
+#: miniAudioPlayer-admin.php:636
 msgid "Activate the player customizer in the post editor"
 msgstr ""
 "Attiva la finestra di personalizzazione nella pagina di editor del post"
 
-#: miniAudioPlayer-admin.php:621
+#: miniAudioPlayer-admin.php:639
 msgid ""
 "Check to activate the customization window in the posts and pages TinyMce "
 "editor\""
@@ -433,7 +425,7 @@ msgstr ""
 "Seleziona per attivare il bottone che da accesso alla personalizzazione del "
 "player nell'editor TinyMCE dei post e delle pagine"
 
-#: miniAudioPlayer-admin.php:627
+#: miniAudioPlayer-admin.php:645
 msgid ""
 "If you are using others HTML5 audio player plug-ins (like Haiku) there could "
 "be conflicts with mb.miniAudioPlayer. You should deactivete the others befor "
@@ -443,9 +435,25 @@ msgstr ""
 "esserci dei conflitti con mb.miniAudioPlayer. Dovreste disattivare gli altri "
 "prima di utilizzare questo"
 
-#: miniAudioPlayer-admin.php:629
+#: miniAudioPlayer-admin.php:647
 msgid "Save Changes"
 msgstr "Salvale modifiche"
+
+#~ msgid ""
+#~ "Or you can copy the code generated from the SkinMaker tool and paste it "
+#~ "into the textarea"
+#~ msgstr ""
+#~ "Oppure puoi copiare il codice generato da spinnaker ed incollarlo nella "
+#~ "textarea"
+
+#~ msgid ""
+#~ "The \"<span class=\"customSkinName\">%1$s</span>\" option let you "
+#~ "customize the aspect of the player modifying the below CSS or uploading a "
+#~ "skin CSS file"
+#~ msgstr ""
+#~ "L'opzione \"<span class=\"customSkinName\">%1$s</span>\" ti permette di "
+#~ "personalizzare l'aspetto del player modificando il CSS sottostante o "
+#~ "caricando il file CSS della skin generata da skinMaker"
 
 #~ msgid "mySkin (customizable)"
 #~ msgstr "mySkin (personalizzabile)"
