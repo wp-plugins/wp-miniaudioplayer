@@ -281,6 +281,10 @@
 								.css({display: "inline-block", cursor: "pointer"})
 								.html("d")
 								.on(jQuery.mbMiniPlayer.eventEnd, function () {
+
+									var expires = "; expires= 5000";
+									document.cookie = "mapdownload=true" + expires + "; path=/";
+
 									location.href = player.opt.downloadPage + "?filename=" + fileName + "." + fileExtension + "&fileurl=" + fileUrl;
 								})
 								.attr("title", "download: " + fileName);

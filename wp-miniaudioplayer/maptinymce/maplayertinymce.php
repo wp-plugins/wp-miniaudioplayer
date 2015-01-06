@@ -1,7 +1,14 @@
-<?php require('../../../../wp-blog-header.php'); ?>
-
 <!DOCTYPE HTML>
+<html>
+
 <?php
+
+if (!headers_sent()) {
+    header('Content-Type: text/html; charset='.$charset);
+}
+
+require('../../../../wp-blog-header.php');
+
 $plugin_version = get_option('mbYTPlayer_version');
 $includes_url = includes_url();
 $plugins_url = plugins_url();
@@ -21,10 +28,9 @@ $downloadable = get_option('miniAudioPlayer_download');
 $custom_skin_name = get_option('miniAudioPlayer_custom_skin_name');
 $downloadable_security = get_option('miniAudioPlayer_download_security');
 
-if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
 
+if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
     ?>
-    <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $charset; ?>" />
         <title>mb.miniAudioPlayer</title>
@@ -293,126 +299,126 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
             }
         }
 
-        // tinyMCEPopup.onInit.add(function(ed) {
-        var ed = top.tinymce.activeEditor;
+        tinyMCEPopup.onInit.add(function(ed) {
+            //var ed = top.tinymce.activeEditor;
 
-        var selection = ed.selection.getNode();
-        ed.selection.select(selection,true);
-        var $selection = jQuery(selection);
+            var selection = ed.selection.getNode();
+            ed.selection.select(selection,true);
+            var $selection = jQuery(selection);
 
-        var map_element = $selection.find("a[href *= '.mp3']");
-        if (map_element.length){
-            selection = ed.selection.select(map_element.get(0),true);
-        }else if($selection.prev().is("a[href *= '.mp3']")){
-            selection = ed.selection.select($selection.prev().get(0),true);
-        }
-        $selection = jQuery(selection);
+            var map_element = $selection.find("a[href *= '.mp3']");
+            if (map_element.length){
+                selection = ed.selection.select(map_element.get(0),true);
+            }else if($selection.prev().is("a[href *= '.mp3']")){
+                selection = ed.selection.select($selection.prev().get(0),true);
+            }
+            $selection = jQuery(selection);
 
-        var url = document.audioURL = $selection.attr("href");
-        var title = $selection.html();
-        var isExcluded = $selection.hasClass("<?php echo $exclude_class ?>");
+            var url = document.audioURL = $selection.attr("href");
+            var title = $selection.html();
+            var isExcluded = $selection.hasClass("<?php echo $exclude_class ?>");
 
-        var $desc = $selection.next(".map_params");
-        var metadata = $selection.metadata();
+            var $desc = $selection.next(".map_params");
+            var metadata = $selection.metadata();
 
-        if(metadata.volume)
-            metadata.volume =  parseFloat(metadata.volume)*10;
+            if(metadata.volume)
+                metadata.volume =  parseFloat(metadata.volume)*10;
 
-        if(jQuery.isEmptyObject(metadata)){
-            var defaultmeta = {
-                showVolumeLevel:<?php echo empty($showVolumeLevel) ? false : $showVolumeLevel ?>,
-                showTime:<?php echo $showTime ?>,
-                showRew:<?php echo $showRew ?>,
-                width:"<?php echo $width ?>",
-                skin:"<?php echo $skin ?>",
-                animate:<?php echo $miniAudioPlayer_animate ? "true" : "false" ?>,
-                loop:false,
-                addGradientOverlay: <?php echo $miniAudioPlayer_add_gradient ? "true" : "false" ?>,
-                downloadable:<?php echo $downloadable ? "true" : "false" ?>,
-                downloadable_security:<?php echo $downloadable_security ? "true" : "false" ?>,
-                volume:parseFloat(<?php echo $volume ?>)*10
-            };
-            jQuery.extend(metadata,defaultmeta);
-        }
+            if(jQuery.isEmptyObject(metadata)){
+                var defaultmeta = {
+                    showVolumeLevel:<?php echo empty($showVolumeLevel) ? false : $showVolumeLevel ?>,
+                    showTime:<?php echo $showTime ?>,
+                    showRew:<?php echo $showRew ?>,
+                    width:"<?php echo $width ?>",
+                    skin:"<?php echo $skin ?>",
+                    animate:<?php echo $miniAudioPlayer_animate ? "true" : "false" ?>,
+                    loop:false,
+                    addGradientOverlay: <?php echo $miniAudioPlayer_add_gradient ? "true" : "false" ?>,
+                    downloadable:<?php echo $downloadable ? "true" : "false" ?>,
+                    downloadable_security:<?php echo $downloadable_security ? "true" : "false" ?>,
+                    volume:parseFloat(<?php echo $volume ?>)*10
+                };
+                jQuery.extend(metadata,defaultmeta);
+            }
 
-        jQuery.extend(metadata, {exclude:isExcluded});
+            jQuery.extend(metadata, {exclude:isExcluded});
 
-        jQuery("[name='url']").val(url);
+            jQuery("[name='url']").val(url);
 
-        jQuery("[name='audiotitle']").val(title);
+            jQuery("[name='audiotitle']").val(title);
 
-        for (var i in metadata){
-            if(typeof metadata[i] == "boolean"){
-                if(eval(metadata[i]) == true)
-                    jQuery("[name="+i+"]").attr("checked",  "checked");
-            }else
-                jQuery("[name="+i+"]").val(metadata[i]);
+            for (var i in metadata){
+                if(typeof metadata[i] == "boolean"){
+                    if(eval(metadata[i]) == true)
+                        jQuery("[name="+i+"]").attr("checked",  "checked");
+                }else
+                    jQuery("[name="+i+"]").val(metadata[i]);
 
-        }
+            }
 
-        var form = document.forms[0];
-        var isEmpty = function(value) {
-                return (/^\s*$/.test(value));
-            },
+            var form = document.forms[0];
+            var isEmpty = function(value) {
+                    return (/^\s*$/.test(value));
+                },
 
-            encodeStr = function(value) {
-                return value.replace(/\s/g, "%20")
-                    .replace(/"/g, "%22")
-                    .replace(/'/g, "%27")
-                    .replace(/=/g, "%3D")
-                    .replace(/\[/g, "%5B")
-                    .replace(/\]/g, "%5D")
-                    .replace(/\//g, "%2F");
-            },
+                encodeStr = function(value) {
+                    return value.replace(/\s/g, "%20")
+                        .replace(/"/g, "%22")
+                        .replace(/'/g, "%27")
+                        .replace(/=/g, "%3D")
+                        .replace(/\[/g, "%5B")
+                        .replace(/\]/g, "%5D")
+                        .replace(/\//g, "%2F");
+                },
 
-            insertCode = function(e){
+                insertCode = function(e){
 
-                var map_params = "{";
-                if(jQuery("[name='skin']").val().length>0)
-                    map_params+="skin:'"+jQuery("[name='skin']").val()+"', ";
-                map_params+="animate:"+(jQuery("[name='animate']").is(":checked") ? "true" : "false")+", ";
-                if(jQuery("[name='width']").val().length>0)
-                    map_params+="width:'"+jQuery("[name='width']").val()+"', ";
-                if(jQuery("[name='volume']").val().length>0)
-                    map_params+="volume:"+ jQuery("[name='volume']").val()/10 +", ";
-                map_params+="autoplay:"+(jQuery("[name='autoplay']").is(":checked") ? "true" : "false")+", ";
-                map_params+="loop:"+(jQuery("[name='loop']").is(":checked") ? "true" : "false")+", ";
-                map_params+="showVolumeLevel:"+(jQuery("[name='showVolumeLevel']").is(":checked") ? "true" : "false")+", ";
-                map_params+="showTime:"+(jQuery("[name='showTime']").is(":checked") ? "true" : "false")+", ";
-                map_params+="showRew:"+(jQuery("[name='showRew']").is(":checked") ? "true" : "false")+", ";
-                map_params+="addGradientOverlay:"+(jQuery("[name='addGradient']").is(":checked") ? "true" : "false")+", ";
-                map_params+="downloadable:"+(jQuery("[name='downloadable']").is(":checked") ? "true" : "false")+", ";
-                map_params+="downloadablesecurity:"+(jQuery("[name='downloadablesecurity']").is(":checked") ? "true" : "false")+", ";
-                map_params+="id3: false";
-                map_params+="}";
-                map_params = map_params.replace(", }", "}");
+                    var map_params = "{";
+                    if(jQuery("[name='skin']").val().length>0)
+                        map_params+="skin:'"+jQuery("[name='skin']").val()+"', ";
+                    map_params+="animate:"+(jQuery("[name='animate']").is(":checked") ? "true" : "false")+", ";
+                    if(jQuery("[name='width']").val().length>0)
+                        map_params+="width:'"+jQuery("[name='width']").val()+"', ";
+                    if(jQuery("[name='volume']").val().length>0)
+                        map_params+="volume:"+ jQuery("[name='volume']").val()/10 +", ";
+                    map_params+="autoplay:"+(jQuery("[name='autoplay']").is(":checked") ? "true" : "false")+", ";
+                    map_params+="loop:"+(jQuery("[name='loop']").is(":checked") ? "true" : "false")+", ";
+                    map_params+="showVolumeLevel:"+(jQuery("[name='showVolumeLevel']").is(":checked") ? "true" : "false")+", ";
+                    map_params+="showTime:"+(jQuery("[name='showTime']").is(":checked") ? "true" : "false")+", ";
+                    map_params+="showRew:"+(jQuery("[name='showRew']").is(":checked") ? "true" : "false")+", ";
+                    map_params+="addGradientOverlay:"+(jQuery("[name='addGradient']").is(":checked") ? "true" : "false")+", ";
+                    map_params+="downloadable:"+(jQuery("[name='downloadable']").is(":checked") ? "true" : "false")+", ";
+                    map_params+="downloadablesecurity:"+(jQuery("[name='downloadablesecurity']").is(":checked") ? "true" : "false")+", ";
+                    map_params+="id3: false";
+                    map_params+="}";
+                    map_params = map_params.replace(", }", "}");
 
-                var isExcluded = jQuery("[name='exclude']").is(":checked") ? "<?php echo $exclude_class ?> " : "";
+                    var isExcluded = jQuery("[name='exclude']").is(":checked") ? "<?php echo $exclude_class ?> " : "";
 
-                var map_a = "<a id='mbmaplayer_"+new Date().getTime()+"' class=";
-                map_a += "\"mb_map " + isExcluded + map_params + "\" ";
+                    var map_a = "<a id='mbmaplayer_"+new Date().getTime()+"' class=";
+                    map_a += "\"mb_map " + isExcluded + map_params + "\" ";
 
-                for (var x in tmpInfo){
-                    map_a += "meta-"+ x +"=\""+tmpInfo[x]+"\" ";
-                }
-                map_a += "href=\""+jQuery("[name='url']").val()+"\">";
-                map_a+=jQuery("[name='audiotitle']").val();
-                map_a+="</a>";
-                ed.execCommand('mceInsertContent', 0, map_a);
+                    for (var x in tmpInfo){
+                        map_a += "meta-"+ x +"=\""+tmpInfo[x]+"\" ";
+                    }
+                    map_a += "href=\""+jQuery("[name='url']").val()+"\">";
+                    map_a+=jQuery("[name='audiotitle']").val();
+                    map_a+="</a>";
+                    ed.execCommand('mceInsertContent', 0, map_a);
 
-                if($desc.length)
-                    $desc.remove();
+                    if($desc.length)
+                        $desc.remove();
 
-                tinyMCEPopup.close();
+                    tinyMCEPopup.close();
 
-                return false;
-            };
+                    return false;
+                };
 
-        form.onsubmit = insertCode;
-        tinyMCEPopup.resizeToInnerSize();
-        //  });
+            form.onsubmit = insertCode;
+            tinyMCEPopup.resizeToInnerSize();
+        });
     </script>
     </body>
-    </html>
-<?php
-}
+<?php } ?>
+</html>
+
