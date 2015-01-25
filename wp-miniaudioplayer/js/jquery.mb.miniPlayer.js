@@ -282,7 +282,8 @@
 								.html("d")
 								.on(jQuery.mbMiniPlayer.eventEnd, function () {
 
-									var expires = "; expires= 5000";
+									//var expires = "; expires= 60000";
+									expires = "";
 									document.cookie = "mapdownload=true" + expires + "; path=/";
 
 									location.href = player.opt.downloadPage + "?filename=" + fileName + "." + fileExtension + "&fileurl=" + fileUrl;
