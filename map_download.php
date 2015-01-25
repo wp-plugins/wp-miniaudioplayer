@@ -119,6 +119,7 @@ switch ($file_extension)
         $content_type = 'audio/mpeg' ;
         break ;
     case 'mp4a':
+    case 'm4a':
         $content_type = 'audio/mp4' ;
         break ;
     case 'wav':
