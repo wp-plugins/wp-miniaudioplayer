@@ -4,7 +4,7 @@ Contributors: pupunzi
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.3
 Tested up to: 4.1
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
 Transform your mp3 audio files into a nice, small light HTML5 player.
@@ -85,6 +85,9 @@ sudo apt-get-install chromium-codecs-ffmpeg-extra
 After that your player should work fine.
 
 == Changelog ==
+
+= 1.6.2 =
+* Bug fix: fixed a bug that was preventing the download on IE.
 
 = 1.6.1 =
 * Updated to jPlayer 2.9.2.
