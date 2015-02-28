@@ -1,11 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-
 <?php
-
-if (!headers_sent()) {
-    header('Content-Type: text/html; charset='.$charset);
-}
 
 require('../../../../wp-blog-header.php');
 
@@ -28,6 +23,10 @@ $downloadable = get_option('miniAudioPlayer_download');
 $custom_skin_name = get_option('miniAudioPlayer_custom_skin_name');
 $downloadable_security = get_option('miniAudioPlayer_download_security');
 
+
+if (!headers_sent()) {
+    header('Content-Type: text/html; charset='.$charset);
+}
 
 if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
     ?>
@@ -327,8 +326,8 @@ if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
             if(jQuery.isEmptyObject(metadata)){
                 var defaultmeta = {
                     showVolumeLevel:<?php echo empty($showVolumeLevel) ? false : $showVolumeLevel ?>,
-                    showTime:<?php echo $showTime ?>,
-                    showRew:<?php echo $showRew ?>,
+                    showTime:<?php echo $showTime ? "true" : "false"?>,
+                    showRew:<?php echo $showRew ? "true" : "false"?>,
                     width:"<?php echo $width ?>",
                     skin:"<?php echo $skin ?>",
                     animate:<?php echo $miniAudioPlayer_animate ? "true" : "false" ?>,

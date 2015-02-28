@@ -11,7 +11,7 @@
 					ed.windowManager.open({
 						url : popUpURL,
 						width : 900,
-						height : 680,
+						height :  jQuery(window).height(),
 						inline : 1
 					});
 				}

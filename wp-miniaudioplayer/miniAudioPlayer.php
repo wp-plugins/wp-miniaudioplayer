@@ -4,11 +4,11 @@ Plugin Name: mb.miniAudioPlayer
 Plugin URI: http://wordpress.org/extend/plugins/wp-miniaudioplayer/
 Description: Transform your mp3 audio file link into a nice, small light player. ! IMPORTANT - if you customized the skin for the previous version you need to regenerate it from <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank">here</a>.
 Author: Pupunzi (Matteo Bicocchi)
-Version: 1.6.2
+Version: 1.6.3
 Author URI: http://pupunzi.com
 */
 
-define("MINIAUDIOPLAYER_VERSION", "1.6.2");
+define("MINIAUDIOPLAYER_VERSION", "1.6.3");
 register_activation_hook( __FILE__, 'miniAudioPlayer_install' );
 
 function miniAudioPlayer_install() {
@@ -70,7 +70,9 @@ if (empty($miniAudioPlayer_download_security)) {$miniAudioPlayer_download_securi
 if (empty($miniAudioPlayer_customizer)) {$miniAudioPlayer_customizer = "false";}
 if (empty($miniAudioPlayer_add_gradient)) {$miniAudioPlayer_add_gradient = "true";}
 if (empty($miniAudioPlayer_custom_skin_name)) {$miniAudioPlayer_custom_skin_name = "mySkin";}
-if (empty($miniAudioPlayer_custom_skin_css)) {$miniAudioPlayer_custom_skin_css = "/*++++++++++++++++++++++++++++++++++++++++++++++++++
+if (empty($miniAudioPlayer_custom_skin_css)) {$miniAudioPlayer_custom_skin_css = "
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++
 MAP custom skin: mySkin
 http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html
 
@@ -109,7 +111,11 @@ downloadHover: rgba(255, 3, 3, 1)
 .mbMiniPlayer.mySkin table span{color: rgba(255, 254, 250, 1);}
 .mbMiniPlayer.mySkin table {border: 1px solid rgba(235, 101, 110, 1) !important;}
 .mbMiniPlayer.mySkin table span.map_title{color: #000; text-shadow:none!important}
-/*++++++++++++++++++++++++++++++++++++++++++++++++*/";}
+/*++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+";
+
+}
 
 function miniAudioPlayer_action_links($links, $file) {
     static $this_plugin;
@@ -161,11 +167,6 @@ function miniAudioPlayer_player_head() {
     global $miniAudioPlayer_getMetadata, $miniAudioPlayer_width,$miniAudioPlayer_skin, $miniAudioPlayer_animate,$miniAudioPlayer_volume,$miniAudioPlayer_autoplay,$miniAudioPlayer_showVolumeLevel,$miniAudioPlayer_showTime,$miniAudioPlayer_showRew, $miniAudioPlayer_custom_skin_css;
     echo '
 	<!-- start miniAudioPlayer initializer -->
-	
-	<style>
-	'.$miniAudioPlayer_custom_skin_css.'
-	</style>
-
 	<script type="text/javascript">
 
     function initializeMiniAudioPlayer(){
@@ -203,9 +204,25 @@ function miniAudioPlayer_player_head() {
 	';
 };
 
+function maplayer_custom_css () {
+    global $miniAudioPlayer_custom_skin_css;
+
+    echo '
+<!-- start miniAudioPlayer custom CSS -->
+
+<style id="map_custom_css">
+       '.$miniAudioPlayer_custom_skin_css.'
+</style>
+	
+<!-- end miniAudioPlayer custom CSS -->
+	
+';
+
+};
+
+add_action( 'wp_head', 'maplayer_custom_css' );
 add_action('wp_footer', 'miniAudioPlayer_player_head',20);
 add_action('admin_init', 'setup_maplayer_button');
-
 
 function getExcluded(){
     global $miniAudioPlayer_excluded;
@@ -215,6 +232,7 @@ function getExcluded(){
         return '.';
     }
 }
+
 function canDownload(){
     global $miniAudioPlayer_download, $miniAudioPlayer_download_security;
     if( ($miniAudioPlayer_download == "true" && $miniAudioPlayer_download_security=="false")
