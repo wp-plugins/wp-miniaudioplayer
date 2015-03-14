@@ -115,6 +115,7 @@ if (empty($miniAudioPlayer_download_security)) {$miniAudioPlayer_download_securi
 if (empty($miniAudioPlayer_customizer)) {$miniAudioPlayer_customizer = "false";}
 if (empty($miniAudioPlayer_add_gradient)) {$miniAudioPlayer_add_gradient = "true";}
 if (empty($miniAudioPlayer_custom_skin_name)) {$miniAudioPlayer_custom_skin_name = "mySkin";}
+if (empty($miniAudioPlayer_active_all)) {$miniAudioPlayer_active_all = "true";}
 if (empty($miniAudioPlayer_custom_skin_css)) {$miniAudioPlayer_custom_skin_css = "
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++
