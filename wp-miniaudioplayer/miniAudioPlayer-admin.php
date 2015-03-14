@@ -270,6 +270,7 @@ function miniAudioPlayer_options_page(){ // Output the options page
     <p><?php _e('Here you define the default settings for all the audio links in your Wordpress site', 'mbMiniAudioPlayer'); ?>.</p>
 
     <p><?php _e('You can always overwrite any single player settings by selecting the audio link in the post editor and clicking on the mb.miniAudioPlayer button on the top of the TinyMCE editor toolbar', 'mbMiniAudioPlayer'); ?>.</p>
+    <img style="margin-top:10px; width: 100%" src="<?php echo plugins_url('images/editorButton.png', __FILE__);?>" alt="editor button" />
     <hr>
     <input type="hidden" name="miniAudioPlayer_donate" value="<?php echo esc_attr( get_option('miniAudioPlayer_donate') ); ?>"/>
     <table class="form-table">
@@ -613,8 +614,7 @@ function miniAudioPlayer_options_page(){ // Output the options page
 
             <p><?php _e('Define the class name for the audio links you don’t want to render as player; By default is "map_excluded"', 'mbMiniAudioPlayer'); ?></p>
             <p><i><?php _e('You can either manually add this class to the audio links you want to exclude or select the link and check the "Don’t render" checkbox of the popup window in the editor page', 'mbMiniAudioPlayer'); ?>.</i></p>
-            <img style="margin-top:10px;" src="<?php echo plugins_url('images/excludeimg.png', __FILE__);?>"
-                 alt="exclude image"/>
+            <img style="margin-top:10px;" src="<?php echo plugins_url('images/excludeimg.png', __FILE__);?>" alt="exclude image"/>
         </td>
     </tr>
 
