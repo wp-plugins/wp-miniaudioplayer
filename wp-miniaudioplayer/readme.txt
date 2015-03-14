@@ -86,6 +86,9 @@ After that your player should work fine.
 
 == Changelog ==
 
+= 1.6.4 =
+* feature: Added a new option that let choose if apply the component to all the links to audio files or if activate the player manually from the page/post editor component window.
+
 = 1.6.3 =
 * Bug fix: fixed a bug that affected the correct customization behavior in certain cases.
 * feature: The customization window now adapt its size to the window size.

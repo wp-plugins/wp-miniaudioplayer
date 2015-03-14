@@ -2,14 +2,13 @@
 
 // create the admin menu
 // hook in the action for the admin options page
+add_action( 'admin_init', 'register_miniAudioPlayerSettings');
 add_action('admin_menu', 'add_miniAudioPlayer_option_page');
 
 function add_miniAudioPlayer_option_page(){
     // hook in the options page function
     add_options_page('miniAudioPlayer', 'mb.miniAudioPlayer', 'manage_options', __FILE__, 'miniAudioPlayer_options_page');
-    add_action( 'admin_init', 'register_miniAudioPlayerSettings' );
 }
-
 
 function register_miniAudioPlayerSettings() {
     //register miniAudioPlayer settings
@@ -30,6 +29,7 @@ function register_miniAudioPlayerSettings() {
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_custom_skin_css' );
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_custom_skin_name' );
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_add_gradient' );
+    register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_active_all' );
 }
 
 function miniAudioPlayer_options_page(){ // Output the options page
@@ -174,6 +174,12 @@ function miniAudioPlayer_options_page(){ // Output the options page
             text-align: right;
         }
 
+        .evidence{
+            background: #fff;
+            padding: 20px;
+
+        }
+
         #miniAudioPlayer_custom_skin_name{
             background: transparent;
             border: none;
@@ -185,14 +191,6 @@ function miniAudioPlayer_options_page(){ // Output the options page
     </style>
 
     <div class="wrap" style="width:800px">
-
-    <a href="http://pupunzi.com"><img style="margin-top:30px;"
-                                      src="<?php echo plugins_url('images/logo.png', __FILE__);?>"
-                                      alt="Made by Pupunzi"/></a>
-
-    <h2><?php _e('mb.miniAudioPlayer Settings', 'mbMiniAudioPlayer'); ?></h2>
-
-    <p><?php printf( __( 'You’re using mb.miniAudioPlayer v. %s', 'mbMiniAudioPlayer' ), get_option('miniAudioPlayer_version') ); ?> <?php _e('by', 'mbMiniAudioPlayer'); ?> <a href="http://pupunzi.com">Pupunzi</a>.</p>
 
     <div id="share" style="position: absolute; left:650px; top:20px">
 
@@ -223,15 +221,23 @@ function miniAudioPlayer_options_page(){ // Output the options page
              data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial"></div>
     </div>
 
-    <div class="updated fade">
-        <p style="line-height: 1.4em;"><?php _e('Thanks for downloading mb.miniAudioPlayer!', 'mbMiniAudioPlayer'); ?></p>
+    <a href="http://pupunzi.com"><img style="margin-top:30px;"
+                                      src="<?php echo plugins_url('images/logo.png', __FILE__);?>"
+                                      alt="Made by Pupunzi"/></a>
+
+    <p><?php printf( __( 'You’re using mb.miniAudioPlayer v. %s', 'mbMiniAudioPlayer' ), get_option('miniAudioPlayer_version') ); ?>
+        <?php _e('by', 'mbMiniAudioPlayer'); ?> <a href="http://pupunzi.com">Pupunzi</a>.
+    </p>
+
+    <div class="evidence fade">
+        <p style="line-height: 1.4em;"><?php _e('Thank you for downloading mb.miniAudioPlayer!', 'mbMiniAudioPlayer'); ?></p>
 
         <p id="inlineDonate" style="position: relative; display:block" class="alignrightt">
             <?php _e('If you like it and you are using it<br>then you should consider a donation (€15,00 or more) :-)', 'mbMiniAudioPlayer'); ?><br><br>
             <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=V6ZS8JPMZC446&lc=GB&item_name=mb%2eideas&item_number=MBIDEAS&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG_global%2egif%3aNonHosted"
                target="_blank" onclick="donate()"><img border="0" alt="PayPal"
                                                        src="https://www.paypalobjects.com/en_US/IT/i/btn/btn_donateCC_LG.gif"></a>
-            <br><br><i><?php _e('If you donate, the start popup will nevermore display', 'mbMiniAudioPlayer'); ?>.</i><br><br>
+            <br><br><i><?php _e('If you donate, the start popup will nevermore display', 'mbMiniAudioPlayer'); ?>.</i>
         </p>
         <hr>
         <p><?php _e('Don’t forget to follow me on twitter', 'mbMiniAudioPlayer'); ?>: <a href="https://twitter.com/pupunzi">@pupunzi</a></p>
@@ -246,27 +252,40 @@ function miniAudioPlayer_options_page(){ // Output the options page
     <div class="highlight fade" style="padding: 10px; margin: 0">
         <!-- Begin MailChimp Signup Form -->
         <form action="http://pupunzi.us6.list-manage2.com/subscribe/post?u=4346dc9633&amp;id=91a005172f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-            <label for="mce-EMAIL" style="font-weight: bold"><?php _e('Subscribe to my mailing list<br>to stay in touch', 'mbMiniAudioPlayer'); ?>.</label>
+            <label for="mce-EMAIL" style="font-weight: bold"><?php _e('Subscribe to my mailing list to stay in touch', 'mbMiniAudioPlayer'); ?>.</label>
             <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="<?php _e('your email address', 'mbMiniAudioPlayer'); ?>" required>
             <input type="submit" value="<?php _e('Subscribe', 'mbMiniAudioPlayer'); ?>" name="subscribe" id="mc-embedded-subscribe" class="button">
         </form>
         <!--End mc_embed_signup-->
     </div>
 
+    <hr>
+    <h2><?php _e('mb.miniAudioPlayer Settings', 'mbMiniAudioPlayer'); ?></h2>
 
     <form id="optionsForm" method="post" action="options.php">
 
     <?php settings_fields( 'miniAudioPlayer-settings-group' ); ?>
     <?php do_settings_sections( 'miniAudioPlayer-settings-group' ); ?>
 
-    <h2><?php _e('Default settings', 'mbMiniAudioPlayer'); ?>:</h2>
-
     <p><?php _e('Here you define the default settings for all the audio links in your Wordpress site', 'mbMiniAudioPlayer'); ?>.</p>
 
-    <p><?php _e('You can overwrite the single player settings by selecting the audio link in the post editor and clicking on the mb.miniAudioPlayer button on the top of the TinyMCE editor toolbar', 'mbMiniAudioPlayer'); ?>.</p>
+    <p><?php _e('You can always overwrite any single player settings by selecting the audio link in the post editor and clicking on the mb.miniAudioPlayer button on the top of the TinyMCE editor toolbar', 'mbMiniAudioPlayer'); ?>.</p>
     <hr>
     <input type="hidden" name="miniAudioPlayer_donate" value="<?php echo esc_attr( get_option('miniAudioPlayer_donate') ); ?>"/>
     <table class="form-table">
+
+    <tr valign="top">
+        <th scope="row"><?php _e('Apply to any .mp3 file link', 'mbMiniAudioPlayer'); ?>:</th>
+        <td>
+            <input type="checkbox" name="miniAudioPlayer_active_all" value="true" <?php if (get_option('miniAudioPlayer_active_all') == "true") {
+                echo' checked="checked"';
+            }?>/>
+
+            <p><?php _e('Check to render any link to an .mp3 file as miniAudioPlayer', 'mbMiniAudioPlayer'); ?>.</p>
+            <p><?php _e('If you uncheck this option only the links activated via the miniAudioPlayer window in the post/page editor will be rendered', 'mbMiniAudioPlayer'); ?>.</p>
+        </td>
+        <td></td>
+    </tr>
 
     <tr valign="top">
         <th scope="row"><?php _e('Get the title from meta-data', 'mbMiniAudioPlayer'); ?>:</th>
@@ -274,23 +293,39 @@ function miniAudioPlayer_options_page(){ // Output the options page
             <input type="checkbox" name="miniAudioPlayer_getMetadata"
                    value="true" <?php if (get_option('miniAudioPlayer_getMetadata') == "true") {echo' checked="checked"';}?>/>
 
-            <p><?php _e('Check to retrieve the title from meta-data', 'mbMiniAudioPlayer'); ?></p>
+            <p><?php _e('Check to retrieve the title from meta-data', 'mbMiniAudioPlayer'); ?>.</p>
         </td>
     </tr>
 
     <tr valign="top">
         <th scope="row">
-
-            <?php  _e( 'Set or edit your custom skin' ,'mbMiniAudioPlayer'); ?>:
-            <p><?php _e('You can upload a CSS file generated from the SkinMaker tool', 'mbMiniAudioPlayer'); ?>. </p>
-            <button onclick="jQuery('#fileToLoad').click(); return false;">Upload a skin</button>
+            <?php _e('Upload a custom skin CSS file', 'mbMiniAudioPlayer'); ?>:
+        </th>
+        <td>
+            <p><b><?php _e('You can create your own skin using the on line Skin Maker tool to generate the CSS', 'mbMiniAudioPlayer') ?></b>:</p>
+            <br>
+            <p><b><a class="button" href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank" style="text-transform: uppercase; border-color: #3A98FB" ><?php _e('Open the Skin Maker Tool', 'mbMiniAudioPlayer') ?></a></b></p>
+            <br>
+            <p><?php _e( '<b>Upload the generated CSS file to add your custom skin' ); ?>:</p>
+            <br>
+            <button class="button" onclick="jQuery('#fileToLoad').click(); return false;"><?php _e('Upload a new skin file', 'mbMiniAudioPlayer'); ?></button>
             <input type="file" id="fileToLoad" accept="text/css" onchange="jQuery.file.loadText(this,'css',setVarFromLoad)" style="display: none">
-
-            <p style="margin-top: 20px">
-                <b>If you want to modify the CSS you should save and upload it on the skinMaker tool</b>; after the changes save it back and upload it here again.<br>
-            </p>
-            <p><button onclick="jQuery.file.save('customSkinCss', 'css','<?php echo get_option('miniAudioPlayer_custom_skin_name') ?>'); return false ">Save this skin File</button></p>
-            <p><a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank">miniAudioPlayer skinMaker Tool</a></p>
+            <br>
+            <br>
+            <hr>
+            <p><?php _e('Custom skin name:', 'mbMiniAudioPlayer'); ?> </p>
+            <input type="text" readonly id="miniAudioPlayer_custom_skin_name" name="miniAudioPlayer_custom_skin_name" value="<?php echo get_option('miniAudioPlayer_custom_skin_name') ?>">
+            <br>
+            <textarea  id="customSkinCss"
+                       readonly
+                       class="meta_skin_css"
+                       name="miniAudioPlayer_custom_skin_css"
+                       cols="50"
+                       value="<?php esc_html_e( get_option('miniAudioPlayer_custom_skin_css ') ); ?>"
+                       style="height: 450px; width: 580px; font-size: 12px"
+                ><?php esc_html_e( get_option('miniAudioPlayer_custom_skin_css ') ); ?>
+            </textarea>
+            <p style="margin-top: 20px"><?php _e('<b>If you want to modify this CSS</b> you should save and upload it on the skinMaker tool;<br> once changed, save it back and upload it here again', 'mbMiniAudioPlayer') ?>.</p>
             <script>
 
                 function setVarFromLoad(textFromFileLoaded) {
@@ -307,9 +342,8 @@ function miniAudioPlayer_options_page(){ // Output the options page
                     var params = JSON.parse( paramsString );
 
                     jQuery("#miniAudioPlayer_custom_skin_name").val(params.skinName);
-                    jQuery("#skinNameOption").val(params.skinName).html(params.skinName + " (customizable)");
+                    jQuery("#skinNameOption").val(params.skinName).html(params.skinName + " (custom)");
                     jQuery(".customSkinName").html(params.skinName);
-
                     jQuery("#customSkinCss").val(textFromFileLoaded);
 
                 }
@@ -427,29 +461,14 @@ function miniAudioPlayer_options_page(){ // Output the options page
                     }
                 };
 
-
             </script>
+            <p style="text-align: right"><button class="button" onclick="jQuery.file.save('customSkinCss', 'css','<?php echo get_option('miniAudioPlayer_custom_skin_name') ?>'); return false "><?php _e("Save this skin as file", 'mbMiniAudioPlayer') ?></button></p>
 
-        </th>
-        <td>
-            <p><?php printf( __( 'Customize the below CSS to modify the "<span class="customSkinName">%1$s</span>" appearance' ), get_option('miniAudioPlayer_custom_skin_name') ); ?>.</p>
-            <br>
-            <p><?php _e('Custom skin name:', 'mbMiniAudioPlayer'); ?> </p>
-            <input type="text" readonly id="miniAudioPlayer_custom_skin_name" name="miniAudioPlayer_custom_skin_name" value="<?php echo get_option('miniAudioPlayer_custom_skin_name') ?>">
-            <br>
-            <textarea  id="customSkinCss"
-                       readonly
-                       class="meta_skin_css"
-                       name="miniAudioPlayer_custom_skin_css"
-                       cols="50"
-                       value="<?php esc_html_e( get_option('miniAudioPlayer_custom_skin_css ') ); ?>"
-                       style="height: 450px; width: 580px; font-size: 12px"
-                ><?php esc_html_e( get_option('miniAudioPlayer_custom_skin_css ') ); ?></textarea>
         </td>
     </tr>
 
     <tr valign="top">
-        <th scope="row"><?php _e('Choose the skin color', 'mbMiniAudioPlayer'); ?>:</th>
+        <th scope="row"><?php _e('Choose your skin', 'mbMiniAudioPlayer'); ?>:</th>
         <td>
             <select name="miniAudioPlayer_skin">
                 <option value="black" <?php if (get_option('miniAudioPlayer_skin') == "black") {
@@ -479,11 +498,11 @@ function miniAudioPlayer_options_page(){ // Output the options page
                 <option value='-' disabled>______________</option>
                 <option id="skinNameOption" value="<?php echo get_option('miniAudioPlayer_custom_skin_name') ?>" <?php if (get_option('miniAudioPlayer_skin') == get_option('miniAudioPlayer_custom_skin_name')) {
                     echo' selected';
-                }?>><?php echo get_option('miniAudioPlayer_custom_skin_name') ?> <?php _e('(customizable)', 'mbMiniAudioPlayer'); ?></option>
+                }?>><?php echo get_option('miniAudioPlayer_custom_skin_name') ?> <?php _e('(custom)', 'mbMiniAudioPlayer'); ?></option>
             </select>
 
             <p><?php _e('Set the palyer skin', 'mbMiniAudioPlayer'); ?>.</p>
-            <p><?php printf( __( 'The "<span class="customSkinName">%1$s</span>" option let you use the customized CSS to skin the player' ), get_option('miniAudioPlayer_custom_skin_name') ); ?>.</p>
+            <p><?php printf( __( 'The "<span class="customSkinName">%1$s</span>" option is your customized skin' ), get_option('miniAudioPlayer_custom_skin_name') ); ?>.</p>
         </td>
     </tr>
 
@@ -516,7 +535,7 @@ function miniAudioPlayer_options_page(){ // Output the options page
             <input type="text" name="miniAudioPlayer_width" style="width:80px"
                    value="<?php echo esc_attr( get_option('miniAudioPlayer_width') ); ?>"/>
 
-            <p><?php _e('Set the player width in pixel', 'mbMiniAudioPlayer'); ?>.</p>
+            <p><?php _e('Set the player width in pixel or percentage (Ex.: 250 or 100%)', 'mbMiniAudioPlayer'); ?>.</p>
             <p><?php _e('The size is relative to the inner part of the player; if you want you can set the with as percentage, in that case the player will be adaptive for different screen resolutions, included mobile devices', 'mbMiniAudioPlayer'); ?>.</p>
         </td>
     </tr>
@@ -547,7 +566,7 @@ function miniAudioPlayer_options_page(){ // Output the options page
                 </option>
             </select>
 
-            <p><?php _e('Set the default volume for the player', 'mbMiniAudioPlayer'); ?></p>
+            <p><?php _e('Set the default volume for the player', 'mbMiniAudioPlayer'); ?>.</p>
         </td>
     </tr>
 
@@ -559,7 +578,7 @@ function miniAudioPlayer_options_page(){ // Output the options page
                 echo' checked="checked"';
             }?>/>
 
-            <p><?php _e('Check to show the volume levels', 'mbMiniAudioPlayer'); ?></p>
+            <p><?php _e('Check to show the volume levels', 'mbMiniAudioPlayer'); ?>.</p>
         </td>
     </tr>
 
@@ -571,7 +590,7 @@ function miniAudioPlayer_options_page(){ // Output the options page
                 echo' checked="checked"';
             }?>/>
 
-            <p><?php _e('Check to show the time info', 'mbMiniAudioPlayer'); ?></p>
+            <p><?php _e('Check to show the time info', 'mbMiniAudioPlayer'); ?>.</p>
         </td>
     </tr>
 
@@ -583,7 +602,7 @@ function miniAudioPlayer_options_page(){ // Output the options page
                 echo' checked="checked"';
             }?>/>
 
-            <p><?php _e('Check to show the Rewind button', 'mbMiniAudioPlayer'); ?></p>
+            <p><?php _e('Check to show the Rewind button', 'mbMiniAudioPlayer'); ?>.</p>
         </td>
     </tr>
 
@@ -618,7 +637,7 @@ function miniAudioPlayer_options_page(){ // Output the options page
                 echo' checked="checked"';
             }?>/>
 
-            <p><?php _e('Check to add a download button closed to the player', 'mbMiniAudioPlayer'); ?></p>
+            <p><?php _e('Check to add a download button on the right of the player', 'mbMiniAudioPlayer'); ?>.</p>
 
             <input type="checkbox" name="miniAudioPlayer_download_security" id="miniAudioPlayer_download_security"
                    value="true" <?php if (get_option('miniAudioPlayer_download_security') == "true") {
@@ -628,19 +647,21 @@ function miniAudioPlayer_options_page(){ // Output the options page
             if (get_option('miniAudioPlayer_download') != "true") {
                 echo' disabled="disabled"';
             }?>/><label for="miniAudioPlayer_download_security" style="color:gray"><?php _e('Only for registered users', 'mbMiniAudioPlayer'); ?></label>
-            <p><?php _e('Check to allow downloads only for registered user', 'mbMiniAudioPlayer'); ?></p>
+            <p><?php _e('Check to allow downloads only for registered user', 'mbMiniAudioPlayer'); ?>.</p>
         </td>
     </tr>
 
-    <tr valign="top">
+    <!--tr valign="top">
         <th scope="row"><?php _e('Activate the player customizer in the post editor', 'mbMiniAudioPlayer'); ?>:</th>
         <td>
             <input type="checkbox" name="miniAudioPlayer_customizer" value="true" <?php if (get_option('miniAudioPlayer_customizer') == "true") {echo' checked="checked"';}?>/>
             <p><?php _e('Check to activate the customization window in the posts and pages TinyMce editor"', 'mbMiniAudioPlayer'); ?></p>
         </td>
-    </tr>
+    </tr -->
 
     </table>
+
+    <input type="hidden" name="miniAudioPlayer_customizer" value="true" />
 
     <p><?php _e('If you are using others HTML5 audio player plug-ins (like Haiku) there could be conflicts with mb.miniAudioPlayer. You should deactivete the others befor using this', 'mbMiniAudioPlayer'); ?>.</p>
 
