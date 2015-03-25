@@ -30,7 +30,6 @@
 
 	var isAndroidDefault = jQuery.browser.android && !(/chrome/i).test(nAgt);
 
-
 	/*******************************************************************************
 	 * jQuery.mb.components: jquery.mb.CSSAnimate
 	 ******************************************************************************/
