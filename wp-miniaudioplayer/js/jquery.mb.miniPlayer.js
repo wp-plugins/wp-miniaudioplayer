@@ -372,9 +372,11 @@
 
 							player.width = player.opt.width;
 							if (player.opt.width.toString().indexOf("%") >= 0) {
-
+/*
 								var m = $playBox.outerWidth() < 40 ? 40 : $playBox.outerWidth();
-								var margin = player.opt.downloadable ? (m+10) * 3 : 40;
+								var margin = player.opt.downloadable ? (m) * 2 : 40;
+*/
+								var margin = player.opt.downloadable ? 60 : 0;
 								var pW = $master.parent().outerWidth() - margin;
 								player.width = (pW * (parseFloat(player.opt.width))) / 100;
 
