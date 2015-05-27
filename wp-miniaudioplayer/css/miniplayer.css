@@ -540,7 +540,6 @@ a.audio{
   border-bottom: 1px dotted #ccc;
   font: 14px/14px "DroidSansMonoRegular", sans-serif !important;
   display: block;
-
 }
 
 .map_pl_container .pl_item:hover{
@@ -551,4 +550,18 @@ a.audio{
   color: #666;
   background: rgba(0, 0, 0, 0.10);
   border-radius: 8px;
+}
+
+.map_album_infobox{
+  margin-bottom: 10px;
+}
+.map_item_title{
+  font-weight: 600;
+}
+.map_item_album{
+  font-style: italic;
+}
+
+.map_item_artist{
+  display: block;
 }
