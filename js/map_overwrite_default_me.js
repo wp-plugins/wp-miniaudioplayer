@@ -53,7 +53,7 @@ function replaceDefault(){
 
 		var opt = {};
 		jQuery.extend(opt, miniAudioPlayer_defaults, {width: "100%"} );
-		jQuery("#" + id).mb_miniPlayer(opt);
+		var pl_player = jQuery("#" + id).mb_miniPlayer(opt);
 
 		var me_pl_elements = jQuery(".wp-playlist-item", jQuery(this));
 
@@ -74,6 +74,13 @@ function replaceDefault(){
 				pl_el.addClass("sel");
 				jQuery("#" + id).mb_miniPlayer_changeFile({mp3: elementsUrl}, title  +  author);
 
+			}
+
+			if(miniAudioPlayer_defaults.downloadable){
+				var dwnload = pl_player[0].player.createDownload(elementsUrl, title);
+				pl_el.append(dwnload);
+
+				jQuery(".mbMiniPlayer .map_download", pl).remove();
 			}
 
 			pl_el.on("click", function(){
