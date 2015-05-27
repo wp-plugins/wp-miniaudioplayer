@@ -236,6 +236,7 @@ function miniAudioPlayer_player_head() {
 				showTime:'.$miniAudioPlayer_showTime.',
 				id3:'.$miniAudioPlayer_getMetadata.',
 				showRew:'.$miniAudioPlayer_showRew.',
+				addShadow: false,
 				downloadable:'.canDownload().',
 				downloadPage:"'.plugins_url( 'map_download.php', __FILE__ ).'",
 				swfPath:"'.plugins_url( '/js/', __FILE__ ).'",
