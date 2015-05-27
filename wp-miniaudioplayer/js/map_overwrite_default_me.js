@@ -14,7 +14,7 @@ function replaceDefault(){
 		var id = new Date().getTime();
 		var map = jQuery("<a/>").attr({href:audioUrl, id: id }).html("audio");
 		jQuery(this).replaceWith(map);
-		jQuery("#" + id).mb_miniPlayer();
+		jQuery("#" + id).mb_miniPlayer(miniAudioPlayer_defaults);
 	});
 
 	var me_pl = jQuery(".wp-audio-playlist");
@@ -31,7 +31,9 @@ function replaceDefault(){
 		var map = jQuery("<a/>").attr({href:audioUrl, id: id }).html("audio");
 		pl.append(map);
 
-		jQuery("#" + id).mb_miniPlayer({width: "100%"});
+		var opt = {};
+		jQuery.extend(opt, miniAudioPlayer_defaults, {width: "100%"} )
+		jQuery("#" + id).mb_miniPlayer(opt);
 
 		var me_pl_elements = jQuery(".wp-playlist-item", jQuery(this));
 
