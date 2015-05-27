@@ -5,6 +5,7 @@
  * Creation date: 12/05/15
  *
  ******************************************************************************/
+var miniAudioPlayer_defaults = miniAudioPlayer_defaults || {};
 
 function replaceDefault(){
 
@@ -23,16 +24,35 @@ function replaceDefault(){
 		var el = jQuery(this);
 		var pl = jQuery("<div/>").addClass("map_pl_container");
 
+		var albumInfo = jQuery(".wp-playlist-current-item .wp-playlist-caption", el);
+		var infoBox = jQuery("<div/>").addClass("map_album_infobox");
+
+		albumInfo.find("span").each(function(){
+			var meta = jQuery(this);
+			var span = jQuery("<span/>").html(meta.html());
+
+			if(meta.is(".wp-playlist-item-title"))
+				span.addClass("map_item_title").append(", ");
+
+			if(meta.is(".wp-playlist-item-artist"))
+				span.addClass("map_item_artist");
+
+			if(meta.is(".wp-playlist-item-album"))
+				span.addClass("map_item_album");
+
+			infoBox.append(span);
+		});
+
 		el.before(pl);
+		pl.append(infoBox);
 
 		var audioUrl = jQuery("audio", jQuery(this)).attr("src");
-		var me_pl_player = jQuery(".mejs-container", jQuery(this));
 		var id = new Date().getTime();
 		var map = jQuery("<a/>").attr({href:audioUrl, id: id }).html("audio");
 		pl.append(map);
 
 		var opt = {};
-		jQuery.extend(opt, miniAudioPlayer_defaults, {width: "100%"} )
+		jQuery.extend(opt, miniAudioPlayer_defaults, {width: "100%"} );
 		jQuery("#" + id).mb_miniPlayer(opt);
 
 		var me_pl_elements = jQuery(".wp-playlist-item", jQuery(this));
