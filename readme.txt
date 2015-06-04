@@ -87,7 +87,7 @@ After that your player should work fine.
 == Changelog ==
 
 = 1.6.8 =
-* Bug fix: if the file url contain parameters the download faild.
+* Bug fix: if the file url contain parameters the download failed.
 * Bug fix: if used to replace the default WP player with a playlist the Author and the title where not updated.
 
 = 1.6.7 =
