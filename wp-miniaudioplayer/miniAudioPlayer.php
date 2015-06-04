@@ -4,11 +4,11 @@ Plugin Name: mb.miniAudioPlayer
 Plugin URI: http://wordpress.org/extend/plugins/wp-miniaudioplayer/
 Description: Transform your mp3 audio file link into a nice, small light player. ! IMPORTANT - if you customized the skin for the previous version you need to regenerate it from <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank">here</a>.
 Author: Pupunzi (Matteo Bicocchi)
-Version: 1.6.7
+Version: 1.6.8
 Author URI: http://pupunzi.com
 */
 
-define("MINIAUDIOPLAYER_VERSION", "1.6.7");
+define("MINIAUDIOPLAYER_VERSION", "1.6.8");
 register_activation_hook( __FILE__, 'miniAudioPlayer_install' );
 
 function miniAudioPlayer_install() {
@@ -209,7 +209,7 @@ function miniAudioPlayer_init() {
 
     if ( !is_admin()) {
         wp_enqueue_script('jquery');
-        wp_enqueue_script('mb.miniPlayer', plugins_url( '/js/jQuery.mb.miniAudioPlayer.min.js', __FILE__ ), false, $miniAudioPlayer_version, false);
+        wp_enqueue_script('mb.miniPlayer', plugins_url( '/js/jQuery.mb.miniAudioPlayer.js', __FILE__ ), false, $miniAudioPlayer_version, false);
         wp_enqueue_script('map_overwrite_default_me', plugins_url( '/js/map_overwrite_default_me.js', __FILE__ ), false, $miniAudioPlayer_version, false);
         wp_enqueue_style('miniAudioPlayer', plugins_url( '/css/miniplayer.css', __FILE__ ), false, $miniAudioPlayer_version, 'screen');
     }
@@ -217,13 +217,14 @@ function miniAudioPlayer_init() {
 add_action('init', 'miniAudioPlayer_init');
 
 function miniAudioPlayer_player_head() {
-    global $miniAudioPlayer_getMetadata, $miniAudioPlayer_width,$miniAudioPlayer_skin, $miniAudioPlayer_animate,$miniAudioPlayer_volume,$miniAudioPlayer_autoplay,$miniAudioPlayer_showVolumeLevel,$miniAudioPlayer_showTime,$miniAudioPlayer_showRew, $miniAudioPlayer_active_all, $miniAudioPlayer_replaceDefault;
+    global $miniAudioPlayer_excluded, $miniAudioPlayer_getMetadata, $miniAudioPlayer_width,$miniAudioPlayer_skin, $miniAudioPlayer_animate, $miniAudioPlayer_volume, $miniAudioPlayer_autoplay, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_active_all, $miniAudioPlayer_replaceDefault;
 
     echo '
 	<!-- start miniAudioPlayer initializer -->
 	<script type="text/javascript">
 
-	miniAudioPlayer_replaceDefault = '.$miniAudioPlayer_replaceDefault.';
+	var miniAudioPlayer_replaceDefault = '.$miniAudioPlayer_replaceDefault.';
+	var miniAudioPlayer_excluded = "'.$miniAudioPlayer_excluded.'";
 
 	var miniAudioPlayer_defaults = {
 				inLine:true,
@@ -248,6 +249,7 @@ function miniAudioPlayer_player_head() {
 		};
 
     function initializeMiniAudioPlayer(){
+    	  jQuery(".mejs-container a").addClass(miniAudioPlayer_excluded);
          jQuery("a'. ($miniAudioPlayer_active_all != 'true' ? '.mb_map':'').'[href*=\'.mp3\'] ,a'.($miniAudioPlayer_active_all != 'true' ? '.mb_map':'').'[href*=\'.m4a\']")'.getExcluded().'mb_miniPlayer(miniAudioPlayer_defaults);
     }
 
