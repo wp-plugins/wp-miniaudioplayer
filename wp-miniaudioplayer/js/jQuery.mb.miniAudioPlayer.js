@@ -239,7 +239,10 @@
 									e.preventDefault();
 									e.stopPropagation();
 
+
 									var cleanFileUrl = fileUrl.split("?")[0];
+
+									console.debug(cleanFileUrl);
 
 									expires = "";
 									document.cookie = "mapdownload=true" + expires + "; path=/";
@@ -492,6 +495,12 @@
 
 						$muteBox.on(jQuery.mbMiniPlayer.eventEnd,
 								function () {
+
+									if (jQuery.isMobile){
+										$playBox.trigger(jQuery.mbMiniPlayer.eventEnd);
+										return;
+									}
+
 									if (jQuery(this).hasClass("mute")) {
 										jQuery(this).removeClass("mute");
 										jQuery(this).html(jQuery.mbMiniPlayer.icon.volume);
