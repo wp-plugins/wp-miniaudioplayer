@@ -4,11 +4,11 @@ Plugin Name: mb.miniAudioPlayer
 Plugin URI: http://wordpress.org/extend/plugins/wp-miniaudioplayer/
 Description: Transform your mp3 audio file link into a nice, small light player. ! IMPORTANT - if you customized the skin for the previous version you need to regenerate it from <a href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/skinMaker.html" target="_blank">here</a>.
 Author: Pupunzi (Matteo Bicocchi)
-Version: 1.6.9
+Version: 1.7.0
 Author URI: http://pupunzi.com
 */
 
-define("MINIAUDIOPLAYER_VERSION", "1.6.9");
+define("MINIAUDIOPLAYER_VERSION", "1.7.0");
 register_activation_hook( __FILE__, 'miniAudioPlayer_install' );
 
 function miniAudioPlayer_install() {
@@ -76,6 +76,7 @@ downloadHover: rgba(255, 3, 3, 1)
     add_option('miniAudioPlayer_add_gradient','');
     add_option('miniAudioPlayer_active_all','true');
     add_option('miniAudioPlayer_replaceDefault','false');
+    add_option('miniAudioPlayer_replaceDefault_show_title','false');
 
 }
 
@@ -99,6 +100,7 @@ $miniAudioPlayer_custom_skin_name = get_option('miniAudioPlayer_custom_skin_name
 $miniAudioPlayer_add_gradient = get_option('miniAudioPlayer_add_gradient');
 $miniAudioPlayer_active_all = get_option('miniAudioPlayer_active_all');
 $miniAudioPlayer_replaceDefault = get_option('miniAudioPlayer_replaceDefault');
+$miniAudioPlayer_replaceDefault_show_title = get_option('miniAudioPlayer_replaceDefault_show_title');
 
 //set up defaults if these fields are empty
 if ($miniAudioPlayer_version != MINIAUDIOPLAYER_VERSION) {$miniAudioPlayer_version = MINIAUDIOPLAYER_VERSION;}
@@ -120,6 +122,7 @@ if (empty($miniAudioPlayer_add_gradient)) {$miniAudioPlayer_add_gradient = "true
 if (empty($miniAudioPlayer_custom_skin_name)) {$miniAudioPlayer_custom_skin_name = "mySkin";}
 if (empty($miniAudioPlayer_active_all)) {$miniAudioPlayer_active_all = "true";}
 if (empty($miniAudioPlayer_replaceDefault)) {$miniAudioPlayer_replaceDefault = "false";}
+if (empty($miniAudioPlayer_replaceDefault_show_title)) {$miniAudioPlayer_replaceDefault_show_title = "false";}
 if (empty($miniAudioPlayer_custom_skin_css)) {$miniAudioPlayer_custom_skin_css = "
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -217,7 +220,7 @@ function miniAudioPlayer_init() {
 add_action('init', 'miniAudioPlayer_init');
 
 function miniAudioPlayer_player_head() {
-    global $miniAudioPlayer_excluded, $miniAudioPlayer_getMetadata, $miniAudioPlayer_width,$miniAudioPlayer_skin, $miniAudioPlayer_animate, $miniAudioPlayer_volume, $miniAudioPlayer_autoplay, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_active_all, $miniAudioPlayer_replaceDefault;
+    global $miniAudioPlayer_excluded, $miniAudioPlayer_getMetadata, $miniAudioPlayer_width,$miniAudioPlayer_skin, $miniAudioPlayer_animate, $miniAudioPlayer_volume, $miniAudioPlayer_autoplay, $miniAudioPlayer_showVolumeLevel, $miniAudioPlayer_showTime, $miniAudioPlayer_showRew, $miniAudioPlayer_active_all, $miniAudioPlayer_replaceDefault, $miniAudioPlayer_replaceDefault_show_title;
 
     echo '
 	<!-- start miniAudioPlayer initializer -->
@@ -225,6 +228,7 @@ function miniAudioPlayer_player_head() {
 
 	var miniAudioPlayer_replaceDefault = '.$miniAudioPlayer_replaceDefault.';
 	var miniAudioPlayer_excluded = "'.$miniAudioPlayer_excluded.'";
+	var miniAudioPlayer_replaceDefault_show_title = '.$miniAudioPlayer_replaceDefault_show_title.';
 
 	var miniAudioPlayer_defaults = {
 				inLine:true,

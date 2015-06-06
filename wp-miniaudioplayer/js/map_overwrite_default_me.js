@@ -19,13 +19,6 @@
  _ Copyright (c) 2001-2015. Matteo Bicocchi (Pupunzi);                                                                                              _
  ___________________________________________________________________________________________________________________________________________________*/
 
-/*******************************************************************************
- *
- * map_overwrite_default_me
- * Author: pupunzi
- * Creation date: 12/05/15
- *
- ******************************************************************************/
 var miniAudioPlayer_defaults = miniAudioPlayer_defaults || {};
 
 function replaceDefault(){
@@ -34,6 +27,7 @@ function replaceDefault(){
 	me.each(function(){
 		var audioUrl = jQuery("audio", jQuery(this)).attr("src");
 		var title = audioUrl.split("/").pop();
+		title = miniAudioPlayer_replaceDefault_show_title ? title.split("?")[0] : "";
 		var id = new Date().getTime();
 		var map = jQuery("<a/>").attr({href:audioUrl, id: id }).html(title);
 		jQuery(this).replaceWith(map);

@@ -86,6 +86,9 @@ After that your player should work fine.
 
 == Changelog ==
 
+= 1.7.0 =
+* New option: If the "Replace the default WP media player" is checked you can now choose to show or hide the filename inside the player.
+
 = 1.6.9 =
 * Feature: On mobile devices clicking on the mute button just play the audio (on mobile devices you can't mute other than from the hardware control).
 
