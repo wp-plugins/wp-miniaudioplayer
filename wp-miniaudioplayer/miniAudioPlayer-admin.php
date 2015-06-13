@@ -20,6 +20,7 @@ function register_miniAudioPlayerSettings() {
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_animate' );
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_volume' );
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_showVolumeLevel' );
+    register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_allowMute' );
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_showTime' );
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_showRew' );
     register_setting( 'miniAudioPlayer-settings-group', 'miniAudioPlayer_excluded' );
@@ -626,6 +627,18 @@ function miniAudioPlayer_options_page(){ // Output the options page
             }?>/>
 
             <p><?php _e('Check to show the time info', 'mbMiniAudioPlayer'); ?>.</p>
+        </td>
+    </tr>
+
+    <tr valign="top">
+        <th scope="row"><?php _e('Activate the mute button', 'mbMiniAudioPlayer'); ?>:</th>
+        <td>
+            <input type="checkbox" name="miniAudioPlayer_allowMute"
+                   value="true" <?php if (get_option('miniAudioPlayer_allowMute') == "true") {
+                echo' checked="checked"';
+            }?>/>
+
+            <p><?php _e('Check to activate the mute button', 'mbMiniAudioPlayer'); ?>.</p>
         </td>
     </tr>
 

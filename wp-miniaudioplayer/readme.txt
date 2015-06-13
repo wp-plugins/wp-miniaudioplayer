@@ -4,7 +4,7 @@ Contributors: pupunzi
 Tags: audio player, mp3, HTML5 audio, audio, music, podcast, jquery, pupunzi, mb.components
 Requires at least: 3.3
 Tested up to: 4.2.2
-Stable tag: 1.7.0
+Stable tag: 1.7.1
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DSHAHSJJCQ53Y
 
 Transform your mp3 audio files into a nice, small light HTML5 player.
@@ -85,6 +85,9 @@ sudo apt-get-install chromium-codecs-ffmpeg-extra
 After that your player should work fine.
 
 == Changelog ==
+
+= 1.7.1 =
+* New option: You can now choose if the audio icon in the player should mute/unmute or just play the audio.
 
 = 1.7.0 =
 * New option: If the "Replace the default WP media player" is checked you can now choose to show or hide the filename inside the player.
