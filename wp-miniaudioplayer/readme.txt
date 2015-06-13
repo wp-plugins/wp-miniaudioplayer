@@ -87,7 +87,7 @@ After that your player should work fine.
 == Changelog ==
 
 = 1.7.1 =
-* New option: You can now choose if the audio icon in the player should mute/unmute or just play the audio.
+* New option: You can now choose if the speaker icon in the player should mute/unmute or just play the audio.
 
 = 1.7.0 =
 * New option: If the "Replace the default WP media player" is checked you can now choose to show or hide the filename inside the player.
