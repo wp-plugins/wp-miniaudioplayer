@@ -84,6 +84,7 @@ sudo apt-get-install chromium-codecs-ffmpeg-extra
 
 After that your player should work fine.
 
+
 == Changelog ==
 
 = 1.7.1 =
